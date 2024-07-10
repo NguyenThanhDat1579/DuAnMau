@@ -8,6 +8,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.duanmau.dao.SachDAO;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,6 +23,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // test
+
     }
 }
