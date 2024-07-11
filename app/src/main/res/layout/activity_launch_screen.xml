@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:background="#FFFFFFFF"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:id="@+id/r9xwvoc7ij1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFDF2F2"
+        android:elevation="6dp"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rz3kn62rum5q"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:gravity="center"
+                android:text="Chào mừng đến với"
+                android:textColor="#df2ee8"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/r6sle1l7p4ne"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginHorizontal="72dp"
+                android:layout_marginBottom="13dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/pnlibrary" />
+
+            <TextView
+                android:id="@+id/rr9vgzvgf4vj"
+                android:textColor="#171a1f"
+                android:textSize="18sp"
+                android:layout_marginBottom="225dp"
+                android:layout_marginHorizontal="43dp"
+
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Mang đến cho bạn thế giới tri thức ngay trong tầm tay"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
