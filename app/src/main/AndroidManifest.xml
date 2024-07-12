@@ -13,22 +13,10 @@
         android:theme="@style/Theme.DuAnMau"
         tools:targetApi="31">
         <activity
-            android:name=".Home1"
-            android:exported="false" />
-        <activity
-            android:name=".Welcom"
-            android:exported="false" />
-        <activity
-            android:name=".Admin_login3"
-            android:exported="false" />
-        <activity
-            android:name=".Admin_login2"
-            android:exported="false" />
-        <activity
             android:name=".Admin_login1"
             android:exported="false" />
         <activity
-            android:name=".Launch_screen"
+            android:name=".ChonVaiTroActivity"
             android:exported="false" />
         <activity
             android:name=".DangNhapActivity"

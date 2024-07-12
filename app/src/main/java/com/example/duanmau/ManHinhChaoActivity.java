@@ -43,7 +43,7 @@ public class ManHinhChaoActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                startActivity(new Intent(ManHinhChaoActivity.this, DangNhapActivity.class));
+                startActivity(new Intent(ManHinhChaoActivity.this, ChonVaiTroActivity.class));
                 finish(); // một đi không trở lại
             }
         }.start();

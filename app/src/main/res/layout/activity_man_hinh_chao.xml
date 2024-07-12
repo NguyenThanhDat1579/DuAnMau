@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ManHinhChaoActivity"
-    android:background="#F9F9F9"
+    android:background="@drawable/maunen"
     android:orientation="vertical"
     android:gravity="center">
 

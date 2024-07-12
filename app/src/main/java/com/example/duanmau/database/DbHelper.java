@@ -34,7 +34,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(tPhieuMuon);
 
         //tạo bảng đánh dấu
-        String tDanhDau = "CREATE TABLE DANHDAU (masach INTEGER REFERENCES SACH(masach) , mattv INTEGER REFERENCES THANHVIEN(matv))";
+        String tDanhDau = "CREATE TABLE DANHDAU (masach INTEGER REFERENCES SACH(masach) , matv INTEGER REFERENCES THANHVIEN(matv))";
         db.execSQL(tDanhDau);
 
 
