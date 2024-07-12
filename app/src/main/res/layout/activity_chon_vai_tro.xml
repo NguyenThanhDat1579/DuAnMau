@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/maunen"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:gravity="center">
+
+
+
+        <ImageView
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/pnlibrary"
+            android:layout_marginTop="50dp">
+        </ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ĐĂNG NHẬP"
+            android:textColor="#e35ce8"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:text="với tư cách"
+            android:textColor="#171a1f"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnQTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/custom_btn_nenhongvienhong"
+            android:paddingVertical="15dp"
+            android:text="QUẢN TRỊ VIÊN"
+            android:textSize="20dp"
+            app:backgroundTint="@null">
+        </Button>
+
+        <Button
+            android:id="@+id/btnTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="27dp"
+            android:background="@drawable/custom_btn_nentrangvienhong"
+            android:paddingVertical="15dp"
+            android:text="THÀNH VIÊN"
+            android:textColor="#FFE35CE8"
+            android:textSize="20dp"
+            app:backgroundTint="@null" />
+
+</LinearLayout>
+
+
+
+

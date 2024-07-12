@@ -24,15 +24,17 @@
             android:icon="@drawable/ic_user"
             />
 
-        <item
-            android:id="@+id/item_ThongKe"
-            android:title="Thống kê"
-            android:icon="@drawable/ic_bar"
-            />
 
 
-        <item android:title="">
+
+        <item android:title="Thống kê">
                <menu>
+
+                       <item
+                           android:id="@+id/item_ThongKeDoanhThu"
+                           android:title="Thống kê doanh thu"
+                           android:icon="@drawable/ic_bar"
+                           />
                        <item   android:id="@+id/itemSachMuon"
                            android:title="Top 10 sách mượn phổ biến"
                            android:icon="@drawable/ic_trophy"
@@ -45,7 +47,7 @@
                </menu>
         </item>
 
-        <item android:title="">
+        <item android:title="Người dùng">
                 <menu>
                         <item   android:id="@+id/itemSetting"
                             android:title="Setting"

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (menuItem.getItemId() == R.id.item_QLThanhVien){
 
-                } else if (menuItem.getItemId() == R.id.item_ThongKe){
+                } else if (menuItem.getItemId() == R.id.item_ThongKeDoanhThu){
 
                 } else if (menuItem.getItemId() == R.id.itemSachMuon){
 

@@ -10,7 +10,7 @@
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="80dp"
-        android:src="@drawable/logo2library"/>
+        android:src="@drawable/logopnlibxoanen"/>
 
     <ImageView
         android:layout_width="wrap_content"

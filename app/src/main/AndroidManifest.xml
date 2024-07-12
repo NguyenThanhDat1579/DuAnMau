@@ -12,15 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DuAnMau"
         tools:targetApi="31">
+
         <activity
-            android:name=".DangKyActivity"
+            android:name=".AdminDangNhap"
             android:exported="false" />
 
         <activity
-            android:name=".DangNhapActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ChonVaiTroActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ThanhVienDangNhapActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ManHinhChaoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
