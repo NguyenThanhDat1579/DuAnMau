@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/item_Home"
+            android:title="Home"
+            android:icon="@drawable/ic_home"
+            />
+
+        <item
+            android:id="@+id/item_QLTheLoaiSach"
+            android:title="Quản lý thế loại sách"
+            android:icon="@drawable/ic_book"
+            />
+
+        <item
+            android:id="@+id/item_QLPhieuMuon"
+            android:title="Quản lý phiếu mượn"
+            android:icon="@drawable/ic_tiket"
+            />
+
+        <item
+            android:id="@+id/item_QLThanhVien"
+            android:title="Quản lý thành viên"
+            android:icon="@drawable/ic_user"
+            />
+
+        <item
+            android:id="@+id/item_ThongKe"
+            android:title="Thống kê"
+            android:icon="@drawable/ic_bar"
+            />
+
+
+        <item android:title="">
+               <menu>
+                       <item   android:id="@+id/itemSachMuon"
+                           android:title="Top 10 sách mượn phổ biến"
+                           android:icon="@drawable/ic_trophy"
+                           />
+
+                       <item   android:id="@+id/itemDanhDau"
+                           android:title="Sách đã đánh dấu"
+                           android:icon="@drawable/ic_bookmark"
+                           />
+               </menu>
+        </item>
+
+        <item android:title="">
+                <menu>
+                        <item   android:id="@+id/itemSetting"
+                            android:title="Setting"
+                            android:icon="@drawable/ic_setting"
+                            />
+
+                        <item   android:id="@+id/itemDangXuat"
+                            android:title="Đăng xuất"
+                            android:icon="@drawable/ic_logout"
+                            />
+                </menu>
+        </item>
+
+
+
+
+
+</menu>
