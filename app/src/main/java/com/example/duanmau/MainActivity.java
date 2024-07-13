@@ -1,6 +1,8 @@
 package com.example.duanmau;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -96,7 +98,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // hiển thị một số chức năng cho admin
+        SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
+        String loaitk = sharedPreferences.getString("loaitk", "");
+        if(!loaitk.equals("Admin")){
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.item_ThongKe).setVisible(false);
+
+        }
     }
+
 
 
     @Override
