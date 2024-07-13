@@ -31,7 +31,7 @@
                <menu>
 
                        <item
-                           android:id="@+id/item_ThongKeDoanhThu"
+                           android:id="@+id/item_ThongKe"
                            android:title="Thống kê doanh thu"
                            android:icon="@drawable/ic_bar"
                            />
@@ -49,8 +49,8 @@
 
         <item android:title="Người dùng">
                 <menu>
-                        <item   android:id="@+id/itemSetting"
-                            android:title="Setting"
+                        <item   android:id="@+id/itemCaiDat"
+                            android:title="Cài đặt"
                             android:icon="@drawable/ic_setting"
                             />
 

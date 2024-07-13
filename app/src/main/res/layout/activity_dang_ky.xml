@@ -4,25 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DangKyActivity"
     android:layout_margin="20dp"
     android:background="@drawable/maunen"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:gravity="center">
 
-   <ImageView
-       android:layout_width="215dp"
-       android:layout_height="215dp"
-       android:src="@drawable/pnlibrary"
-       />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Xin chào!"
-        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="Đăng Ký"
+        android:textColor="#df2ee8"
         android:textSize="32sp"
-        android:textColor="#E24DEA"/>
+        android:textStyle="bold" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -34,7 +32,23 @@
         app:startIconDrawable="@drawable/ic_user">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edTenDangNhapThanhVien"
+            android:id="@+id/edTenDangKy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Nhập Email"
+        app:hintEnabled="true"
+        app:startIconDrawable="@drawable/ic_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edDangKyEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -45,90 +59,58 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:hint="Nhập password"
         app:endIconMode="password_toggle"
         app:startIconDrawable="@drawable/ic_lock">
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edPasswordThanhVien"
+            android:id="@+id/edPasswordDangKy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="Nhập lại password"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_lock">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edRePasswordDangKy"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/checkBoxThanhVien"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Ghi nhớ tài khoản"
-            android:textColor="#171a1f"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:id="@+id/txtQuenMatKhau"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/quenmatkhau"
-            android:textColor="#171a1f"
-            android:textSize="14sp"
-            android:gravity="end"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-
     <Button
-        android:id="@+id/btnLoginThanhVien"
+        android:id="@+id/btnDangKyTk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="27dp"
         android:background="@drawable/custom_btn_nenhongvienhong"
-        app:backgroundTint="@null"
-        android:text="đăng nhập"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:layout_marginBottom="5dp"/>
+        android:text="ĐĂNG KÝ"
+        android:textSize="16dp"
+        app:backgroundTint="@null" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hoặc"
-        android:textSize="16sp"/>
 
     <Button
-        android:id="@+id/btnDangKyThanhVien"
+        android:id="@+id/btnTroVe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_btn_nentrangvienhong"
         app:backgroundTint="@null"
-        android:text="Đăng Ký"
+        android:text="Trở về"
         android:textColor="#E25CE7"
         android:textAllCaps="true"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginTop="5dp"/>
-
-
-
-
-
-
-
+        />
 </LinearLayout>

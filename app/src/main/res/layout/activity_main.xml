@@ -14,11 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chào mừng đến với">
-        </TextView>
+
         <include layout="@layout/toolbar" />
 
         <FrameLayout
@@ -36,76 +32,6 @@
         app:headerLayout="@layout/header_layout"
         app:menu="@menu/menu" />
 
-
-    <!--    <TextView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Tổng quan"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:textSize="18sp"-->
-    <!--        android:layout_marginBottom="20dp"/>-->
-
-
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:orientation="horizontal"-->
-    <!--            android:layout_marginBottom="20dp">-->
-
-    <!--            <Button-->
-    <!--                android:id="@+id/btnQlsach"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:text="Quản lý thể loại"-->
-    <!--                android:textColor="@color/black"-->
-    <!--                android:layout_marginRight="20dp"-->
-    <!--                android:background="@drawable/radiuss"-->
-    <!--                app:backgroundTint="#FFF7F2"-->
-    <!--                />-->
-
-    <!--            <Button-->
-    <!--                android:id="@+id/btnQlphieumuon"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:text="Quản lý phiếu mượn"-->
-    <!--                android:textColor="@color/black"-->
-    <!--                android:background="@drawable/radiuss"-->
-    <!--                app:backgroundTint="#F5F2FC"-->
-
-    <!--                />-->
-    <!--        </LinearLayout>-->
-
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:layout_marginBottom="20dp">-->
-
-    <!--        <Button-->
-    <!--            android:id="@+id/btnThanhvien"-->
-    <!--            android:layout_weight="1"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Quản lý thành viên"-->
-    <!--            android:textColor="@color/black"-->
-    <!--            android:background="@drawable/radiuss"-->
-    <!--            app:backgroundTint="#FEF6F1"-->
-    <!--            android:layout_marginRight="20dp"-->
-    <!--            />-->
-
-    <!--        <Button-->
-    <!--            android:id="@+id/btnThongke"-->
-    <!--            android:layout_weight="1"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Thống kê"-->
-    <!--            android:textColor="@color/black"-->
-    <!--            android:background="@drawable/radiuss"-->
-    <!--            app:backgroundTint="#F4F1FB"-->
-    <!--            />-->
-    <!--    </LinearLayout>-->
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

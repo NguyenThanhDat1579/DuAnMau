@@ -19,7 +19,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.duanmau.dao.SachDAO;
+import com.example.duanmau.fragment.CaiDatFragment;
+import com.example.duanmau.fragment.DanhDauFragment;
+import com.example.duanmau.fragment.HomeFragment;
+import com.example.duanmau.fragment.QLPhieuMuonFragment;
+import com.example.duanmau.fragment.QLThanhVienFragment;
 import com.example.duanmau.fragment.QLTheLoaiSachFragment;
+import com.example.duanmau.fragment.SachMuonFragment;
+import com.example.duanmau.fragment.ThongKeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -52,32 +59,39 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setTitle("");
 
+
+        //set fragment mặc định
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment = null;
-                if (menuItem.getItemId() == R.id.item_QLTheLoaiSach){
+
+                if (menuItem.getItemId() == R.id.item_Home) {
+                    fragment = new HomeFragment();
+                }else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach){
                     fragment = new QLTheLoaiSachFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLPhieuMuon){
-
+                    fragment = new QLPhieuMuonFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLThanhVien){
-
-                } else if (menuItem.getItemId() == R.id.item_ThongKeDoanhThu){
-
+                    fragment = new QLThanhVienFragment();
+                } else if (menuItem.getItemId() == R.id.item_ThongKe){
+                    fragment = new ThongKeFragment();
                 } else if (menuItem.getItemId() == R.id.itemSachMuon){
-
+                    fragment = new SachMuonFragment();
                 } else if (menuItem.getItemId() == R.id.itemDanhDau){
-
-                } else if (menuItem.getItemId() == R.id.itemSetting){
-
+                    fragment = new DanhDauFragment();
+                } else if (menuItem.getItemId() == R.id.itemCaiDat){
+                    fragment = new CaiDatFragment();
                 } else if (menuItem.getItemId() == R.id.itemDangXuat) {
-
+                        finish();
                 }
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
                 drawerLayout.closeDrawer(GravityCompat.START);
-
                 return false;
             }
         });
