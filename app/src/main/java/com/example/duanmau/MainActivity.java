@@ -1,9 +1,7 @@
 package com.example.duanmau;
 
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -38,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout framelayout;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.itemCaiDat){
                     fragment = new CaiDatFragment();
                 } else if (menuItem.getItemId() == R.id.itemDangXuat) {
-                        finish();
+                    Intent intent = new Intent(MainActivity.this, ChonVaiTroActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
+
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -99,26 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // hiển thị một số chức năng cho admin
-        SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
-        String loaitk = sharedPreferences.getString("loaitk", "");
-        String email = sharedPreferences.getString("email", "");
-
-        Log.d("DEMO", "loaitk: " + loaitk);
-
-        Log.d("DEMO", "email: " + email);
-//        Log.d("DEMO", "loaitk: " + loaitk);
-//        Log.d("DEMO", "loaitk: " + loaitk);
-
-
-
-        if(!loaitk.equals("Admin")){
-            Menu menu = navigationView.getMenu();
-            menu.findItem(R.id.item_ThongKe).setVisible(false);
-
-        }
     }
-
 
 
     @Override
@@ -126,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId() == android.R.id.home){
             drawerLayout.openDrawer(GravityCompat.START);
         }
+
 
         return super.onOptionsItemSelected(item);
     }

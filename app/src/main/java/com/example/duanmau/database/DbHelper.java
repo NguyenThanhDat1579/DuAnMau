@@ -8,13 +8,13 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "QUANLYTHUVIEN", null, 1);
+        super(context, "QUANLYTHUVIEN", null, 1 );
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         //tạo bảng thủ thư
-        String tThuThu = "CREATE TABLE THUTHU (matt TEXT PRIMARY KEY, hotentt TEXT, matkhau TEXT, loaitk TEXT, email TEXT)";
+        String tThuThu = "CREATE TABLE THUTHU (matt TEXT PRIMARY KEY, hotentt TEXT, matkhau TEXT)";
         db.execSQL(tThuThu);
 
         //tạo bảng thành viên
@@ -46,7 +46,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 " (10,'Món Ăn Việt Nam','Triệu Thị Chơi - Nguyễn Thị Phụng', 10000, 4), (11, 'Món xưa vị nay','Võ Hoàng Nhân', 12000, 4),(12,'Món ăn thuần Việt: 60 món mặn','Nguyễn Thị Diệu Thảo', 15000, 4)," +
                 " (13,'Nhân tố enzyme', 'Hiromi Shinya', 10000, 5), (14,'Cơ thể 4 giờ','Timothy Ferris',12000,5),(15,'Grain Brain','David Perlmutter',15000,5)");
 
-        db.execSQL("INSERT INTO THUTHU VALUES('thuthu01','Nguyễn Nhật Thuý','thuy123','Admin','thuy123@gmail.com'),('thuthu02','Nguyễn Văn Toàn','toan123','Thành viên','toan123@gmail.com')");
+        db.execSQL("INSERT INTO THANHVIEN VALUES(01,'thanhdat','dat@gmail.com','1234567890','TienGiang','dat123','123')");
+
 
     }
 

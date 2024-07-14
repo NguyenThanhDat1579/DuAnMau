@@ -12,13 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.duanmau.dao.ThuThuDAO;
+import com.example.duanmau.dao.ThanhVienDao;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class DangKyActivity extends AppCompatActivity {
     TextInputEditText edTenDangKy, edDangKyEmail, edPasswordDangKy, edRePasswordDangKy;
     Button btnDangKyTk, btnTroVe;
-
+    ThanhVienDao thanhvienDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,36 +36,37 @@ public class DangKyActivity extends AppCompatActivity {
         edRePasswordDangKy = findViewById(R.id.edRePasswordDangKy);
         btnDangKyTk = findViewById(R.id.btnDangKyTk);
         btnTroVe = findViewById(R.id.btnTroVe);
-
-        ThuThuDAO thuthuDao = new ThuThuDAO(this);
+        thanhvienDao = new ThanhVienDao(this);
 
         btnDangKyTk.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 String user = edTenDangKy.getText().toString();
-                String mail = edDangKyEmail.getText().toString();
+                String email = edDangKyEmail.getText().toString();
                 String pass = edPasswordDangKy.getText().toString();
-                String repass = edRePasswordDangKy.getText().toString();
+                String rePass = edRePasswordDangKy.getText().toString();
 
-                if(!pass.equals(repass)){
-                    Toast.makeText(DangKyActivity.this, "Kiểm tra lại mật khẩu", Toast.LENGTH_SHORT).show();
-                }else{
-                    boolean check = thuthuDao.dangky(user, " ", pass, mail);
+                if(pass.equals(rePass)){
+                    boolean check = thanhvienDao.dangKy(user,email,pass);
                     if(check){
                         Toast.makeText(DangKyActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                         finish();
-                    }else{
+                    }else {
                         Toast.makeText(DangKyActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                     }
+                }else {
+                    Toast.makeText(DangKyActivity.this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+
         btnTroVe.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(DangKyActivity.this, ThanhVienDangNhapActivity.class));
+            public void onClick(View v) {
+                finish();
             }
         });
+
     }
 }
