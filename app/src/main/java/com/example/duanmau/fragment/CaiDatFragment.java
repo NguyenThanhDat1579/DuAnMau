@@ -5,17 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.duanmau.DangKyActivity;
-import com.example.duanmau.DoimatkhauActivity;
-import com.example.duanmau.MainActivity;
+import com.example.duanmau.DoiMatKhauActivity;
 import com.example.duanmau.R;
 
 public class CaiDatFragment extends Fragment {
@@ -29,7 +25,7 @@ public class CaiDatFragment extends Fragment {
         txtDoiMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              startActivity(new Intent(getActivity(), DoimatkhauActivity.class));
+              startActivity(new Intent(getActivity(), DoiMatKhauActivity.class));
             }
         });
 

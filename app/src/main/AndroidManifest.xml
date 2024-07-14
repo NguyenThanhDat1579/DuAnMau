@@ -18,7 +18,7 @@
             android:name=".QuenMatKhauActivity"
             android:exported="false" />
         <activity
-            android:name=".DoimatkhauActivity"
+            android:name=".DoiMatKhauActivity"
             android:exported="false" />
         <activity
             android:name=".DangKyActivity"

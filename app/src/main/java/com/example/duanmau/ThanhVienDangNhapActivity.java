@@ -19,6 +19,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.duanmau.dao.ThanhVienDao;
+import com.example.duanmau.model.ThanhVien;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class ThanhVienDangNhapActivity extends AppCompatActivity {
@@ -27,6 +28,8 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
     CheckBox chkGhiNhoTV;
     ThanhVienDao thanhvienDao;
     TextView txtQuenMatKhau;
+
+    ThanhVien thanhVien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +112,11 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
                 String usertv = edTenDangNhapThanhVien.getText().toString();
                 String passtv = edPasswordThanhVien.getText().toString();
 
+                SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("usertv", usertv);
+                editor.putString("passtv", passtv);
+
                 if (usertv.equals("")) {
                     edTenDangNhapThanhVien.setError("Vui lòng nhập username");
                 } else {
@@ -125,15 +133,9 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
                     if (thanhvienDao.checkDangNhapThanhVien(usertv, passtv)) {
                         //lưu sharedpreferecens
                         if(chkGhiNhoTV.isChecked()){
-                            SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putString("usertv", usertv);
-                            editor.putString("passtv", passtv);
                             editor.putBoolean("isRemember", chkGhiNhoTV.isChecked());
                             editor.apply();
                         } else {
-                            SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
                             editor.clear();
                             editor.apply();
                         }

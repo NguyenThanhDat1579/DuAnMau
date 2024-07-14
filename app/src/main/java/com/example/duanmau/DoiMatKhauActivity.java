@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.duanmau.dao.ThanhVienDao;
 
-public class DoimatkhauActivity extends AppCompatActivity {
+public class DoiMatKhauActivity extends AppCompatActivity {
     EditText edPassOld, edPassNew, edRePassNew;
     Button btnDoiMatKhau, btnHuy;
 
@@ -23,7 +23,7 @@ public class DoimatkhauActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_doimatkhau);
+        setContentView(R.layout.activity_doi_mat_khau);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -42,19 +42,19 @@ public class DoimatkhauActivity extends AppCompatActivity {
                 String newpass = edPassNew.getText().toString();
                 String repass = edRePassNew.getText().toString();
                 if(newpass.equals(repass)){
-                    SharedPreferences sharedPreferences = getSharedPreferences("ThongTinThanhVien", MODE_PRIVATE);
-                    String matv = sharedPreferences.getString("matv", "");
+                    SharedPreferences sharedPreferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
+                    String usertv = sharedPreferences.getString("usertv", "");
                     //cập nhật
-                    ThanhVienDao thanhVienDao = new ThanhVienDao(DoimatkhauActivity.this);
-                    boolean check = thanhVienDao.DoiMatKhau(matv, oldpass, newpass);
+                    ThanhVienDao thanhVienDao = new ThanhVienDao(DoiMatKhauActivity.this);
+                    boolean check = thanhVienDao.DoiMatKhau(usertv, oldpass, newpass);
                     if (check) {
-                        Toast.makeText(DoimatkhauActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DoiMatKhauActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
                         finish();
                     }else{
-                        Toast.makeText(DoimatkhauActivity.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DoiMatKhauActivity.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(DoimatkhauActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DoiMatKhauActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
                 }
             }
         });
