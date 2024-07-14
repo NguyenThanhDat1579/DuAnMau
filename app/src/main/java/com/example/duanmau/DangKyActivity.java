@@ -46,7 +46,33 @@ public class DangKyActivity extends AppCompatActivity {
                 String pass = edPasswordDangKy.getText().toString();
                 String rePass = edRePasswordDangKy.getText().toString();
 
-                if(pass.equals(rePass)){
+                // validate - bắt lỗi
+                if(user.equals("") || email.equals("") || pass.equals("") || rePass.equals("")) {
+                    Toast.makeText(DangKyActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    if (user.equals("")) {
+                        edTenDangKy.setError("Vui lòng nhập username");
+                    } else {
+                        edTenDangKy.setError(null);
+                    }
+                    if (email.equals("")) {
+                        edDangKyEmail.setError("Vui lòng nhập email");
+                    } else {
+                        edDangKyEmail.setError(null);
+                    }
+                    if (pass.equals("")) {
+                        edPasswordDangKy.setError("Vui lòng nhập password");
+                    } else {
+                        edPasswordDangKy.setError(null);
+                    }
+
+                    if (rePass.equals("")) {
+                        edRePasswordDangKy.setError("Vui lòng nhập lại password");
+                    } else {
+                        edRePasswordDangKy.setError(null);
+                    }
+                } else if (!pass.equals(rePass)){
+                    Toast.makeText(DangKyActivity.this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
+                } else {
                     boolean check = thanhvienDao.dangKy(user,email,pass);
                     if(check){
                         Toast.makeText(DangKyActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
@@ -54,9 +80,9 @@ public class DangKyActivity extends AppCompatActivity {
                     }else {
                         Toast.makeText(DangKyActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                     }
-                }else {
-                    Toast.makeText(DangKyActivity.this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
                 }
+
+
 
             }
         });

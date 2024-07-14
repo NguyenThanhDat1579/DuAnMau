@@ -3,6 +3,8 @@ package com.example.duanmau;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,7 +24,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class ThanhVienDangNhapActivity extends AppCompatActivity {
     TextInputEditText edTenDangNhapThanhVien, edPasswordThanhVien;
     Button btnLoginThanhVien, btnDangKyThanhVien;
-    CheckBox checkBoxThanhVien;
+    CheckBox chkGhiNhoTV;
     ThanhVienDao thanhvienDao;
     TextView txtQuenMatKhau;
 
@@ -41,25 +43,109 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
         edPasswordThanhVien = findViewById(R.id.edPasswordThanhVien);
         btnLoginThanhVien = findViewById(R.id.btnLoginThanhVien);
         btnDangKyThanhVien = findViewById(R.id.btnDangKyThanhVien);
-        checkBoxThanhVien = findViewById(R.id.checkBoxThanhVien);
+        chkGhiNhoTV = findViewById(R.id.chkGhiNhoTV);
         txtQuenMatKhau = findViewById(R.id.txtQuenMatKhau);
         thanhvienDao = new ThanhVienDao(this);
+
+        // kiểm tra thông tin đăng nhập, người dùng có lưu lại hay ko?
+        SharedPreferences sharedPreferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
+        boolean isRemember = sharedPreferences.getBoolean("isRemember", false);
+        if(isRemember){
+            String user = sharedPreferences.getString("usertv", "");
+            String pass = sharedPreferences.getString("passtv", "");
+            edTenDangNhapThanhVien.setText(user);
+            edPasswordThanhVien.setText(pass);
+            chkGhiNhoTV.setChecked(isRemember);
+        }
+
+
+        // validate - bắt lỗi
+        edTenDangNhapThanhVien.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 0) {
+                    edTenDangNhapThanhVien.setError("Vui lòng nhập username");
+                } else {
+                    edTenDangNhapThanhVien.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        edPasswordThanhVien.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 0) {
+                    edPasswordThanhVien.setError("Vui lòng nhập username");
+                } else {
+                    edPasswordThanhVien.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         btnLoginThanhVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String usertv = edTenDangNhapThanhVien.getText().toString();
                 String passtv = edPasswordThanhVien.getText().toString();
-                if(thanhvienDao.checkDangNhapThanhVien(usertv,passtv)){
-                    //lưu sharedpreferecens
-                    SharedPreferences sharedPreferences = getSharedPreferences("ThongTinThanhVien", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("matv", usertv);
-                    editor.commit();
 
-                    startActivity(new Intent(ThanhVienDangNhapActivity.this, MainActivity.class));
-                }else{
-                    Toast.makeText(ThanhVienDangNhapActivity.this, "Tên đăng nhập và Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                if (usertv.equals("")) {
+                    edTenDangNhapThanhVien.setError("Vui lòng nhập username");
+                } else {
+                    edTenDangNhapThanhVien.setError(null);
+                }
+
+                if (passtv.equals("")) {
+                    edPasswordThanhVien.setError("Vui lòng nhập password");
+                } else {
+                    edPasswordThanhVien.setError(null);
+                }
+
+                if (usertv.length() > 0 && passtv.length() > 0) {
+                    if (thanhvienDao.checkDangNhapThanhVien(usertv, passtv)) {
+                        //lưu sharedpreferecens
+                        if(chkGhiNhoTV.isChecked()){
+                            SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("usertv", usertv);
+                            editor.putString("passtv", passtv);
+                            editor.putBoolean("isRemember", chkGhiNhoTV.isChecked());
+                            editor.apply();
+                        } else {
+                            SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.clear();
+                            editor.apply();
+                        }
+
+                        Intent intent = new Intent(ThanhVienDangNhapActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // out ứng dụng tại Main
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ThanhVienDangNhapActivity.this, "Tên đăng nhập hoặc Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(ThanhVienDangNhapActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -67,14 +153,14 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
         btnDangKyThanhVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ThanhVienDangNhapActivity.this,DangKyActivity.class));
+                startActivity(new Intent(ThanhVienDangNhapActivity.this, DangKyActivity.class));
             }
         });
 
         txtQuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ThanhVienDangNhapActivity.this,QuenMatKhauActivity.class));
+                startActivity(new Intent(ThanhVienDangNhapActivity.this, QuenMatKhauActivity.class));
             }
         });
 

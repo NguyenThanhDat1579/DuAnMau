@@ -20,7 +20,6 @@ public class ThanhVienDao {
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM THANHVIEN WHERE tendangnhap = ? AND matkhau = ?", new String[]{tendangnhaptv, matkhautv});
         return cursor.getCount() != 0;
-
     }
 
     //đăng ký

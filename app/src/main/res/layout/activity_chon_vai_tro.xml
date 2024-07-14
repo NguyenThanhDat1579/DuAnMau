@@ -48,6 +48,7 @@
             android:paddingVertical="15dp"
             android:text="QUẢN TRỊ VIÊN"
             android:textSize="20dp"
+            android:textStyle="bold"
             app:backgroundTint="@null">
         </Button>
 
@@ -62,6 +63,7 @@
             android:text="THÀNH VIÊN"
             android:textColor="#FFE35CE8"
             android:textSize="20dp"
+            android:textStyle="bold"
             app:backgroundTint="@null" />
 
 </LinearLayout>

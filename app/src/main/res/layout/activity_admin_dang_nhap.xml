@@ -56,7 +56,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edPassword"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:inputType="textPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,6 +95,7 @@
         android:background="@drawable/custom_btn_nenhongvienhong"
         android:text="ĐĂNG NHẬP"
         android:textSize="16dp"
+        android:textStyle="bold"
         app:backgroundTint="@null" />
 
 </LinearLayout>
