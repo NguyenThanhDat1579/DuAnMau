@@ -94,8 +94,10 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                if(fragment != null){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
+                }
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             }
