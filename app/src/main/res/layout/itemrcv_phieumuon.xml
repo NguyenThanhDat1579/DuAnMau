@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mã phiếu: "/>
+            <TextView
+                android:id="@+id/txtMaPhieu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PM001"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên thủ thư: "/>
+            <TextView
+                android:id="@+id/txtTenThuThu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="thuthu"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên khách hàng: "/>
+            <TextView
+                android:id="@+id/txtTenKH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phạm Thanh Toàn"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên sách: "/>
+            <TextView
+                android:id="@+id/txtTenSach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kinh điển về khởi nghiệp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ngày thuê : "/>
+            <TextView
+                android:id="@+id/txtNgayThue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17/07/2024"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ngày trả: "/>
+            <TextView
+                android:id="@+id/txtNgayTra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20/07/2024"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiền thuê: "/>
+            <TextView
+                android:id="@+id/txtTienThue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50000 VND"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trạng thái: "/>
+            <TextView
+                android:id="@+id/txtTrangThai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đã trả sách"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            >
+
+            <Button
+                android:id="@+id/btnXacNhan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trả sách"
+                android:background="@drawable/custom_btn_nenhongvienhong"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:backgroundTint="@null"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                />
+
+            <ImageView
+                android:id="@+id/ivSuaPhieuMuon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                android:layout_gravity="center|end"
+                android:layout_marginRight="10dp"/>
+
+            <ImageView
+                android:id="@+id/ivXoaPhieuMuon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete"
+                android:layout_gravity="end|center"
+                android:layout_marginRight="10dp"/>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
