@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
+    android:layout_margin="15dp"
     android:background="@drawable/maunen"
     android:gravity="center"
     android:orientation="vertical">
@@ -29,6 +29,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/notiTenDangNhap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -46,6 +47,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/notiPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập password"
@@ -91,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/custom_btn_nenhongvienhong"
         android:text="ĐĂNG NHẬP"
         android:textSize="16dp"

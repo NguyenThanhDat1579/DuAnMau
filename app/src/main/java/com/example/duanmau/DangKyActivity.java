@@ -2,6 +2,8 @@ package com.example.duanmau;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,11 +16,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.duanmau.dao.ThanhVienDao;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class DangKyActivity extends AppCompatActivity {
-    TextInputEditText edTenDangKy, edDangKyEmail, edPasswordDangKy, edRePasswordDangKy;
+    TextInputEditText edTenDangKy, edHoten, edDangKyEmail, edPasswordDangKy, edRePasswordDangKy;
     Button btnDangKyTk, btnTroVe;
     ThanhVienDao thanhvienDao;
+    TextInputLayout notiTenDangKy, notiHoten, notiEmail, notiPassword, notiRePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,49 +35,168 @@ public class DangKyActivity extends AppCompatActivity {
             return insets;
         });
         edTenDangKy = findViewById(R.id.edTenDangKy);
+        edHoten = findViewById(R.id.edHoTen);
         edDangKyEmail = findViewById(R.id.edDangKyEmail);
         edPasswordDangKy = findViewById(R.id.edPasswordDangKy);
         edRePasswordDangKy = findViewById(R.id.edRePasswordDangKy);
         btnDangKyTk = findViewById(R.id.btnDangKyTk);
         btnTroVe = findViewById(R.id.btnTroVe);
+        notiTenDangKy = findViewById(R.id.notiTenDangKy);
+        notiHoten = findViewById(R.id.notiHoten);
+        notiEmail = findViewById(R.id.notiEmail);
+        notiPassword = findViewById(R.id.notiPassword);
+        notiRePassword = findViewById(R.id.notiRePassword);
+
         thanhvienDao = new ThanhVienDao(this);
 
         btnDangKyTk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String user = edTenDangKy.getText().toString();
+                String hoten = edHoten.getText().toString();
                 String email = edDangKyEmail.getText().toString();
                 String pass = edPasswordDangKy.getText().toString();
                 String rePass = edRePasswordDangKy.getText().toString();
 
                 // validate - bắt lỗi
-                if(user.equals("") || email.equals("") || pass.equals("") || rePass.equals("")) {
+
+                edTenDangKy.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.length() == 0){
+                            notiTenDangKy.setError("Vui lòng nhập username");
+                        } else {
+                            notiTenDangKy.setError(null);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                edHoten.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.length() == 0){
+                            notiHoten.setError("Vui lòng nhập họ tên");
+                        } else {
+                            notiHoten.setError(null);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                edDangKyEmail.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.length() == 0){
+                            notiEmail.setError("Vui lòng nhập email");
+                        } else {
+                            notiEmail.setError(null);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                edPasswordDangKy.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.length() == 0){
+                            notiPassword.setError("Vui lòng nhập password");
+                        } else {
+                            notiPassword.setError(null);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                edRePasswordDangKy.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.length() == 0){
+                            notiRePassword.setError("Vui lòng lại nhập password");
+                        } else {
+                            notiRePassword.setError(null);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                if(user.equals("") || hoten.equals("") || email.equals("") || pass.equals("") || rePass.equals("")) {
                     Toast.makeText(DangKyActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     if (user.equals("")) {
-                        edTenDangKy.setError("Vui lòng nhập username");
+                        notiTenDangKy.setError("Vui lòng nhập username");
                     } else {
-                        edTenDangKy.setError(null);
+                        notiTenDangKy.setError(null);
+                    }
+                    if (hoten.equals("")) {
+                        notiHoten.setError("Vui lòng nhập họ tên");
+                    } else {
+                        notiHoten.setError(null);
                     }
                     if (email.equals("")) {
-                        edDangKyEmail.setError("Vui lòng nhập email");
+                        notiEmail.setError("Vui lòng nhập email");
                     } else {
-                        edDangKyEmail.setError(null);
+                        notiEmail.setError(null);
                     }
                     if (pass.equals("")) {
-                        edPasswordDangKy.setError("Vui lòng nhập password");
+                        notiPassword.setError("Vui lòng nhập password");
                     } else {
-                        edPasswordDangKy.setError(null);
+                        notiPassword.setError(null);
                     }
 
                     if (rePass.equals("")) {
-                        edRePasswordDangKy.setError("Vui lòng nhập lại password");
+                        notiRePassword.setError("Vui lòng nhập lại password");
                     } else {
-                        edRePasswordDangKy.setError(null);
+                        notiRePassword.setError(null);
                     }
                 } else if (!pass.equals(rePass)){
                     Toast.makeText(DangKyActivity.this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
                 } else {
-                    boolean check = thanhvienDao.dangKy(user,email,pass);
+                    boolean check = thanhvienDao.dangKy(user,hoten,email,pass);
                     if(check){
                         Toast.makeText(DangKyActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                         finish();

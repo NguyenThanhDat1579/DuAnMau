@@ -23,10 +23,11 @@ public class ThanhVienDao {
     }
 
     //đăng ký
-    public boolean dangKy(String tendangnhaptvnew, String email, String matkhautvnew){
+    public boolean dangKy(String tendangnhaptvnew, String hoten, String email, String matkhautvnew){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("tendangnhap", tendangnhaptvnew);
+        contentValues.put("tentv", hoten);
         contentValues.put("email", email);
         contentValues.put("matkhau",matkhautvnew);
 

@@ -18,7 +18,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(tThuThu);
 
         //tạo bảng thành viên
-        String tThanhVien = "CREATE TABLE THANHVIEN (matv INTEGER PRIMARY KEY AUTOINCREMENT, tentv TEXT, email TEXT, sdt TEXT, diachi TEXT, tendangnhap TEXT, matkhau TEXT)";
+        String tThanhVien = "CREATE TABLE THANHVIEN (matv INTEGER PRIMARY KEY AUTOINCREMENT, tentv TEXT, email TEXT, tendangnhap TEXT, matkhau TEXT)";
         db.execSQL(tThanhVien);
 
         //tạo bảng loại sách
@@ -49,7 +49,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO THUTHU VALUES('thuthu01','Nguyễn Nhật Thuý','thuy123','thuy123@gmail.com','Admin'),('thuthu02','Phạm Thanh Toàn','toan123','toan123@gmail.com','Thành viên')");
 
 
-        db.execSQL("INSERT INTO THANHVIEN VALUES(01,'thanhdat','dat@gmail.com','1234567890','TienGiang','dat123','123')");
+        db.execSQL("INSERT INTO THANHVIEN VALUES(01,'thanhdat','dat@gmail.com','dat123','123')");
 
 
     }

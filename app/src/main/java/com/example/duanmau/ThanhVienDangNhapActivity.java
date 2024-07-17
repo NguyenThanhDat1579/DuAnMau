@@ -21,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.duanmau.dao.ThanhVienDao;
 import com.example.duanmau.model.ThanhVien;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class ThanhVienDangNhapActivity extends AppCompatActivity {
     TextInputEditText edTenDangNhapThanhVien, edPasswordThanhVien;
@@ -28,6 +29,7 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
     CheckBox chkGhiNhoTV;
     ThanhVienDao thanhvienDao;
     TextView txtQuenMatKhau;
+    TextInputLayout notiTenDangNhapThanhVien, notiPasswordThanhVien;
 
     ThanhVien thanhVien;
 
@@ -48,6 +50,9 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
         btnDangKyThanhVien = findViewById(R.id.btnDangKyThanhVien);
         chkGhiNhoTV = findViewById(R.id.chkGhiNhoTV);
         txtQuenMatKhau = findViewById(R.id.txtQuenMatKhau);
+        notiTenDangNhapThanhVien = findViewById(R.id.notiTenDangNhapThanhVien);
+        notiPasswordThanhVien = findViewById(R.id.notiPasswordThanhVien);
+
         thanhvienDao = new ThanhVienDao(this);
 
         // kiểm tra thông tin đăng nhập, người dùng có lưu lại hay ko?
@@ -72,9 +77,9 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
-                    edTenDangNhapThanhVien.setError("Vui lòng nhập username");
+                    notiTenDangNhapThanhVien.setError("Vui lòng nhập username");
                 } else {
-                    edTenDangNhapThanhVien.setError(null);
+                    notiTenDangNhapThanhVien.setError(null);
                 }
             }
 
@@ -93,9 +98,9 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
-                    edPasswordThanhVien.setError("Vui lòng nhập username");
+                    notiPasswordThanhVien.setError("Vui lòng nhập password");
                 } else {
-                    edPasswordThanhVien.setError(null);
+                    notiPasswordThanhVien.setError(null);
                 }
             }
 
@@ -118,15 +123,15 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
                 editor.putString("passtv", passtv);
 
                 if (usertv.equals("")) {
-                    edTenDangNhapThanhVien.setError("Vui lòng nhập username");
+                    notiTenDangNhapThanhVien.setError("Vui lòng nhập username");
                 } else {
-                    edTenDangNhapThanhVien.setError(null);
+                    notiTenDangNhapThanhVien.setError(null);
                 }
 
                 if (passtv.equals("")) {
-                    edPasswordThanhVien.setError("Vui lòng nhập password");
+                    notiPasswordThanhVien.setError("Vui lòng nhập password");
                 } else {
-                    edPasswordThanhVien.setError(null);
+                    notiPasswordThanhVien.setError(null);
                 }
 
                 if (usertv.length() > 0 && passtv.length() > 0) {

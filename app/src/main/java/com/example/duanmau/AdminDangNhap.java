@@ -18,12 +18,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.duanmau.dao.ThuThuDAO;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class AdminDangNhap extends AppCompatActivity {
 
     Button btnDangNhap;
     EditText edTenDangNhap, edPassword;
     CheckBox chkGhiNho;
+    TextInputLayout notiTenDangNhap, notiPassword;
 
     ThuThuDAO thuThuDAO;
     @Override
@@ -41,6 +43,8 @@ public class AdminDangNhap extends AppCompatActivity {
         edTenDangNhap = findViewById(R.id.edTenDangNhap);
         edPassword = findViewById(R.id.edPassword);
         chkGhiNho = findViewById(R.id.chKGhiNho);
+        notiTenDangNhap = findViewById(R.id.notiTenDangNhap);
+        notiPassword = findViewById(R.id.notiPassword);
 
         thuThuDAO = new ThuThuDAO(this);
 
@@ -66,9 +70,9 @@ public class AdminDangNhap extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length() == 0){
-                    edTenDangNhap.setError("Vui lòng nhập username");
+                    notiTenDangNhap.setError("Vui lòng nhập username");
                 } else {
-                    edTenDangNhap.setError(null);
+                    notiTenDangNhap.setError(null);
                 }
             }
 
@@ -87,9 +91,9 @@ public class AdminDangNhap extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length() == 0){
-                    edPassword.setError("Vui lòng nhập username");
+                    notiPassword.setError("Vui lòng nhập password");
                 } else {
-                    edPassword.setError(null);
+                    notiPassword.setError(null);
                 }
             }
 
@@ -109,15 +113,15 @@ public class AdminDangNhap extends AppCompatActivity {
 
 
                 if(user.equals("")){
-                    edTenDangNhap.setError("Vui lòng nhập username");
+                    notiTenDangNhap.setError("Vui lòng nhập username");
                 } else {
-                    edTenDangNhap.setError(null);
+                    notiTenDangNhap.setError(null);
                 }
 
                 if(pass.equals("")){
-                    edPassword.setError("Vui lòng nhập password");
+                    notiPassword.setError("Vui lòng nhập password");
                 } else {
-                    edPassword.setError(null);
+                    notiPassword.setError(null);
                 }
                 if(user.length() > 0 && pass.length() > 0) {
                     if (thuThuDAO.checkDangNhap(user, pass)) {
