@@ -50,7 +50,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO THANHVIEN VALUES(01,'thanhdat','dat@gmail.com','dat123','123')");
 
-        db.execSQL("INSERT INTO PHIEUMUON (mapm,matv,matt,masach,ngaymuon,ngaytra,trangthai,tienthue) VALUES ('1','1','thuthu01','1','11/11/2011','11/11/2012','1', '12000'),('2','1','thuthu01','1','11/11/2022','11/11/2024','0', '15000'); ");
+        db.execSQL("INSERT INTO PHIEUMUON VALUES ('1','1','thuthu01','1','11/11/2011','11/11/2012','1', '12000'),('2','1','thuthu01','1','11/11/2022','11/11/2024','0', '15000'); ");
 
 
     }

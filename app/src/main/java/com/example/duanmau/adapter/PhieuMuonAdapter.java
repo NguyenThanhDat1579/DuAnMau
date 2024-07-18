@@ -9,11 +9,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau.R;
+import com.example.duanmau.dao.PhieuMuonDAO;
 import com.example.duanmau.model.PhieuMuon;
 
 import java.util.ArrayList;
@@ -47,14 +50,34 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
         String trangthai = "";
         if(listPM.get(position).getTrangthai() == 1){
             trangthai = "Đã trả sách";
+            int color = ContextCompat.getColor(context, R.color.GREEN);
+            holder.txtTrangThai.setTextColor(color);
             holder.btnXacNhan.setVisibility(View.INVISIBLE);
         }else{
             trangthai = "Chưa trả sách";
+            int color = ContextCompat.getColor(context, R.color.RED);
+            holder.txtTrangThai.setTextColor(color);
             holder.btnXacNhan.setVisibility(View.VISIBLE);
         }
 
         holder.txtTrangThai.setText(trangthai);
         holder.txtTienThue.setText(listPM.get(position).getTienthue()+" VND");;
+
+
+        holder.btnXacNhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhieuMuonDAO phieuMuonDAO = new PhieuMuonDAO(context);
+                boolean kiemtra = phieuMuonDAO.thayDoiTrangThai(listPM.get(holder.getAdapterPosition()).getMapm());
+                if(kiemtra){
+                    listPM.clear();
+                    listPM = phieuMuonDAO.getAllPhieuMuon();
+                    notifyDataSetChanged();
+                }else{
+                    Toast.makeText(context, "Thay đổi trạng thái không thành công", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
