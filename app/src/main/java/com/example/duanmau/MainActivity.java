@@ -24,6 +24,7 @@ import com.example.duanmau.fragment.CaiDatFragment;
 import com.example.duanmau.fragment.DanhDauFragment;
 import com.example.duanmau.fragment.HomeFragment;
 import com.example.duanmau.fragment.QLPhieuMuonFragment;
+import com.example.duanmau.fragment.QLSachFragment;
 import com.example.duanmau.fragment.QLThanhVienFragment;
 import com.example.duanmau.fragment.QLTheLoaiSachFragment;
 import com.example.duanmau.fragment.SachMuonFragment;
@@ -74,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == R.id.item_Home) {
                     fragment = new HomeFragment();
-                }else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach){
+                }else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
                     fragment = new QLTheLoaiSachFragment();
+                }else if (menuItem.getItemId() == R.id.item_QLSach){
+                    fragment = new QLSachFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLPhieuMuon){
                     fragment = new QLPhieuMuonFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLThanhVien){

@@ -38,8 +38,6 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
         holder.txtMaTV.setText("Mã TV:  " +list.get(position).getMatv());
         holder.txtTenTV.setText("Tên TV:  " +list.get(position).getTentv());
         holder.txtEmail.setText("Email:  " +list.get(position).getEmail());
-        holder.txtSDT.setText("SĐT:  " +list.get(position).getSdt());
-        holder.txtDiachi.setText("Địa chỉ:  " +list.get(position).getDiachi());
         holder.txtTendangnhap.setText("Tên đăng nhập:  " +list.get(position).getTendangnhap());
         holder.txtMatkhau.setText("Mật khẩu:  " +list.get(position).getMatkhau());
     }
@@ -51,14 +49,12 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtMaTV, txtTenTV, txtEmail, txtSDT, txtDiachi, txtTendangnhap, txtMatkhau;
+        TextView txtMaTV, txtTenTV, txtEmail, txtTendangnhap, txtMatkhau;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtMaTV = itemView.findViewById(R.id.txtMaTV);
             txtTenTV = itemView.findViewById(R.id.txtTenTV);
             txtEmail = itemView.findViewById(R.id.txtEmail);
-            txtSDT = itemView.findViewById(R.id.txtSDT);
-            txtDiachi = itemView.findViewById(R.id.txtDiachi);
             txtTendangnhap = itemView.findViewById(R.id.txtTenDangNhap);
             txtMatkhau = itemView.findViewById(R.id.txtMatkhau);
 

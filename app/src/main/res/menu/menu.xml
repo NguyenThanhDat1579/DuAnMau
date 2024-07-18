@@ -15,8 +15,14 @@
 
         <item
             android:id="@+id/item_QLTheLoaiSach"
-            android:title="Quản lý thế loại sách"
+            android:title="Quản lý loại sách"
             android:icon="@drawable/ic_book"
+            />
+
+        <item
+            android:id="@+id/item_QLSach"
+            android:title="Quản lý sách"
+            android:icon="@drawable/ic_books"
             />
 
         <item

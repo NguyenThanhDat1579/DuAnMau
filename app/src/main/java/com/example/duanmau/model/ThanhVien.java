@@ -4,17 +4,13 @@ public class ThanhVien {
     private int matv;
     private String tentv;
     private String email;
-    private String sdt;
-    private String diachi;
     private String tendangnhap;
     private String matkhau;
 
-    public ThanhVien(int matv, String tentv, String email, String sdt, String diachi, String tendangnhap, String matkhau) {
+    public ThanhVien(int matv, String tentv, String email, String tendangnhap, String matkhau) {
         this.matv = matv;
         this.tentv = tentv;
         this.email = email;
-        this.sdt = sdt;
-        this.diachi = diachi;
         this.tendangnhap = tendangnhap;
         this.matkhau = matkhau;
     }
@@ -41,22 +37,6 @@ public class ThanhVien {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
-    public String getDiachi() {
-        return diachi;
-    }
-
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
     }
 
     public String getTendangnhap() {
