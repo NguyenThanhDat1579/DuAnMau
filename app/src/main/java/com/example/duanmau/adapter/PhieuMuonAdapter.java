@@ -1,7 +1,9 @@
 package com.example.duanmau.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,15 +69,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
         holder.btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PhieuMuonDAO phieuMuonDAO = new PhieuMuonDAO(context);
-                boolean kiemtra = phieuMuonDAO.thayDoiTrangThai(listPM.get(holder.getAdapterPosition()).getMapm());
-                if(kiemtra){
-                    listPM.clear();
-                    listPM = phieuMuonDAO.getAllPhieuMuon();
-                    notifyDataSetChanged();
-                }else{
-                    Toast.makeText(context, "Thay đổi trạng thái không thành công", Toast.LENGTH_SHORT).show();
-                }
+                showDialogXacNhanTraSach(listPM.get(holder.getAdapterPosition()).getTentv(), listPM.get(holder.getAdapterPosition()).getMapm());
             }
         });
     }
@@ -105,5 +99,36 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
             ivSuaPhieuMuon = itemView.findViewById(R.id.ivSuaPhieuMuon);
             ivXoaPhieuMuon = itemView.findViewById(R.id.ivXoaPhieuMuon);
         }
+    }
+
+    public void showDialogXacNhanTraSach(String tentv, int mapm){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Thông báo");
+
+        //Bạn có muốn xóa sản phẩm "Bánh" không?
+        builder.setMessage("Xác nhận \"" + tentv + "\" đã trả sách?");
+        builder.setIcon(R.drawable.icon_warning);
+
+        builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                PhieuMuonDAO phieuMuonDAO = new PhieuMuonDAO(context);
+                boolean kiemtra = phieuMuonDAO.thayDoiTrangThai(mapm);
+                if(kiemtra){
+                    listPM.clear();
+                    listPM = phieuMuonDAO.getAllPhieuMuon();
+                    notifyDataSetChanged();
+                }else{
+                    Toast.makeText(context, "Thay đổi trạng thái không thành công", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        builder.setNegativeButton("Hủy", null);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+
     }
 }
