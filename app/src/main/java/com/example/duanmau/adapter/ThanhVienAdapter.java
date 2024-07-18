@@ -35,11 +35,11 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtMaTV.setText("Mã TV:  " +list.get(position).getMatv());
-        holder.txtTenTV.setText("Tên TV:  " +list.get(position).getTentv());
-        holder.txtEmail.setText("Email:  " +list.get(position).getEmail());
-        holder.txtTendangnhap.setText("Tên đăng nhập:  " +list.get(position).getTendangnhap());
-        holder.txtMatkhau.setText("Mật khẩu:  " +list.get(position).getMatkhau());
+        holder.txtMaTV.setText(list.get(position).getMatv()+"");
+        holder.txtTenTV.setText(list.get(position).getTentv());
+        holder.txtEmail.setText(list.get(position).getEmail());
+        holder.txtTendangnhap.setText(list.get(position).getTendangnhap());
+        holder.txtMatkhau.setText(list.get(position).getMatkhau());
     }
 
     @Override

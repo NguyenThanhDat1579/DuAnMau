@@ -40,40 +40,99 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp">
 
-            <TextView
-                android:id="@+id/txtMaTV"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Mã TV: 01"/>
+                android:orientation="horizontal"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/txtTenTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Tên TV: Phạm Thanh Toàn"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mã TV: "/>
+                <TextView
+                    android:id="@+id/txtMaTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="01"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtEmail"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Email: toanptps37329@gamil.com"/>
+                android:orientation="horizontal"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/txtTenDangNhap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Tên đăng nhập: toanptps37329"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên TV: "/>
+                <TextView
+                    android:id="@+id/txtTenTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Phạm Thanh Toàn"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtMatkhau"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Mật khẩu: 123"/>
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email: "/>
+                <TextView
+                    android:id="@+id/txtEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="toanptps37329@gamil.com"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên đăng nhập: "/>
+                <TextView
+                    android:id="@+id/txtTenDangNhap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="toanptps37329"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mật khẩu: "/>
+                <TextView
+                    android:id="@+id/txtMatkhau"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="123"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 

@@ -14,8 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DuAnMau"
         tools:targetApi="31">
-        <activity android:name=".ManHinhChaoActivity"
-            android:exported="false"/>
         <activity
             android:name=".themloaisach"
             android:exported="false" />
@@ -41,7 +39,7 @@
             android:name=".ThanhVienDangNhapActivity"
             android:exported="false" />
         <activity
-            android:name=".QL_The_loai_sach"
+            android:name=".ManHinhChaoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
