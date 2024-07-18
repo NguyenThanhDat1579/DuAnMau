@@ -29,26 +29,27 @@
                     android:layout_marginBottom="20dp">
 
                     <Button
-                        android:id="@+id/btnQlsach"
+                        android:id="@+id/btnQlLoaiSach"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="@color/black"
                         android:layout_marginRight="20dp"
                         android:drawableTop="@drawable/ic_bookcase"
-                        android:text="Quản lý thể loại sách"
+                        android:text="Quản lý loại sách"
+                        app:backgroundTint="#FFF9F2"
                         android:background="@drawable/radius"
                         />
 
                     <Button
-                        android:id="@+id/btnQlphieumuon"
+                        android:id="@+id/btnQlPhieuMuon"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Quản lý phiếu mượn"
                         android:textColor="@color/black"
                         android:drawableTop="@drawable/ic_phieumuon"
-                        app:backgroundTint="#E91E63"
+                        app:backgroundTint="#F5F2FC"
                         android:background="@drawable/radius"
                         />
                 </LinearLayout>
@@ -60,27 +61,27 @@
                 android:layout_marginBottom="20dp">
 
                 <Button
-                    android:id="@+id/btnThanhvien"
+                    android:id="@+id/btnThanhVien"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Quản lý thành viên"
                     android:textColor="@color/black"
                     android:drawableTop="@drawable/ic_thanhvien"
-                    app:backgroundTint="#FEF6F1"
+                    app:backgroundTint="#FCF2F2"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/radius"
                     />
 
                 <Button
-                    android:id="@+id/btnThongke"
+                    android:id="@+id/btnThongKe"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Thống kê"
                     android:textColor="@color/black"
                     android:drawableTop="@drawable/ic_thongke"
-                    app:backgroundTint="#F4F1FB"
+                    app:backgroundTint="#EFF2FC"
                     android:background="@drawable/radius"
                     />
             </LinearLayout>

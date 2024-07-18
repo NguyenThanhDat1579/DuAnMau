@@ -6,16 +6,17 @@
             android:icon="@drawable/ic_home"
             />
 
-        <item
-            android:id="@+id/item_QLTheLoaiSach"
-            android:title="Quản lý thế loại sách"
-            android:icon="@drawable/ic_book"
-            />
 
         <item
             android:id="@+id/item_QLPhieuMuon"
             android:title="Quản lý phiếu mượn"
             android:icon="@drawable/ic_tiket"
+            />
+
+        <item
+            android:id="@+id/item_QLTheLoaiSach"
+            android:title="Quản lý thế loại sách"
+            android:icon="@drawable/ic_book"
             />
 
         <item
