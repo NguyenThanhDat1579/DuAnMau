@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/main"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
+    android:layout_height="100dp"
+    app:cardCornerRadius="15dp"
     android:layout_marginTop="50dp"
     android:layout_marginLeft="10dp"
     android:layout_marginBottom="10dp"
     android:layout_marginRight="10dp"
+    android:backgroundTint="#fff3b2"
     android:orientation="vertical">
 
 
@@ -16,27 +17,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:weightSum="4"
         android:padding="10dp">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="88dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:text="asss"
                 android:textSize="20dp" />
 
@@ -51,9 +55,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <ImageView
@@ -61,15 +66,15 @@
                 android:layout_width="5dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_edit" />
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="5dp"
-                android:layout_height="wrap_content"
+                android:layout_width="10dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_delete" />
