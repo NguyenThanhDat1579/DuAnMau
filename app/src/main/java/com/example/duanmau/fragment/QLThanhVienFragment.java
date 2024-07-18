@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau.R;
 import com.example.duanmau.adapter.ThanhVienAdapter;
-import com.example.duanmau.dao.ThanhVienDao;
+import com.example.duanmau.dao.ThanhVienDAO;
 import com.example.duanmau.model.ThanhVien;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class QLThanhVienFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_qlthanhvien, container, false);
 
         RecyclerView recyclerThanhVien = view.findViewById(R.id.recyclerThanhVien);
-        ThanhVienDao thanhVienDao = new ThanhVienDao(getContext());
+        ThanhVienDAO thanhVienDao = new ThanhVienDAO(getContext());
         ArrayList<ThanhVien> list = thanhVienDao.getDSThanhVien();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

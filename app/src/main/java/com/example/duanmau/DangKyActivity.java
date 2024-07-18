@@ -1,6 +1,5 @@
 package com.example.duanmau;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,14 +13,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.duanmau.dao.ThanhVienDao;
+import com.example.duanmau.dao.ThanhVienDAO;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class DangKyActivity extends AppCompatActivity {
     TextInputEditText edTenDangKy, edHoten, edDangKyEmail, edPasswordDangKy, edRePasswordDangKy;
     Button btnDangKyTk, btnTroVe;
-    ThanhVienDao thanhvienDao;
+    ThanhVienDAO thanhvienDao;
     TextInputLayout notiTenDangKy, notiHoten, notiEmail, notiPassword, notiRePassword;
 
     @Override
@@ -47,7 +46,7 @@ public class DangKyActivity extends AppCompatActivity {
         notiPassword = findViewById(R.id.notiPassword);
         notiRePassword = findViewById(R.id.notiRePassword);
 
-        thanhvienDao = new ThanhVienDao(this);
+        thanhvienDao = new ThanhVienDAO(this);
 
         btnDangKyTk.setOnClickListener(new View.OnClickListener() {
             @Override

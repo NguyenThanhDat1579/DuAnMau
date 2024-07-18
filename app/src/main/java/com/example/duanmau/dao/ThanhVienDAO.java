@@ -5,16 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import androidx.appcompat.widget.ActionBarContextView;
-
 import com.example.duanmau.database.DbHelper;
 import com.example.duanmau.model.ThanhVien;
 
 import java.util.ArrayList;
 
-public class ThanhVienDao {
+public class ThanhVienDAO {
     DbHelper dbHelper;
-    public ThanhVienDao(Context context) {
+    public ThanhVienDAO(Context context) {
         dbHelper = new DbHelper(context);
     }
 

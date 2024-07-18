@@ -3,7 +3,6 @@ package com.example.duanmau;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -12,14 +11,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.duanmau.dao.ThanhVienDao;
+import com.example.duanmau.dao.ThanhVienDAO;
 import com.example.duanmau.util.SendMail;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class QuenMatKhauActivity extends AppCompatActivity {
     TextInputEditText edEmail;
     Button btnGuiMatKhau,btnHuy;
-    ThanhVienDao thanhVienDao;
+    ThanhVienDAO thanhVienDao;
     SendMail sendMail;
 
     @Override
@@ -35,7 +34,7 @@ public class QuenMatKhauActivity extends AppCompatActivity {
         edEmail = findViewById(R.id.edEmail);
         btnGuiMatKhau = findViewById(R.id.btnGuiMatKhau);
         btnHuy = findViewById(R.id.btnHuy);
-        thanhVienDao = new ThanhVienDao(this);
+        thanhVienDao = new ThanhVienDAO(this);
         sendMail = new SendMail();
 
         btnGuiMatKhau.setOnClickListener(new View.OnClickListener() {

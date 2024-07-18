@@ -13,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.duanmau.dao.ThanhVienDao;
+import com.example.duanmau.dao.ThanhVienDAO;
 
 public class DoiMatKhauActivity extends AppCompatActivity {
     EditText edPassOld, edPassNew, edRePassNew;
@@ -45,7 +45,7 @@ public class DoiMatKhauActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
                     String usertv = sharedPreferences.getString("usertv", "");
                     //cập nhật
-                    ThanhVienDao thanhVienDao = new ThanhVienDao(DoiMatKhauActivity.this);
+                    ThanhVienDAO thanhVienDao = new ThanhVienDAO(DoiMatKhauActivity.this);
                     boolean check = thanhVienDao.DoiMatKhau(usertv, oldpass, newpass);
                     if (check) {
                         Toast.makeText(DoiMatKhauActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();

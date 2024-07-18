@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.duanmau.dao.ThanhVienDao;
+import com.example.duanmau.dao.ThanhVienDAO;
 import com.example.duanmau.model.ThanhVien;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,7 +26,7 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
     TextInputEditText edTenDangNhapThanhVien, edPasswordThanhVien;
     Button btnLoginThanhVien, btnDangKyThanhVien;
     CheckBox chkGhiNhoTV;
-    ThanhVienDao thanhvienDao;
+    ThanhVienDAO thanhvienDao;
     TextView txtQuenMatKhau;
     TextInputLayout notiTenDangNhapThanhVien, notiPasswordThanhVien;
 
@@ -53,7 +52,7 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
         notiTenDangNhapThanhVien = findViewById(R.id.notiTenDangNhapThanhVien);
         notiPasswordThanhVien = findViewById(R.id.notiPasswordThanhVien);
 
-        thanhvienDao = new ThanhVienDao(this);
+        thanhvienDao = new ThanhVienDAO(this);
 
         // kiểm tra thông tin đăng nhập, người dùng có lưu lại hay ko?
         SharedPreferences sharedPreferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
