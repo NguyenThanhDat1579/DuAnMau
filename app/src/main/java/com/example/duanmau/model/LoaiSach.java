@@ -10,6 +10,10 @@ public class LoaiSach {
         this.tenloai = tenloai;
     }
 
+    public LoaiSach(String tenloai) {
+        this.tenloai = tenloai;
+    }
+
     public int getMaloai() {
         return maloai;
     }

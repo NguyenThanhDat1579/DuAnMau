@@ -1,5 +1,6 @@
 package com.example.duanmau;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -49,7 +50,16 @@ public class DoiMatKhauActivity extends AppCompatActivity {
                     boolean check = thanhVienDao.DoiMatKhau(usertv, oldpass, newpass);
                     if (check) {
                         Toast.makeText(DoiMatKhauActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
-                        finish();
+
+                        //xoa sharedpreferences
+                        SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.clear();
+                        editor.apply();
+
+                        Intent intent = new Intent(DoiMatKhauActivity.this, ChonVaiTroActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }else{
                         Toast.makeText(DoiMatKhauActivity.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
                     }

@@ -1,5 +1,6 @@
 package com.example.duanmau.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,5 +28,15 @@ public class LoaiSachDAO {
             }while (cursor.moveToNext());
         }
         return list;
+    }
+
+    public boolean themLoaiSach(String tenloai){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tenloai", tenloai);
+
+
+        long check = sqLiteDatabase.insert("LOAISACH",null,contentValues);
+        return check != -1;
     }
 }

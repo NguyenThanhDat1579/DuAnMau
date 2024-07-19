@@ -17,11 +17,27 @@ public class ThanhVienDAO {
     }
 
     //đăng nhập
-    public boolean checkDangNhapThanhVien(String tendangnhaptv, String matkhautv){
-        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM THANHVIEN WHERE tendangnhap = ? AND matkhau = ?", new String[]{tendangnhaptv, matkhautv});
-        return cursor.getCount() != 0;
+    public ThanhVien checkLogin(String tenDangNhap, String matKhau) {
+        ThanhVien thanhVien = null;
+        String query = "SELECT * FROM THANHVIEN WHERE tendangnhap = ? AND matkhau = ?";
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{tenDangNhap, matKhau});
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int matv = cursor.getInt(cursor.getColumnIndexOrThrow("matv"));
+                String tentv = cursor.getString(cursor.getColumnIndexOrThrow("tentv"));
+                String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                String tendangnhap = cursor.getString(cursor.getColumnIndexOrThrow("tendangnhap"));
+                String matkhau = cursor.getString(cursor.getColumnIndexOrThrow("matkhau"));
+
+                thanhVien = new ThanhVien(matv, tentv, email, tendangnhap, matkhau);
+            }
+            cursor.close();
+        }
+        return thanhVien;
     }
+
 
     //đăng ký
     public boolean dangKy(String tendangnhaptvnew, String hoten, String email, String matkhautvnew){
@@ -74,4 +90,27 @@ public class ThanhVienDAO {
         return list;
     }
 
+    // Hàm lấy thông tin thành viên theo mã thành viên
+    public ThanhVien getThanhVienById(int id) {
+        ThanhVien thanhVien = null;
+        String query = "SELECT * FROM THANHVIEN WHERE matv = ?";
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int matv = cursor.getInt(cursor.getColumnIndexOrThrow("matv"));
+                String tentv = cursor.getString(cursor.getColumnIndexOrThrow("tentv"));
+                String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                String tendangnhap = cursor.getString(cursor.getColumnIndexOrThrow("tendangnhap"));
+                String matkhau = cursor.getString(cursor.getColumnIndexOrThrow("matkhau"));
+
+                thanhVien = new ThanhVien(matv, tentv, email, tendangnhap, matkhau);
+            }
+            cursor.close();
+        }
+        return thanhVien;
+    }
 }
+
+

@@ -1,6 +1,7 @@
 package com.example.duanmau;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -92,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.itemCaiDat){
                     fragment = new CaiDatFragment();
                 } else if (menuItem.getItemId() == R.id.itemDangXuat) {
+                    //xoa sharedpreferences
+                    SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.apply();
+
                     Intent intent = new Intent(MainActivity.this, ChonVaiTroActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

@@ -25,7 +25,7 @@
                 android:id="@+id/img_thanhvien"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_thanhvien"
+                android:src="@drawable/avatar"
                 android:layout_gravity="center"
                 />
 

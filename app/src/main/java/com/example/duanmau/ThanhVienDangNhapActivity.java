@@ -134,15 +134,20 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
                 }
 
                 if (usertv.length() > 0 && passtv.length() > 0) {
-                    if (thanhvienDao.checkDangNhapThanhVien(usertv, passtv)) {
-                        //lưu sharedpreferecens
-                        if(chkGhiNhoTV.isChecked()){
+                    thanhVien = thanhvienDao.checkLogin(usertv, passtv);
+                    if (thanhVien != null) {
+                        // Lưu SharedPreferences
+                        if (chkGhiNhoTV.isChecked()) {
                             editor.putBoolean("isRemember", chkGhiNhoTV.isChecked());
+                            editor.putInt("maThanhVien", thanhVien.getMatv());
                             editor.apply();
                         } else {
                             editor.clear();
                             editor.apply();
                         }
+
+
+                        Toast.makeText(ThanhVienDangNhapActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(ThanhVienDangNhapActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // out ứng dụng tại Main
