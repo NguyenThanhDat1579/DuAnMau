@@ -39,4 +39,16 @@ public class LoaiSachDAO {
         long check = sqLiteDatabase.insert("LOAISACH",null,contentValues);
         return check != -1;
     }
+
+    public boolean chinhSua(LoaiSach loaiSach){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tenloai", loaiSach.getTenloai());
+
+
+        int check = sqLiteDatabase.update("LOAISACH", contentValues, "maloai = ?", new String[]{String.valueOf(loaiSach.getMaloai())});
+        if (check <= 0) return false;
+        return true;
+    }
 }

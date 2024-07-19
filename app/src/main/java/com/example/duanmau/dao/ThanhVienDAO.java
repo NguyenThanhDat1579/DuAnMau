@@ -81,7 +81,7 @@ public class ThanhVienDAO {
         ArrayList<ThanhVien> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM THANHVIEN", null);
-        if(cursor.getCount() !=0){
+        if(cursor.getCount() != 0){
             cursor.moveToFirst();
             do{
                 list.add(new ThanhVien(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
@@ -110,6 +110,20 @@ public class ThanhVienDAO {
             cursor.close();
         }
         return thanhVien;
+    }
+
+    public boolean chinhSua(ThanhVien thanhVien){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tentv", thanhVien.getTentv());
+        contentValues.put("email", thanhVien.getEmail());
+        contentValues.put("tendangnhap", thanhVien.getTendangnhap());
+        contentValues.put("matkhau", thanhVien.getMatkhau());
+
+        int check = sqLiteDatabase.update("THANHVIEN", contentValues, "matv = ?", new String[]{String.valueOf(thanhVien.getMatv())});
+        if (check <= 0) return false;
+        return true;
     }
 }
 

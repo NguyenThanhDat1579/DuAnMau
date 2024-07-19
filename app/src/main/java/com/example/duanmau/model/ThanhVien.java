@@ -15,6 +15,15 @@ public class ThanhVien {
         this.matkhau = matkhau;
     }
 
+    public ThanhVien(String tentv, String email, String tendangnhap, String matkhau) {
+        this.tentv = tentv;
+        this.email = email;
+        this.tendangnhap = tendangnhap;
+        this.matkhau = matkhau;
+    }
+
+
+
     public int getMatv() {
         return matv;
     }
