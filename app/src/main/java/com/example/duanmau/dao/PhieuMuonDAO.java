@@ -22,11 +22,12 @@ public class PhieuMuonDAO {
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             do {
-                listPM.add(new PhieuMuon(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getInt(3), cursor.getString(4), cursor.getInt(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9), cursor.getInt(10)));
+                listPM.add(new PhieuMuon(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9), cursor.getInt(10)));
             } while (cursor.moveToNext());
         }
         return listPM;
     }
+
 
     public boolean thayDoiTrangThai(int mapm){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
@@ -38,5 +39,26 @@ public class PhieuMuonDAO {
         }else{
             return true;
         }
+    }
+
+    // thêm phiếu mượn
+    public boolean themPhieuMuon(PhieuMuon phieuMuon){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("matv", phieuMuon.getMatv());
+        contentValues.put("matt", phieuMuon.getMatt());
+        contentValues.put("masach", phieuMuon.getMasach());
+        contentValues.put("ngaymuon",phieuMuon.getNgaymuon());
+        contentValues.put("ngaytra",phieuMuon.getNgaytra());
+         contentValues.put("trangthai",phieuMuon.getTrangthai());
+        contentValues.put("tienthue",phieuMuon.getTienthue());
+
+        long check = sqLiteDatabase.insert("PHIEUMUON",null,contentValues);
+        if(check == -1) {
+            return false;
+        }else{
+            return true;
+        }
+
     }
 }

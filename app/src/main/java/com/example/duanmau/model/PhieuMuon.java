@@ -3,7 +3,7 @@ package com.example.duanmau.model;
 public class PhieuMuon {
     private int mapm;
     private int matv;
-    private int matt;
+    private String matt;
     private int masach;
     private String ngaymuon;
     private String ngaytra;
@@ -15,7 +15,7 @@ public class PhieuMuon {
 
     //pm.mapm, pm.matv, tv.tentv, pm.matt, tt.hotentt, pm.masach, sc.tensach, pm.ngaymuon, pm.ngaytra, pm.trangthai, pm.tienthue
 
-    public PhieuMuon(int mapm, int matv,String tentv, int matt,String tentt, int masach, String tensach, String ngaymuon, String ngaytra, int trangthai, int tienthue  ) {
+    public PhieuMuon(int mapm, int matv, String tentv, String matt, String tentt, int masach, String tensach, String ngaymuon, String ngaytra, int trangthai, int tienthue  ) {
         this.mapm = mapm;
         this.matv = matv;
         this.matt = matt;
@@ -28,6 +28,18 @@ public class PhieuMuon {
         this.tentt = tentt;
         this.tensach = tensach;
     }
+
+    public PhieuMuon(int matv, String matt, int masach,  String ngaymuon, String ngaytra, int trangthai, int tienthue  ) {
+        this.matv = matv;
+        this.matt = matt;
+        this.masach = masach;
+        this.ngaymuon = ngaymuon;
+        this.ngaytra = ngaytra;
+        this.trangthai = trangthai;
+        this.tienthue = tienthue;
+    }
+
+
 
     public int getMapm() {
         return mapm;
@@ -45,11 +57,11 @@ public class PhieuMuon {
         this.matv = matv;
     }
 
-    public int getMatt() {
+    public String getMatt() {
         return matt;
     }
 
-    public void setMatt(int matt) {
+    public void setMatt(String matt) {
         this.matt = matt;
     }
 

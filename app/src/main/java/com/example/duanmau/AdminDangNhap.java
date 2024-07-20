@@ -51,12 +51,12 @@ public class AdminDangNhap extends AppCompatActivity {
 
         // kiểm tra thông tin đăng nhập, người dùng có lưu lại hay ko?
         SharedPreferences sharedPreferences = getSharedPreferences("Thong_tin_thu_thu", MODE_PRIVATE);
+        String user = sharedPreferences.getString("usertt", "");
+        String pass = sharedPreferences.getString("passtt", "");
+        edTenDangNhap.setText(user);
+        edPassword.setText(pass);
         boolean isRemember = sharedPreferences.getBoolean("isRemember", false);
         if(isRemember){
-            String user = sharedPreferences.getString("usertt", "");
-            String pass = sharedPreferences.getString("passtt", "");
-            edTenDangNhap.setText(user);
-            edPassword.setText(pass);
             chkGhiNho.setChecked(isRemember);
         }
 

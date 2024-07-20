@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.duanmau.database.DbHelper;
+import com.example.duanmau.model.Sach;
 import com.example.duanmau.model.ThanhVien;
 
 import java.util.ArrayList;
@@ -77,6 +78,7 @@ public class ThanhVienDAO {
         }
     }
 
+    // lấy danh sách thành viên
     public ArrayList<ThanhVien> getDSThanhVien(){
         ArrayList<ThanhVien> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();

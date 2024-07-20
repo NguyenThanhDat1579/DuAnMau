@@ -119,6 +119,23 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
+
+        <Button
+            android:id="@+id/btnTroVe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_btn_nentrangvienhong"
+            app:backgroundTint="@null"
+            android:text="Trở về"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:textColor="#E25CE7"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+
         <Button
             android:id="@+id/btnDangKyTk"
             android:layout_width="match_parent"
@@ -129,24 +146,8 @@
             android:text="ĐĂNG KÝ"
             android:textSize="16dp"
             android:textStyle="bold"
-            android:layout_marginRight="5dp"
-            app:backgroundTint="@null" />
-
-
-        <Button
-            android:id="@+id/btnTroVe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_btn_nentrangvienhong"
-            app:backgroundTint="@null"
-            android:text="Trở về"
             android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:textColor="#E25CE7"
-            android:textAllCaps="true"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            />
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 
