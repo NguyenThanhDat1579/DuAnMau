@@ -18,9 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import com.example.duanmau.dao.SachDAO;
 import com.example.duanmau.fragment.CaiDatFragment;
 import com.example.duanmau.fragment.DanhDauFragment;
 import com.example.duanmau.fragment.HomeFragment;
