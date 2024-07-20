@@ -18,9 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import com.example.duanmau.dao.SachDAO;
 import com.example.duanmau.fragment.CaiDatFragment;
 import com.example.duanmau.fragment.DanhDauFragment;
 import com.example.duanmau.fragment.HomeFragment;
@@ -28,7 +26,7 @@ import com.example.duanmau.fragment.QLPhieuMuonFragment;
 import com.example.duanmau.fragment.QLSachFragment;
 import com.example.duanmau.fragment.QLThanhVienFragment;
 import com.example.duanmau.fragment.QLTheLoaiSachFragment;
-import com.example.duanmau.fragment.SachMuonFragment;
+import com.example.duanmau.fragment.Top10SachMuonFragment;
 import com.example.duanmau.fragment.ThongKeFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -87,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.item_ThongKe){
                     fragment = new ThongKeFragment();
                 } else if (menuItem.getItemId() == R.id.itemSachMuon){
-                    fragment = new SachMuonFragment();
+                    fragment = new Top10SachMuonFragment();
                 } else if (menuItem.getItemId() == R.id.itemDanhDau){
                     fragment = new DanhDauFragment();
                 } else if (menuItem.getItemId() == R.id.itemCaiDat){
