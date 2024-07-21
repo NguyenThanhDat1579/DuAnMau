@@ -6,17 +6,20 @@ public class Sach {
     private String tacgia;
     private int giathue;
     private int maloai;
+    private String tenloai;
     private int soluongdamuon;
 
 
 
-    public Sach(int masach, String tensach, String tacgia, int giathue, int maloai) {
+    public Sach(int masach, String tensach, String tacgia, int giathue, int maloai, String tenloai) {
         this.masach = masach;
         this.tensach = tensach;
         this.tacgia = tacgia;
         this.giathue = giathue;
         this.maloai = maloai;
+        this.tenloai = tenloai;
     }
+
 
     public Sach(int masach, String tensach, int soluongdamuon) {
         this.masach = masach;
@@ -70,5 +73,13 @@ public class Sach {
 
     public void setMaloai(int maloai) {
         this.maloai = maloai;
+    }
+
+    public String getTenloai() {
+        return tenloai;
+    }
+
+    public void setTenloai(String tenloai) {
+        this.tenloai = tenloai;
     }
 }

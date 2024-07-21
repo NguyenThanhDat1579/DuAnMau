@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/maunen">
+    android:background="@drawable/maunen"
+    android:orientation="vertical">
 
+
+    <TextView
+        android:id="@+id/txtTenLoaiSach"
+        android:text="TÊN LOẠI SÁCH"
+        android:textColor="#e35ce8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="23dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSach"
@@ -21,5 +34,5 @@
         android:layout_margin="10dp"
         />
 
-</RelativeLayout>
+</LinearLayout>
 

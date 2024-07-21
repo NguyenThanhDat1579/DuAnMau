@@ -79,15 +79,7 @@
         android:layout_marginTop="10dp"
         app:backgroundTint="@null" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Doanh Thu:"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+
 
 
     <TextView
@@ -98,7 +90,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:textColor="#FE6A00"
-        android:text="3.000.000VND"
+
         android:textSize="32sp"
         android:textStyle="bold" />
 

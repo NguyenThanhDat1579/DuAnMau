@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -23,20 +22,20 @@ import androidx.fragment.app.Fragment;
 import com.example.duanmau.fragment.CaiDatFragment;
 import com.example.duanmau.fragment.DanhDauFragment;
 import com.example.duanmau.fragment.HomeFragment;
+import com.example.duanmau.fragment.HomeThanhVienFragment;
 import com.example.duanmau.fragment.QLPhieuMuonFragment;
-import com.example.duanmau.fragment.QLSachFragment;
 import com.example.duanmau.fragment.QLThanhVienFragment;
 import com.example.duanmau.fragment.QLTheLoaiSachFragment;
+import com.example.duanmau.fragment.ThongKeFragment;
 import com.example.duanmau.fragment.TongHopSachFragment;
 import com.example.duanmau.fragment.Top10SachMuonFragment;
-import com.example.duanmau.fragment.ThongKeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ThanhVienActivity extends AppCompatActivity {
     Toolbar toolbar;
     FrameLayout framelayout;
-    NavigationView navigationView;
+    NavigationView navigationViewThanhVien;
     DrawerLayout drawerLayout;
 
 
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_thanhvien);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawer_layout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         // ánh xạ
         toolbar = findViewById(R.id.toolbar);
         framelayout = findViewById(R.id.frameLayout);
-        navigationView = findViewById(R.id.navigationView);
+        navigationViewThanhVien = findViewById(R.id.navigationViewThanhVien);
         drawerLayout = findViewById(R.id.drawer_layout);
 
         //set toolbar
@@ -65,27 +64,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         //set fragment mặc định
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeThanhVienFragment()).commit();
 
 
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationViewThanhVien.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment = null;
 
                 if (menuItem.getItemId() == R.id.item_Home) {
-                    fragment = new HomeFragment();
-                }else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
+                    fragment = new HomeThanhVienFragment();
+                } else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
                     fragment = new QLTheLoaiSachFragment();
-                }else if (menuItem.getItemId() == R.id.item_TongHopSach){
+                } else if (menuItem.getItemId() == R.id.item_TongHopSach){
                     fragment = new TongHopSachFragment();
-                } else if (menuItem.getItemId() == R.id.item_QLPhieuMuon){
-                    fragment = new QLPhieuMuonFragment();
-                } else if (menuItem.getItemId() == R.id.item_QLThanhVien){
-                    fragment = new QLThanhVienFragment();
-                } else if (menuItem.getItemId() == R.id.item_ThongKe){
-                    fragment = new ThongKeFragment();
                 } else if (menuItem.getItemId() == R.id.itemSachMuon){
                     fragment = new Top10SachMuonFragment();
                 } else if (menuItem.getItemId() == R.id.itemDanhDau){
@@ -99,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.clear();
                     editor.apply();
 
-                    Intent intent = new Intent(MainActivity.this, ChonVaiTroActivity.class);
+                    Intent intent = new Intent(ThanhVienActivity.this, ChonVaiTroActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
@@ -113,17 +106,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //hiển thị 1 số chức năng cho Admin
-        SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
-        String loaitk = sharedPreferences.getString("loaitk", "");
-        if (!loaitk.equals("Admin")){
-            Menu menu = navigationView.getMenu();
-            menu.findItem(R.id.item_QLThanhVien).setVisible(false);
-            menu.findItem(R.id.item_ThongKe).setVisible(false);
-            menu.findItem(R.id.itemSachMuon).setVisible(false);
-
-
-        }
 
     }
 

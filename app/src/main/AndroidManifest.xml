@@ -15,7 +15,7 @@
         android:theme="@style/Theme.DuAnMau"
         tools:targetApi="31">
         <activity
-            android:name=".themloaisach"
+            android:name=".ThanhVienActivity"
             android:exported="false" />
         <activity
             android:name=".QuenMatKhauActivity"

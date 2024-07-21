@@ -36,8 +36,14 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SachAdapter.ViewHolder holder, int position) {
+
+        Sach sach = list.get(position);
+        holder.bind(sach);
+
+
         holder.txtMaSach.setText(list.get(position).getMasach()+"");
-        holder.txtMaLoaiSach.setText("LS" + list.get(position).getMaloai());
+        holder.txtMaLoai.setText(list.get(position).getMaloai()+"");
+        holder.txtTenLoai.setText(list.get(position).getTenloai());
         holder.txtTenSach.setText(list.get(position).getTensach());
         holder.txtGiaThue.setText(list.get(position).getGiathue()+"");
     }
@@ -49,15 +55,23 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtMaSach, txtMaLoaiSach, txtTenSach, txtGiaThue;
+        TextView txtMaSach, txtMaLoai, txtTenLoai, txtTenSach, txtTacGia, txtGiaThue;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtMaSach = itemView.findViewById(R.id.txtMaSach);
-            txtMaLoaiSach = itemView.findViewById(R.id.txtMaLoaiSach);
+            txtMaLoai = itemView.findViewById(R.id.txtMaLoai);
+            txtTenLoai = itemView.findViewById(R.id.txtTenLoai);
             txtTenSach = itemView.findViewById(R.id.txtTenSach);
+            txtTacGia = itemView.findViewById(R.id.txtTacGia);
             txtGiaThue = itemView.findViewById(R.id.txtGiaThue);
 
+        }
+
+        public void bind(Sach sach) {
+            txtTenSach.setText(sach.getTensach());
+            txtTacGia.setText(sach.getTacgia());
+            txtGiaThue.setText(String.valueOf(sach.getGiathue()));
         }
     }
 }

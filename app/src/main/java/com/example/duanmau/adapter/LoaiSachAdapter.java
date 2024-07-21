@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,11 +32,17 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
     private Context context;
     private ArrayList<LoaiSach> list;
     LoaiSachDAO loaiSachDAO;
+    private OnItemClickListener listener;
 
-    public LoaiSachAdapter(Context context, ArrayList<LoaiSach> list) {
+    public interface OnItemClickListener {
+        void onItemClick(LoaiSach loaiSach);
+    }
+
+    public LoaiSachAdapter(Context context, ArrayList<LoaiSach> list, OnItemClickListener listener) {
         this.context = context;
         this.list = list;
         this.loaiSachDAO = new LoaiSachDAO(context);
+        this.listener = listener;
     }
 
     @NonNull
@@ -48,6 +55,10 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull LoaiSachAdapter.ViewHolder holder, int position) {
+
+        LoaiSach loaiSach = list.get(position);
+        holder.bind(loaiSach, listener);
+
         holder.txtMaLoai.setText("Mã loại: LS" +list.get(position).getMaloai());
         holder.txtTenLoai.setText("Tên loại:  " +list.get(position).getTenloai());
 
@@ -76,6 +87,16 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
             ivXoaLoaiSach = itemView.findViewById(R.id.ivXoaLoaiSach);
 
 
+        }
+
+        public void bind(final LoaiSach loaiSach, final OnItemClickListener listener) {
+            txtTenLoai.setText(loaiSach.getTenloai());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(loaiSach);
+                }
+            });
         }
     }
 

@@ -59,6 +59,26 @@
                         android:text="001"
                         android:textStyle="bold"/>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mã loại: "/>
+                    <TextView
+                        android:id="@+id/txtMaLoai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="001"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,12 +88,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mã loại sách: "/>
+                        android:text="Loại sách: "/>
                     <TextView
-                        android:id="@+id/txtMaLoaiSach"
+                        android:id="@+id/txtTenLoai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="LS1"
+                        android:text="Kinh tế"
                         android:textStyle="bold"/>
                 </LinearLayout>
                 <LinearLayout
@@ -91,6 +111,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kinh điển về khởi nghiệp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tác giả: "/>
+                    <TextView
+                        android:id="@+id/txtTacGia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bill Aulet"
                         android:textStyle="bold"/>
                 </LinearLayout>
                 <LinearLayout

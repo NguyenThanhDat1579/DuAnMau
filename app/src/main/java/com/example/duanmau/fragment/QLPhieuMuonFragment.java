@@ -42,7 +42,7 @@ public class QLPhieuMuonFragment extends Fragment {
     PhieuMuonDAO phieuMuonDAO;
     ArrayList<PhieuMuon> listPM;
     RecyclerView lvPhieuMuon;
-    FloatingActionButton floatAdd;
+    FloatingActionButton floatAddPhieuMuon;
     ThuThuDAO thuThuDAO;
     @Nullable
     @Override
@@ -52,7 +52,7 @@ public class QLPhieuMuonFragment extends Fragment {
 
         // ánh xạ
         lvPhieuMuon = view.findViewById(R.id.lvPhieuMuon);
-        floatAdd = view.findViewById(R.id.floatAdd);
+        floatAddPhieuMuon = view.findViewById(R.id.floatAddPhieuMuon);
         //data
         //adapter
         thuThuDAO = new ThuThuDAO(getContext());
@@ -66,7 +66,7 @@ public class QLPhieuMuonFragment extends Fragment {
 
 
 
-        floatAdd.setOnClickListener(new View.OnClickListener() {
+        floatAddPhieuMuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // tạo dialog
@@ -83,6 +83,7 @@ public class QLPhieuMuonFragment extends Fragment {
                 builder.setView(view);
                 // show dialog
                 AlertDialog alertDialog = builder.create();
+                alertDialog.setCancelable(false);
                 alertDialog.show();
 
                 btnHuy.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +96,6 @@ public class QLPhieuMuonFragment extends Fragment {
                 btnXacNhan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
 
 
                         // lấy mã thành viên
@@ -112,6 +112,8 @@ public class QLPhieuMuonFragment extends Fragment {
                         String ngaytra = edNgayTra.getText().toString();
 
                         themPhieuMuon(matv, masach, ngaytra,giathue);
+
+                        alertDialog.dismiss();
                     }
                 });
             }

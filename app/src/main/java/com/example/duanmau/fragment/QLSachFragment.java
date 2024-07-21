@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,21 +23,46 @@ import com.example.duanmau.model.Sach;
 import java.util.ArrayList;
 
 public class QLSachFragment extends Fragment {
+
+    private RecyclerView recyclerSach;
+    private SachDAO sachDAO;
+    private ArrayList<Sach> sachList = new ArrayList<>();
+    private int maloai;
+    private TextView txtTenLoaiSach;
+    private String tenloai;
+
+    public QLSachFragment() {
+        // Required empty public constructor
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_qlsach, container, false);
 
-        RecyclerView recyclerSach = view.findViewById(R.id.recyclerSach);
-        SachDAO sachDAO = new SachDAO(getContext());
-        ArrayList<Sach> list = sachDAO.getAllSach();
+        recyclerSach = view.findViewById(R.id.recyclerSach);
+        txtTenLoaiSach = view.findViewById(R.id.txtTenLoaiSach);
+        sachDAO = new SachDAO(getContext());
+
+        if (getArguments() != null) {
+            maloai = getArguments().getInt("maloai");
+            tenloai = getArguments().getString("tenloai");
+            txtTenLoaiSach.setText(tenloai);
+            loadData(maloai);
+        }
+
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSach.setLayoutManager(linearLayoutManager);
-        SachAdapter adapter = new SachAdapter(getContext(), list);
+        SachAdapter adapter = new SachAdapter(getContext(), sachList);
         recyclerSach.setAdapter(adapter);
 
         return view;
+    }
+
+    private void loadData(int maloai) {
+        sachList = sachDAO.getSachByLoai(maloai);
     }
 }
 

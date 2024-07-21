@@ -50,13 +50,14 @@ public class AdminDangNhap extends AppCompatActivity {
 
 
         // kiểm tra thông tin đăng nhập, người dùng có lưu lại hay ko?
-        SharedPreferences sharedPreferences = getSharedPreferences("Thong_tin_thu_thu", MODE_PRIVATE);
-        String user = sharedPreferences.getString("usertt", "");
-        String pass = sharedPreferences.getString("passtt", "");
-        edTenDangNhap.setText(user);
-        edPassword.setText(pass);
+        SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
+
         boolean isRemember = sharedPreferences.getBoolean("isRemember", false);
         if(isRemember){
+            String user = sharedPreferences.getString("matt", "");
+            String pass = sharedPreferences.getString("passtt", "");
+            edTenDangNhap.setText(user);
+            edPassword.setText(pass);
             chkGhiNho.setChecked(isRemember);
         }
 
@@ -111,6 +112,11 @@ public class AdminDangNhap extends AppCompatActivity {
                 String user = edTenDangNhap.getText().toString();
                 String pass = edPassword.getText().toString();
 
+                SharedPreferences preferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+
+
+
 
                 if(user.equals("")){
                     notiTenDangNhap.setError("Vui lòng nhập username");
@@ -126,16 +132,13 @@ public class AdminDangNhap extends AppCompatActivity {
                 if(user.length() > 0 && pass.length() > 0) {
                     if (thuThuDAO.checkDangNhap(user, pass)) {
                         //lưu sharedpreferecens
+                        editor.putString("matt", user);
+                        editor.putString("passtt", pass);
+                        editor.apply();
                         if(chkGhiNho.isChecked()){
-                            SharedPreferences preferences = getSharedPreferences("Thong_tin_thu_thu", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putString("usertt", user);
-                            editor.putString("passtt", pass);
                             editor.putBoolean("isRemember", chkGhiNho.isChecked());
                             editor.apply();
                         } else {
-                            SharedPreferences preferences = getSharedPreferences("Thong_tin_thu_thu", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
                             editor.clear();
                             editor.apply();
                         }

@@ -50,7 +50,7 @@ public class PhieuMuonDAO {
         contentValues.put("masach", phieuMuon.getMasach());
         contentValues.put("ngaymuon",phieuMuon.getNgaymuon());
         contentValues.put("ngaytra",phieuMuon.getNgaytra());
-         contentValues.put("trangthai",phieuMuon.getTrangthai());
+        contentValues.put("trangthai",phieuMuon.getTrangthai());
         contentValues.put("tienthue",phieuMuon.getTienthue());
 
         long check = sqLiteDatabase.insert("PHIEUMUON",null,contentValues);

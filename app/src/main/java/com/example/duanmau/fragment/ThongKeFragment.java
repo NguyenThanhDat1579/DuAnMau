@@ -117,10 +117,7 @@ public class ThongKeFragment extends Fragment {
                 String ngaybatdau = edTuNgay.getText().toString();
                 String ngayketthuc = edDenNgay.getText().toString();
                 int doanhthu = thongKeDAO.getDoanhThu(ngaybatdau,ngayketthuc);
-                txtDoanhThu.setText(doanhthu + "VND");
-
-
-
+                txtDoanhThu.setText(doanhthu + " VND");
 
             }
         });

@@ -31,6 +31,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QLTheLoaiSachFragment extends Fragment {
 
@@ -57,7 +58,6 @@ public class QLTheLoaiSachFragment extends Fragment {
             }
         });
 
-
         return view;
 
     }
@@ -68,7 +68,22 @@ public class QLTheLoaiSachFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerLoaiSach.setLayoutManager(linearLayoutManager);
-        LoaiSachAdapter adapter = new LoaiSachAdapter(getContext(), list);
+        LoaiSachAdapter adapter = new LoaiSachAdapter(getContext(), list, new LoaiSachAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(LoaiSach loaiSach) {
+                // Chuyển sang SachFragment và truyền ID của loại sách
+                QLSachFragment sachFragment = new QLSachFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("maloai", loaiSach.getMaloai());
+                bundle.putString("tenloai", loaiSach.getTenloai());
+                sachFragment.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, sachFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         recyclerLoaiSach.setAdapter(adapter);
     }
 
