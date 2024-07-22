@@ -28,6 +28,7 @@ public class AdminDangNhap extends AppCompatActivity {
     TextInputLayout notiTenDangNhap, notiPassword;
 
     ThuThuDAO thuThuDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class AdminDangNhap extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
 
         boolean isRemember = sharedPreferences.getBoolean("isRemember", false);
-        if(isRemember){
+        if (isRemember) {
             String user = sharedPreferences.getString("matt", "");
             String pass = sharedPreferences.getString("passtt", "");
             edTenDangNhap.setText(user);
@@ -70,7 +71,7 @@ public class AdminDangNhap extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 0){
+                if (s.length() == 0) {
                     notiTenDangNhap.setError("Vui lòng nhập username");
                 } else {
                     notiTenDangNhap.setError(null);
@@ -79,7 +80,6 @@ public class AdminDangNhap extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
@@ -91,7 +91,7 @@ public class AdminDangNhap extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 0){
+                if (s.length() == 0) {
                     notiPassword.setError("Vui lòng nhập password");
                 } else {
                     notiPassword.setError(null);
@@ -116,32 +116,28 @@ public class AdminDangNhap extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
 
 
-
-
-                if(user.equals("")){
+                if (user.equals("")) {
                     notiTenDangNhap.setError("Vui lòng nhập username");
                 } else {
                     notiTenDangNhap.setError(null);
                 }
 
-                if(pass.equals("")){
+                if (pass.equals("")) {
                     notiPassword.setError("Vui lòng nhập password");
                 } else {
                     notiPassword.setError(null);
                 }
-                if(user.length() > 0 && pass.length() > 0) {
+                if (user.length() > 0 && pass.length() > 0) {
                     if (thuThuDAO.checkDangNhap(user, pass)) {
-                        //lưu sharedpreferecens
+                        // Lưu thông tin đăng nhập và loại tài khoản vào SharedPreferences
                         editor.putString("matt", user);
                         editor.putString("passtt", pass);
-                        editor.apply();
-                        if(chkGhiNho.isChecked()){
-                            editor.putBoolean("isRemember", chkGhiNho.isChecked());
-                            editor.apply();
+                        if (chkGhiNho.isChecked()) {
+                            editor.putBoolean("isRemember", true);
                         } else {
-                            editor.clear();
-                            editor.apply();
+                            editor.putBoolean("isRemember", false);
                         }
+                        editor.apply();
 
 
                         Toast.makeText(AdminDangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
@@ -156,8 +152,6 @@ public class AdminDangNhap extends AppCompatActivity {
                 }
             }
         });
-
-
 
 
     }

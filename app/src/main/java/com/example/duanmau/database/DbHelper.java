@@ -46,7 +46,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 " (10,'Món Ăn Việt Nam','Triệu Thị Chơi - Nguyễn Thị Phụng', 10000, 4), (11, 'Món xưa vị nay','Võ Hoàng Nhân', 12000, 4),(12,'Món ăn thuần Việt: 60 món mặn','Nguyễn Thị Diệu Thảo', 15000, 4)," +
                 " (13,'Nhân tố enzyme', 'Hiromi Shinya', 10000, 5), (14,'Cơ thể 4 giờ','Timothy Ferris',12000,5),(15,'Grain Brain','David Perlmutter',15000,5)");
 
-        db.execSQL("INSERT INTO THUTHU VALUES('thuthu01','Nguyễn Nhật Thuý','thuy123','thuy123@gmail.com','Admin'),('thuthu02','Phạm Thanh Toàn','toan123','toan123@gmail.com','Thủ thư')");
+        db.execSQL("INSERT INTO THUTHU VALUES('admin01','Nguyễn Nhật Thuý','thuy123','thuy123@gmail.com','admin'),('admin02','Nguyễn Thành Đạt','dat123','dat123@gmail.com','admin'),('thuthu01','Phạm Thanh Toàn','toan123','toan123@gmail.com','thuthu'),('thuthu02','Nguyễn Quang Vinh','vinh123','vinh123@gmail.com','thuthu'),('thuthu03','Lê Hữu Nhân','nhan123','nhan123@gmail.com','thuthu')");
 
         db.execSQL("INSERT INTO THANHVIEN VALUES(1,'Nguyễn Thành Đạt','dat@gmail.com','dat123','123'),(2,'Phạm Thanh Toàn','toanptps37329@gmail.com','toanpt','123')");
 

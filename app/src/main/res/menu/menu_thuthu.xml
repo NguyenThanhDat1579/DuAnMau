@@ -8,51 +8,50 @@
 
 
         <item
-            android:id="@+id/item_PhieuMuonTV"
-            android:title="Phiếu mượn của tôi"
+            android:id="@+id/item_QLPhieuMuon"
+            android:title="Quản lý phiếu mượn"
             android:icon="@drawable/ic_tiket"
             />
 
         <item
             android:id="@+id/item_QLTheLoaiSach"
-            android:title="Các loại sách"
+            android:title="Quản lý loại sách"
             android:icon="@drawable/ic_book"
             />
 
         <item
             android:id="@+id/item_TongHopSach"
-            android:title="Tất cả sách"
+            android:title="Quản lý sách"
             android:icon="@drawable/ic_books"
+            />
+
+        <item
+            android:id="@+id/item_QLThanhVien"
+            android:title="Quản lý thành viên"
+            android:icon="@drawable/ic_user"
             />
 
 
 
 
-
-
         <item android:title="Thống kê">
-               <menu>
+                <menu>
 
+                        <item
+                            android:id="@+id/item_ThongKe"
+                            android:title="Thống kê doanh thu"
+                            android:icon="@drawable/ic_bar"
+                            />
+                        <item   android:id="@+id/itemSachMuon"
+                            android:title="Top 10 sách mượn phổ biến"
+                            android:icon="@drawable/ic_trophy"
+                            />
 
-                       <item   android:id="@+id/itemSachMuon"
-                           android:title="Top 10 sách mượn phổ biến"
-                           android:icon="@drawable/ic_trophy"
-                           />
-                       <item   android:id="@+id/itemDanhDau"
-                           android:title="Sách đã đánh dấu"
-                           android:icon="@drawable/ic_bookmark"
-                           />
-
-
-               </menu>
+                </menu>
         </item>
 
         <item android:title="Người dùng">
                 <menu>
-                        <item   android:id="@+id/itemCaiDat"
-                            android:title="Cài đặt"
-                            android:icon="@drawable/ic_setting"
-                            />
 
                         <item   android:id="@+id/itemDangXuat"
                             android:title="Đăng xuất"

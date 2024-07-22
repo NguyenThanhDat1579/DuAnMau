@@ -30,45 +30,66 @@
                     android:layout_marginBottom="20dp">
 
                     <Button
-                        android:id="@+id/btnQlLoaiSach"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textColor="@color/black"
-                        android:layout_marginRight="20dp"
-                        android:drawableTop="@drawable/ic_bookcase"
-                        android:text="Quản lý loại sách"
-                        app:backgroundTint="#FFF9F2"
-                        android:background="@drawable/radius"
-                        />
-
-                    <Button
-                        android:id="@+id/btnQlSach"
+                        android:id="@+id/btnPhieuMuonTV"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/radius"
                         android:drawableTop="@drawable/ic_phieumuon"
-                        android:text="Quản lý sách"
+                        android:text="Phiếu mượn của tôi"
                         android:textColor="@color/black"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         app:backgroundTint="#F5F2FC" />
+
+                    <Button
+                        android:id="@+id/btnTongHopSach"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:drawableTop="@drawable/ic_bookcase"
+                        android:text="Tất cả sách"
+                        app:backgroundTint="#FFF9F2"
+                        android:background="@drawable/radius"
+                        />
+
+
                 </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp">
 
                 <Button
+                    android:id="@+id/btnDanhDau"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Sách đã đánh dấu"
+                    android:textColor="@color/black"
+                    android:drawableTop="@drawable/ic_favorite"
+                    app:backgroundTint="#FCF2F2"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/radius"
+                    />
+
+                <Button
                     android:id="@+id/btnThongKe"
                     android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="Thống kê"
                     android:textColor="@color/black"
                     android:drawableTop="@drawable/ic_thongke"
                     app:backgroundTint="#EFF2FC"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/radius"
                     />
             </LinearLayout>

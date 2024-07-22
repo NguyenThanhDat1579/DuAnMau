@@ -23,6 +23,7 @@ import com.example.duanmau.fragment.CaiDatFragment;
 import com.example.duanmau.fragment.DanhDauFragment;
 import com.example.duanmau.fragment.HomeFragment;
 import com.example.duanmau.fragment.HomeThanhVienFragment;
+import com.example.duanmau.fragment.PhieuMuonTVFragment;
 import com.example.duanmau.fragment.QLPhieuMuonFragment;
 import com.example.duanmau.fragment.QLThanhVienFragment;
 import com.example.duanmau.fragment.QLTheLoaiSachFragment;
@@ -67,7 +68,6 @@ public class ThanhVienActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeThanhVienFragment()).commit();
 
 
-
         navigationViewThanhVien.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -75,15 +75,17 @@ public class ThanhVienActivity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == R.id.item_Home) {
                     fragment = new HomeThanhVienFragment();
+                } else if (menuItem.getItemId() == R.id.item_PhieuMuonTV) {
+                    fragment = new PhieuMuonTVFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
                     fragment = new QLTheLoaiSachFragment();
-                } else if (menuItem.getItemId() == R.id.item_TongHopSach){
+                } else if (menuItem.getItemId() == R.id.item_TongHopSach) {
                     fragment = new TongHopSachFragment();
-                } else if (menuItem.getItemId() == R.id.itemSachMuon){
+                } else if (menuItem.getItemId() == R.id.itemSachMuon) {
                     fragment = new Top10SachMuonFragment();
-                } else if (menuItem.getItemId() == R.id.itemDanhDau){
+                } else if (menuItem.getItemId() == R.id.itemDanhDau) {
                     fragment = new DanhDauFragment();
-                } else if (menuItem.getItemId() == R.id.itemCaiDat){
+                } else if (menuItem.getItemId() == R.id.itemCaiDat) {
                     fragment = new CaiDatFragment();
                 } else if (menuItem.getItemId() == R.id.itemDangXuat) {
                     //xoa sharedpreferences
@@ -97,7 +99,7 @@ public class ThanhVienActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-                if(fragment != null){
+                if (fragment != null) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
                 }
 
@@ -112,7 +114,7 @@ public class ThanhVienActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             drawerLayout.openDrawer(GravityCompat.START);
         }
 

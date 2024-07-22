@@ -136,9 +136,10 @@ public class ThanhVienDangNhapActivity extends AppCompatActivity {
 
                 if (usertv.length() > 0 && passtv.length() > 0) {
                     thanhVien = thanhvienDao.checkLogin(usertv, passtv);
-                    editor.putInt("maThanhVien", thanhVien.getMatv());
+
                     if (thanhVien != null) {
                         // Lưu SharedPreferences
+                        editor.putInt("maThanhVien", thanhVien.getMatv());
                         if (chkGhiNhoTV.isChecked()) {
                             editor.putBoolean("isRemember", chkGhiNhoTV.isChecked());
                             editor.apply();

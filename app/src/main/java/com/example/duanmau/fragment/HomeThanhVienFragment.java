@@ -14,35 +14,45 @@ import androidx.fragment.app.FragmentManager;
 import com.example.duanmau.R;
 
 public class HomeThanhVienFragment extends Fragment {
-    Button btnQlLoaiSach, btnQlSach, btnThongKe;
+    Button btnPhieuMuonTV, btnTongHopSach, btnDanhDau, btnThongKe;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_thanhvien, container, false);
 
         //anh xa
-        btnQlLoaiSach = view.findViewById(R.id.btnQlLoaiSach);
-        btnQlSach = view.findViewById(R.id.btnQlSach);
-
+        btnPhieuMuonTV = view.findViewById(R.id.btnPhieuMuonTV);
+        btnTongHopSach = view.findViewById(R.id.btnTongHopSach);
+        btnDanhDau = view.findViewById(R.id.btnDanhDau);
         btnThongKe = view.findViewById(R.id.btnThongKe);
 
 
 
-        btnQlLoaiSach.setOnClickListener(new View.OnClickListener() {
+
+        btnPhieuMuonTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = null;
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frameLayout, new QLTheLoaiSachFragment()).commit();
+                fragmentManager.beginTransaction().replace(R.id.frameLayout, new PhieuMuonTVFragment()).commit();
             }
         });
 
-        btnQlSach.setOnClickListener(new View.OnClickListener() {
+        btnTongHopSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = null;
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.frameLayout, new TongHopSachFragment()).commit();
+            }
+        });
+
+        btnDanhDau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = null;
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.frameLayout, new DanhDauFragment()).commit();
             }
         });
 

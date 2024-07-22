@@ -23,16 +23,17 @@ public class ThuThuDAO {
     public boolean checkDangNhap(String matt, String matkhau){
         SQLiteDatabase sqliteDatabase = dbhelper.getReadableDatabase();
 
-        //matt, hotentt, matkhau, loaitk
+        //matt, hotentt, matkhau, email, loaitk
         Cursor cursor = sqliteDatabase.rawQuery("SELECT * FROM THUTHU WHERE matt = ? AND matkhau= ?", new String[]{matt, matkhau});
-        if(cursor.getCount() !=0 ){
-           cursor.moveToFirst();
+        if(cursor.getCount() != 0){
+            cursor.moveToFirst();
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("matt", cursor.getString(0));
-            editor.putString("loaitk", cursor.getString(4));
+            editor.putString("loaitk", cursor.getString(4)); // Save loaitk to SharedPreferences
+            editor.putString("passtt", matkhau); // Save password to SharedPreferences
             editor.commit();
             return true;
-        }else{
+        } else {
             return false;
         }
     }
