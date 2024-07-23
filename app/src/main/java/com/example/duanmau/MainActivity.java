@@ -1,5 +1,6 @@
 package com.example.duanmau;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,7 +28,6 @@ import com.example.duanmau.fragment.QLPhieuMuonFragment;
 import com.example.duanmau.fragment.QLSachFragment;
 import com.example.duanmau.fragment.QLThanhVienFragment;
 import com.example.duanmau.fragment.QLTheLoaiSachFragment;
-import com.example.duanmau.fragment.TongHopSachFragment;
 import com.example.duanmau.fragment.Top10SachMuonFragment;
 import com.example.duanmau.fragment.ThongKeFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
 
 
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -75,21 +76,25 @@ public class MainActivity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == R.id.item_Home) {
                     fragment = new HomeFragment();
-                } else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
+                }else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
                     fragment = new QLTheLoaiSachFragment();
-                } else if (menuItem.getItemId() == R.id.item_TongHopSach) {
-                    fragment = new TongHopSachFragment();
-                } else if (menuItem.getItemId() == R.id.item_QLPhieuMuon) {
+                }else if (menuItem.getItemId() == R.id.item_TongHopSach){
+                    fragment = new QLSachFragment();
+                } else if (menuItem.getItemId() == R.id.item_QLPhieuMuon){
                     fragment = new QLPhieuMuonFragment();
-                } else if (menuItem.getItemId() == R.id.item_QLThanhVien) {
+                } else if (menuItem.getItemId() == R.id.item_QLThanhVien){
                     fragment = new QLThanhVienFragment();
-                } else if (menuItem.getItemId() == R.id.item_ThongKe) {
+                } else if (menuItem.getItemId() == R.id.item_ThongKe){
                     fragment = new ThongKeFragment();
-                } else if (menuItem.getItemId() == R.id.itemSachMuon) {
+                } else if (menuItem.getItemId() == R.id.itemSachMuon){
                     fragment = new Top10SachMuonFragment();
+                } else if (menuItem.getItemId() == R.id.itemDanhDau){
+                    fragment = new DanhDauFragment();
+                } else if (menuItem.getItemId() == R.id.itemCaiDat){
+                    fragment = new CaiDatFragment();
                 } else if (menuItem.getItemId() == R.id.itemDangXuat) {
                     //xoa sharedpreferences
-                    SharedPreferences preferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
+                    SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.clear();
                     editor.apply();
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-                if (fragment != null) {
+                if(fragment != null){
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
                 }
 

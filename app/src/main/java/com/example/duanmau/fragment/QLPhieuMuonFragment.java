@@ -83,7 +83,6 @@ public class QLPhieuMuonFragment extends Fragment {
                 builder.setView(view);
                 // show dialog
                 AlertDialog alertDialog = builder.create();
-                alertDialog.setCancelable(false);
                 alertDialog.show();
 
                 btnHuy.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +95,7 @@ public class QLPhieuMuonFragment extends Fragment {
                 btnXacNhan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
 
 
                         // lấy mã thành viên
@@ -183,9 +183,9 @@ public class QLPhieuMuonFragment extends Fragment {
 
     private void themPhieuMuon(int matv,int masach,String ngaytra,int giathue){
         //lấy mã thủ thư
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("Thong_tin_thu_thu", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("THONGTIN", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        String matt = sharedPreferences.getString("usertt", "");
+        String matt = sharedPreferences.getString("matt", "");
 
 
         //lấy ngày hiện tại
