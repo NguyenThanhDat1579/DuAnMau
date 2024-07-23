@@ -22,7 +22,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(tThanhVien);
 
         //tạo bảng loại sách
-        String tLoaiSach = "CREATE TABLE LOAISACH (maloai INTEGER PRIMARY KEY AUTOINCREMENT, tenloai TEXT)";
+        String tLoaiSach = "CREATE TABLE LOAISACH (maloai INTEGER PRIMARY KEY AUTOINCREMENT, tenloai TEXT, urlHinh TEXT)";
         db.execSQL(tLoaiSach);
 
         //tạo bảng sách
@@ -39,7 +39,13 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
         //data mẫu
-        db.execSQL("INSERT INTO LOAISACH VALUES (1, 'Kinh tế'),(2, 'Ngoại Ngữ'),(3, 'Công nghệ thông tin'),(4, 'Ẩm thực'),(5, 'Sức Khoẻ')");
+        db.execSQL("INSERT INTO LOAISACH VALUES " +
+                "(1, 'Kinh tế', 'https://res.cloudinary.com/ddkqz5udn/image/upload/v1721305272/ic_kinhte.png')," +
+                "(2, 'Ngoại Ngữ', 'https://res.cloudinary.com/ddkqz5udn/image/upload/v1721729873/66facf81-346b-45bd-b8cc-4af810862e53_lafvqt.png')," +
+                "(3, 'Công nghệ thông tin', 'https://res.cloudinary.com/ddkqz5udn/image/upload/v1721730154/7e903bdb-68fa-4454-81c9-fb2be95aed69_eopx7q.png')," +
+                "(4, 'Ẩm thực', 'https://res.cloudinary.com/ddkqz5udn/image/upload/v1721730184/2883686a-f82d-4690-98e1-46f2e3ea33ff_v3crje.png')," +
+                "(5, 'Sức Khoẻ', 'https://res.cloudinary.com/ddkqz5udn/image/upload/v1721730204/ab970fe5-e77a-4159-8e3e-4e5b164db774_l9xrvl.png')");
+
         db.execSQL("INSERT INTO SACH VALUES (1, 'Kinh điển về khởi nghiệp', 'Bill Aulet', 10000, 1), (2, 'Bí mật tư duy triệu phú', 'T.Harv Eker', 12000, 1), (3, 'Bí quyết gây dựng cơ nghiệp bạc tỷ', 'Adam Khoo', 15000, 1), " +
                 "(4, 'Life Of Pi', 'Yann Martel', 10000, 2), (5, 'The Alchemist', 'Paulo Coelho', 15000, 2), (6, 'Harry Potter', 'J. K. Rowling', 20000, 2), " +
                 "(7, 'The Industries of the Future', 'Alec Ross', 10000, 3), (8, 'Lập trình và Cuộc sống', 'Jeff Atwood', 12000, 3), (9, 'Thinking In Java','Bruce Eckel', 15000, 3)," +
@@ -50,7 +56,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO THANHVIEN VALUES(1,'Nguyễn Thành Đạt','dat@gmail.com','dat123','123'),(2,'Phạm Thanh Toàn','toanptps37329@gmail.com','toanpt','123')");
 
-        db.execSQL("INSERT INTO PHIEUMUON VALUES ('1','1','thuthu01','1','11/11/2011','11/11/2012','1', '12000'),('2','1','thuthu01','1','11/11/2022','11/11/2024','0', '15000')");
+        db.execSQL("INSERT INTO PHIEUMUON VALUES " +
+                "('1','1','thuthu01','1','11/11/2011','11/11/2012','1', '12000')," +
+                "('2','1','thuthu01','1','11/11/2022','11/11/2024','0', '15000')");
 
 
     }

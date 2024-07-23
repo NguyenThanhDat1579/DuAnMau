@@ -97,11 +97,17 @@
             android:textSize="20dp" />
 
         <ImageView
-            android:id="@+id/imgIconThemLoaiSach"
+            android:id="@+id/ivHinhLoaiSach"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/ic_books" />
     </LinearLayout>
+        <TextView
+            android:id="@+id/txtTrangThaiHinhLS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+        </TextView>
 
         <LinearLayout
             android:layout_width="match_parent"

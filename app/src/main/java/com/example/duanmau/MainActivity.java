@@ -1,6 +1,5 @@
 package com.example.duanmau;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,13 +20,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import com.example.duanmau.fragment.CaiDatFragment;
-import com.example.duanmau.fragment.DanhDauFragment;
 import com.example.duanmau.fragment.HomeFragment;
 import com.example.duanmau.fragment.QLPhieuMuonFragment;
-import com.example.duanmau.fragment.QLSachFragment;
 import com.example.duanmau.fragment.QLThanhVienFragment;
-import com.example.duanmau.fragment.QLTheLoaiSachFragment;
+import com.example.duanmau.fragment.QLLoaiSachFragment;
+import com.example.duanmau.fragment.TongHopSachFragment;
 import com.example.duanmau.fragment.Top10SachMuonFragment;
 import com.example.duanmau.fragment.ThongKeFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -77,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 if (menuItem.getItemId() == R.id.item_Home) {
                     fragment = new HomeFragment();
                 }else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
-                    fragment = new QLTheLoaiSachFragment();
+                    fragment = new QLLoaiSachFragment();
                 }else if (menuItem.getItemId() == R.id.item_TongHopSach){
-                    fragment = new QLSachFragment();
+                    fragment = new TongHopSachFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLPhieuMuon){
                     fragment = new QLPhieuMuonFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLThanhVien){
@@ -88,10 +85,6 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new ThongKeFragment();
                 } else if (menuItem.getItemId() == R.id.itemSachMuon){
                     fragment = new Top10SachMuonFragment();
-                } else if (menuItem.getItemId() == R.id.itemDanhDau){
-                    fragment = new DanhDauFragment();
-                } else if (menuItem.getItemId() == R.id.itemCaiDat){
-                    fragment = new CaiDatFragment();
                 } else if (menuItem.getItemId() == R.id.itemDangXuat) {
                     //xoa sharedpreferences
                     SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);

@@ -3,6 +3,7 @@ package com.example.duanmau.model;
 public class LoaiSach {
     private int maloai;
     private String tenloai;
+    private String urlHinh; // Thêm trường urlHinh
 
 
     public LoaiSach(int maloai, String tenloai) {
@@ -10,8 +11,24 @@ public class LoaiSach {
         this.tenloai = tenloai;
     }
 
-    public LoaiSach(String tenloai) {
+    public LoaiSach(int maloai, String tenloai, String urlHinh) {
+        this.maloai = maloai;
         this.tenloai = tenloai;
+        this.urlHinh = urlHinh; // Khởi tạo trường urlHinh
+    }
+
+    public LoaiSach(String tenloai, String urlHinh) {
+        this.tenloai = tenloai;
+        this.urlHinh = urlHinh;
+    }
+
+    // Getter và Setter cho urlHinh
+    public String getUrlHinh() {
+        return urlHinh;
+    }
+
+    public void setUrlHinh(String urlHinh) {
+        this.urlHinh = urlHinh;
     }
 
     public int getMaloai() {
@@ -29,4 +46,6 @@ public class LoaiSach {
     public void setTenloai(String tenloai) {
         this.tenloai = tenloai;
     }
+
+
 }

@@ -27,7 +27,7 @@
             android:layout_gravity="center">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/ivHinhLoaiSach"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 app:srcCompat="@drawable/ic_kinhte" />
@@ -73,13 +73,7 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_edit" />
 
-            <ImageView
-                android:id="@+id/ivXoaLoaiSach"
-                android:layout_width="5dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_delete" />
+
         </LinearLayout>
 
     </LinearLayout>

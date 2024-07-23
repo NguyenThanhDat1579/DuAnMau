@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = null;
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frameLayout, new QLTheLoaiSachFragment()).commit();
+                fragmentManager.beginTransaction().replace(R.id.frameLayout, new QLLoaiSachFragment()).commit();
             }
         });
 

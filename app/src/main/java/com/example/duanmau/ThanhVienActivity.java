@@ -3,7 +3,6 @@ package com.example.duanmau;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -21,13 +20,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.duanmau.fragment.CaiDatFragment;
 import com.example.duanmau.fragment.DanhDauFragment;
-import com.example.duanmau.fragment.HomeFragment;
 import com.example.duanmau.fragment.HomeThanhVienFragment;
 import com.example.duanmau.fragment.PhieuMuonTVFragment;
-import com.example.duanmau.fragment.QLPhieuMuonFragment;
-import com.example.duanmau.fragment.QLThanhVienFragment;
-import com.example.duanmau.fragment.QLTheLoaiSachFragment;
-import com.example.duanmau.fragment.ThongKeFragment;
+import com.example.duanmau.fragment.QLLoaiSachFragment;
 import com.example.duanmau.fragment.TongHopSachFragment;
 import com.example.duanmau.fragment.Top10SachMuonFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -78,7 +73,7 @@ public class ThanhVienActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.item_PhieuMuonTV) {
                     fragment = new PhieuMuonTVFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
-                    fragment = new QLTheLoaiSachFragment();
+                    fragment = new QLLoaiSachFragment();
                 } else if (menuItem.getItemId() == R.id.item_TongHopSach) {
                     fragment = new TongHopSachFragment();
                 } else if (menuItem.getItemId() == R.id.itemSachMuon) {

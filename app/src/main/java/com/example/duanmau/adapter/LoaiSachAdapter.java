@@ -18,8 +18,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.duanmau.R;
 import com.example.duanmau.dao.LoaiSachDAO;
+import com.example.duanmau.fragment.QLLoaiSachFragment;
 import com.example.duanmau.model.LoaiSach;
 import com.example.duanmau.model.ThanhVien;
 import com.google.android.material.textfield.TextInputEditText;
@@ -62,10 +64,17 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
         holder.txtMaLoai.setText("Mã loại: LS" +list.get(position).getMaloai());
         holder.txtTenLoai.setText("Tên loại:  " +list.get(position).getTenloai());
 
+        // Tải hình ảnh bằng Glide
+        if (loaiSach.getUrlHinh() != null && !loaiSach.getUrlHinh().isEmpty()) {
+            Glide.with(holder.itemView.getContext()).load(loaiSach.getUrlHinh()).into(holder.ivHinhLoaiSach);
+        } else {
+            holder.ivHinhLoaiSach.setImageResource(R.drawable.ic_books); // Ảnh mặc định nếu không có URL
+        }
+
         holder.ivSuaLoaiSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogUpdate(list.get(holder.getAdapterPosition()));
+//                showDialogUpdate(list.get(holder.getAdapterPosition()));
             }
         });
     }
@@ -78,14 +87,13 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtMaLoai, txtTenLoai;
-        ImageView ivSuaLoaiSach, ivXoaLoaiSach;
+        ImageView ivHinhLoaiSach ,ivSuaLoaiSach;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtMaLoai = itemView.findViewById(R.id.txtMaLoai);
             txtTenLoai = itemView.findViewById(R.id.txtTenLoai);
+            ivHinhLoaiSach = itemView.findViewById(R.id.ivHinhLoaiSach);
             ivSuaLoaiSach = itemView.findViewById(R.id.ivSuaLoaiSach);
-            ivXoaLoaiSach = itemView.findViewById(R.id.ivXoaLoaiSach);
-
 
         }
 
@@ -102,67 +110,75 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
 
 
 
-    public void showDialogUpdate(LoaiSach loaiSach){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_sua_loaisach, null);
-        builder.setView(view);
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.setCancelable(false);
-        alertDialog.show();
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-
-        EditText edTenLoai = view.findViewById(R.id.edTenLoai);
-
-
-
-        Button btnSua = view.findViewById(R.id.btnSua);
-        Button btnHuy = view.findViewById(R.id.btnHuy);
-
-        //dua du lieu can sua len edit
-        edTenLoai.setText(loaiSach.getTenloai());
-
-
-
-        btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-
-        btnSua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int maloai = loaiSach.getMaloai();
-                String tenloai = edTenLoai.getText().toString();
-
-
-
-                if (tenloai.length() == 0){
-                    Toast.makeText(context, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-                } else {
-                    LoaiSach loaisachChinhSua = new LoaiSach(maloai, tenloai);
-                    boolean check = loaiSachDAO.chinhSua(loaisachChinhSua);
-                    if (check){
-                        Toast.makeText(context, "Chỉnh sửa thành công", Toast.LENGTH_SHORT).show();
-
-                        loadData();
-
-                        alertDialog.dismiss();
-                    } else {
-                        Toast.makeText(context, "Chỉnh sửa thất bại", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
-    }
+//    public void showDialogUpdate(LoaiSach loaiSach){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+//        View view = inflater.inflate(R.layout.dialog_sua_loaisach, null);
+//        builder.setView(view);
+//
+//        AlertDialog alertDialog = builder.create();
+//        alertDialog.setCancelable(false);
+//        alertDialog.show();
+//        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//
+//        EditText edTenLoai = view.findViewById(R.id.edTenLoai);
+//        ImageView ivHinhLoaiSach = view.findViewById(R.id.ivHinhLoaiSach);
+//        TextView txtTrangThaiHinhLS = view.findViewById(R.id.txtTrangThaiHinhLS);
+//
+//        Button btnSua = view.findViewById(R.id.btnSua);
+//        Button btnHuy = view.findViewById(R.id.btnHuy);
+//
+//        // Đưa dữ liệu cần sửa lên edit
+//        edTenLoai.setText(loaiSach.getTenloai());
+//
+//        // Hiển thị hình ảnh hiện tại
+//        if (loaiSach.getUrlHinh() != null && !loaiSach.getUrlHinh().isEmpty()) {
+//            Glide.with(context).load(loaiSach.getUrlHinh()).into(ivHinhLoaiSach);
+//        } else {
+//            ivHinhLoaiSach.setImageResource(R.drawable.ic_books); // Ảnh mặc định nếu không có URL
+//        }
+//
+//        ivHinhLoaiSach.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((QLLoaiSachFragment)((Activity)context).getFragmentManager().findFragmentById(R.id.frameLayout)).accessTheGallery();
+//            }
+//        });
+//
+//        btnHuy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                alertDialog.dismiss();
+//            }
+//        });
+//
+//        btnSua.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int maloai = loaiSach.getMaloai();
+//                String tenloai = edTenLoai.getText().toString();
+//                String urlHinh = ((QLLoaiSachFragment)((Activity)context).getFragmentManager().findFragmentById(R.id.frameLayout)).getLinkHinh();
+//
+//                if (tenloai.length() == 0){
+//                    Toast.makeText(context, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    LoaiSach loaisachChinhSua = new LoaiSach(maloai, tenloai, urlHinh);
+//                    boolean check = loaiSachDAO.chinhSua(loaisachChinhSua);
+//                    if (check){
+//                        Toast.makeText(context, "Chỉnh sửa thành công", Toast.LENGTH_SHORT).show();
+//                        loadData();
+//                        alertDialog.dismiss();
+//                    } else {
+//                        Toast.makeText(context, "Chỉnh sửa thất bại", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//        });
+//    }
 
     public void loadData(){
         list.clear();
-        list = loaiSachDAO.getDSLoaiSach();
+        list.addAll(loaiSachDAO.getDSLoaiSach());
         notifyDataSetChanged();
     }
 }
