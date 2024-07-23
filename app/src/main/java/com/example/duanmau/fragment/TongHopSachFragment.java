@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +48,7 @@ public class TongHopSachFragment extends Fragment {
 
     RecyclerView recyclerTongHopSach;
     FloatingActionButton floatAddThemSach;
+    SearchView searchBook;
     SachDAO sachDAO;
     LoaiSachDAO loaiSachDAO;
     ArrayList<Sach> sachList = new ArrayList<>();
@@ -61,8 +63,9 @@ public class TongHopSachFragment extends Fragment {
         //anh xa
         recyclerTongHopSach = view.findViewById(R.id.recyclerTongHopSach);
         floatAddThemSach = view.findViewById(R.id.floatAddThemSach);
+        searchBook = view.findViewById(R.id.searchBook);
         sachDAO = new SachDAO(getContext());
-        loadData();
+        loadData(null);
 
 
         floatAddThemSach.setOnClickListener(new View.OnClickListener() {
@@ -72,21 +75,45 @@ public class TongHopSachFragment extends Fragment {
             }
         });
 
+        searchBook.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                loadData(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                loadData(newText);
+                return false;
+            }
+        });
 
         return view;
 
     }
 
-    private void loadData(){
+    private void loadData(String text) {
         ArrayList<Sach> list = sachDAO.getAllSach();
+        sachList.clear();  // Xóa danh sách trước khi thêm sách mới vào
+
+        if (text != null && !text.isEmpty()) {
+            for (Sach sach : list) {
+                if (sach.getTensach().toLowerCase().startsWith(text.toLowerCase())) {
+                    sachList.add(sach);
+                }
+            }
+        } else {
+            sachList.addAll(list);  // Nếu không có tìm kiếm, hiển thị toàn bộ sách
+        }
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerTongHopSach.setLayoutManager(linearLayoutManager);
-        SachAdapter adapter = new SachAdapter(getContext(), list);
+        SachAdapter adapter = new SachAdapter(getContext(), sachList);
         recyclerTongHopSach.setAdapter(adapter);
     }
 
-    private void getDataLoaiSach(Spinner spnLoaiSach){
+    private void getDataLoaiSach(Spinner spnLoaiSach) {
         // lấy dữ liệu
         LoaiSachDAO loaiSachDAO = new LoaiSachDAO(getContext());
         ArrayList<LoaiSach> listLS = loaiSachDAO.getDSLoaiSach();
@@ -103,14 +130,14 @@ public class TongHopSachFragment extends Fragment {
         SimpleAdapter simpleAdapter = new SimpleAdapter(
                 getContext(),
                 list
-                ,android.R.layout.simple_spinner_item,
+                , android.R.layout.simple_spinner_item,
                 new String[]{"tenloai"},
                 new int[]{android.R.id.text1});
         spnLoaiSach.setAdapter(simpleAdapter);
 
     }
 
-    private void showDialogAdd(){
+    private void showDialogAdd() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_them_sach, null);
