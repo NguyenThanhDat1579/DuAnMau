@@ -14,6 +14,7 @@
         android:background="@drawable/custom_btn_nentrangvienhong"
         android:orientation="vertical"
         android:padding="10dp"
+        android:layout_marginTop="20dp"
         >
 
 
@@ -52,12 +53,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mã sách: "/>
+
                     <TextView
                         android:id="@+id/txtMaSach"
-                        android:layout_width="wrap_content"
+                        android:layout_width="18dp"
                         android:layout_height="wrap_content"
                         android:text="001"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -204,6 +206,14 @@
                 android:background="@drawable/custom_btn_chinhsua">
 
             </Button>
+            <ImageView
+                android:id="@+id/ivXoaSach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+
         </LinearLayout>
 
     </LinearLayout>

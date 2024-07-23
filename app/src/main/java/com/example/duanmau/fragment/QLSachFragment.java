@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class QLSachFragment extends Fragment {
     private int maloai;
     private TextView txtTenLoaiSach;
     private String tenloai;
+
 
     public QLSachFragment() {
         // Required empty public constructor

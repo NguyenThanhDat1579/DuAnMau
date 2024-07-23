@@ -25,13 +25,19 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ThongKeFragment extends Fragment {
     TextInputEditText edTuNgay, edDenNgay;
     Button btnDoanhThu;
     TextView txtDoanhThu;
+    String ngaybatdau;
+    String ngayketthuc;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,7 +73,8 @@ public class ThongKeFragment extends Fragment {
                                 }
 
 
-                                edTuNgay.setText(year + "/" +thang + "/" + ngay);
+                                edTuNgay.setText(ngay + "/" +thang + "/" + year);
+                                ngaybatdau = year + "/" +thang + "/" + ngay;
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -99,7 +106,8 @@ public class ThongKeFragment extends Fragment {
                                     thang = (month + 1) + "";
                                 }
 
-                                edDenNgay.setText(year + "/" +thang + "/" + ngay);
+                                edDenNgay.setText(ngay + "/" +thang + "/" + year);
+                                 ngayketthuc = year + "/" +thang + "/" + ngay;
                             }
                         },
                         calendar.get(Calendar.YEAR),
@@ -114,10 +122,10 @@ public class ThongKeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ThongKeDAO thongKeDAO = new ThongKeDAO(getContext());
-                String ngaybatdau = edTuNgay.getText().toString();
-                String ngayketthuc = edDenNgay.getText().toString();
-                int doanhthu = thongKeDAO.getDoanhThu(ngaybatdau,ngayketthuc);
-                txtDoanhThu.setText(doanhthu + " VND");
+                double doanhthu = thongKeDAO.getDoanhThu(ngaybatdau,ngayketthuc);
+                NumberFormat format = new DecimalFormat("#,###");
+                String formattedNumber = format.format(doanhthu);
+                txtDoanhThu.setText(formattedNumber + " VND");
 
             }
         });

@@ -1,10 +1,12 @@
 package com.example.duanmau.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,11 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         this.list = list;
     }
 
+    public void hideItem(int position) {
+        list.get(position).setHidden(true);
+        notifyItemChanged(position);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,7 +42,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SachAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SachAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Sach sach = list.get(position);
         holder.bind(sach);
@@ -46,6 +53,34 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         holder.txtTenLoai.setText(list.get(position).getTenloai());
         holder.txtTenSach.setText(list.get(position).getTensach());
         holder.txtGiaThue.setText(list.get(position).getGiathue()+"");
+
+
+
+
+        if (sach.isHidden()) {
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+        } else {
+            holder.itemView.setVisibility(View.VISIBLE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            ));
+            holder.bind(sach);
+        }
+
+        holder.txtMaSach.setText(sach.getMasach() + "");
+        holder.txtMaLoai.setText(sach.getMaloai() + "");
+        holder.txtTenLoai.setText(sach.getTenloai());
+        holder.txtTenSach.setText(sach.getTensach());
+        holder.txtGiaThue.setText(sach.getGiathue() + "");
+
+        holder.ivXoaSach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideItem(position);
+            }
+        });
     }
 
     @Override
@@ -56,6 +91,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtMaSach, txtMaLoai, txtTenLoai, txtTenSach, txtTacGia, txtGiaThue;
+        ImageView ivXoaSach;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -65,7 +102,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             txtTenSach = itemView.findViewById(R.id.txtTenSach);
             txtTacGia = itemView.findViewById(R.id.txtTacGia);
             txtGiaThue = itemView.findViewById(R.id.txtGiaThue);
-
+            ivXoaSach = itemView.findViewById(R.id.ivXoaSach);
         }
 
         public void bind(Sach sach) {
@@ -73,5 +110,12 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             txtTacGia.setText(sach.getTacgia());
             txtGiaThue.setText(String.valueOf(sach.getGiathue()));
         }
+
+        public void hideItem(int position) {
+            list.get(position).setHidden(true);
+            notifyItemChanged(position);
+
+        }
+
     }
 }

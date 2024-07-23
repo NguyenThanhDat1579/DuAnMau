@@ -2,12 +2,14 @@ package com.example.duanmau.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
@@ -30,6 +32,7 @@ import com.example.duanmau.model.PhieuMuon;
 import com.example.duanmau.model.Sach;
 import com.example.duanmau.model.ThanhVien;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,11 +47,13 @@ public class QLPhieuMuonFragment extends Fragment {
     RecyclerView lvPhieuMuon;
     FloatingActionButton floatAddPhieuMuon;
     ThuThuDAO thuThuDAO;
+    String ngaytra;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_phieumuon, container, false);
 
+        Calendar calendar = Calendar.getInstance();
 
         // ánh xạ
         lvPhieuMuon = view.findViewById(R.id.lvPhieuMuon);
@@ -77,7 +82,7 @@ public class QLPhieuMuonFragment extends Fragment {
                 Spinner spnSach = view.findViewById(R.id.spnSach);
                 Button btnHuy = view.findViewById(R.id.btnHuy);
                 Button btnXacNhan = view.findViewById(R.id.btnXacNhan);
-                EditText edNgayTra= view.findViewById(R.id.edNgayTra);
+                TextInputEditText edNgayTra= view.findViewById(R.id.edNgayTra);
                 getDataThanhVien(spnThanhVien);
                 getDataSach(spnSach);
                 builder.setView(view);
@@ -90,6 +95,42 @@ public class QLPhieuMuonFragment extends Fragment {
                     public void onClick(View v) {
                         alertDialog.cancel();
                     }
+                });
+
+                // lấy ngày trả
+                edNgayTra.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                                getContext(),
+                                new DatePickerDialog.OnDateSetListener() {
+                                    @Override
+                                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                        String ngay = "";
+                                        String thang = "";
+                                        if(dayOfMonth < 10){
+                                            ngay = "0" + dayOfMonth;
+                                        }else{
+                                            ngay = dayOfMonth + "";
+                                        }
+                                        if((month + 1) < 10){
+                                            thang = "0" + (month + 1);
+                                        }else{
+                                            thang = (month + 1) + "";
+                                        }
+
+
+                                        edNgayTra.setText(ngay + "/" +thang + "/" + year);
+                                       ngaytra = ngay + "/" +thang + "/" + year;
+                                    }
+                                },
+                                calendar.get(Calendar.YEAR),
+                                calendar.get(Calendar.MONTH),
+                                calendar.get(Calendar.DAY_OF_MONTH)
+                        );
+                        datePickerDialog.show();
+                    }
+
                 });
 
                 btnXacNhan.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +149,6 @@ public class QLPhieuMuonFragment extends Fragment {
                         // lấy tiền thuê
                         int giathue = (int) hsSach.get("giathue");
 
-                        // lấy ngày trả
-                        String ngaytra = edNgayTra.getText().toString();
 
                         themPhieuMuon(matv, masach, ngaytra,giathue);
 

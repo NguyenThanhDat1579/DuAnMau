@@ -8,6 +8,7 @@ public class Sach {
     private int maloai;
     private String tenloai;
     private int soluongdamuon;
+    private boolean isHidden;
 
 
 
@@ -81,5 +82,13 @@ public class Sach {
 
     public void setTenloai(String tenloai) {
         this.tenloai = tenloai;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
