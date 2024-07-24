@@ -37,7 +37,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/notiTenDangKy"
+                android:id="@+id/notiTenSach"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -53,7 +53,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/notiHoten"
+                android:id="@+id/notiTacGia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -62,15 +62,14 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edTenTacGia"
+                    android:id="@+id/edTacGiaInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/notiEmail"
+                android:id="@+id/notiGiaThue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -78,11 +77,10 @@
                 app:hintEnabled="true"
                 >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edGiaThue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edGiaThueInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -119,7 +117,7 @@
                 </TextView>
 
                 <ImageView
-                    android:id="@+id/imgAvatar"
+                    android:id="@+id/ivHinhSach"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/avatar">

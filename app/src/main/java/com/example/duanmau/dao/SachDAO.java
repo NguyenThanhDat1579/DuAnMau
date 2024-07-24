@@ -60,6 +60,16 @@ public class SachDAO {
         return list;
     }
 
+    public boolean themSach(Sach sach) {
+        ContentValues values = new ContentValues();
+        values.put("tensach", sach.getTensach());
+        values.put("tacgia", sach.getTacgia());
+        values.put("giathue", sach.getGiathue());
+        values.put("maloai", sach.getMaloai());
+        long result = db.insert("SACH", null, values);
+        return result != -1;
+    }
+
 
 
 

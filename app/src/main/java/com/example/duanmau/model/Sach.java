@@ -11,6 +11,8 @@ public class Sach {
     private boolean isHidden;
 
 
+    public Sach() {
+    }
 
     public Sach(int masach, String tensach, String tacgia, int giathue, int maloai, String tenloai) {
         this.masach = masach;

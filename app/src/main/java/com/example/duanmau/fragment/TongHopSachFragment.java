@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
@@ -119,22 +120,18 @@ public class TongHopSachFragment extends Fragment {
         LoaiSachDAO loaiSachDAO = new LoaiSachDAO(getContext());
         ArrayList<LoaiSach> listLS = loaiSachDAO.getDSLoaiSach();
 
-        ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+        ArrayList<String> tenLoaiSachList = new ArrayList<>();
         for (LoaiSach loaiSach : listLS) {
-            HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("maloai", loaiSach.getMaloai());
-            hashMap.put("tenloai", loaiSach.getTenloai());
-            list.add(hashMap);
+            tenLoaiSachList.add(loaiSach.getTenloai());
         }
 
-        // set spinner của loại sách
-        SimpleAdapter simpleAdapter = new SimpleAdapter(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getContext(),
-                list
-                , android.R.layout.simple_spinner_item,
-                new String[]{"tenloai"},
-                new int[]{android.R.id.text1});
-        spnLoaiSach.setAdapter(simpleAdapter);
+                android.R.layout.simple_spinner_item,
+                tenLoaiSachList
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnLoaiSach.setAdapter(adapter);
 
     }
 
@@ -150,14 +147,19 @@ public class TongHopSachFragment extends Fragment {
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
-        //xu ly chuc nang
+        // Ánh xạ các thành phần trong dialog
         TextInputEditText edTenSach = view.findViewById(R.id.edTenSach);
-        TextInputEditText edTenTacGia = view.findViewById(R.id.edTenTacGia);
-        TextInputEditText edGiaThue = view.findViewById(R.id.edGiaThue);
+        TextInputEditText edTacGia = view.findViewById(R.id.edTacGiaInput);
+        TextInputEditText edGiaThue = view.findViewById(R.id.edGiaThueInput);
+
         Spinner spnLoaiSach = view.findViewById(R.id.spnLoaiSach);
         Button btnThem = view.findViewById(R.id.btnThem);
         Button btnHuy = view.findViewById(R.id.btnHuy);
 
+        // Lấy dữ liệu loại sách và thiết lập cho spinner
+        getDataLoaiSach(spnLoaiSach);
+
+        // Xử lý sự kiện nút hủy
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,10 +167,37 @@ public class TongHopSachFragment extends Fragment {
             }
         });
 
+        // Xử lý sự kiện nút thêm
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String tenSach = edTenSach.getText().toString().trim();
+                String tacGia = edTacGia.getText().toString().trim();
+                String giaThueStr = edGiaThue.getText().toString().trim();
+                int viTriLoaiSach = spnLoaiSach.getSelectedItemPosition();
 
+                // Kiểm tra thông tin đầu vào
+                if (tenSach.isEmpty() || tacGia.isEmpty() || giaThueStr.isEmpty() || viTriLoaiSach < 0) {
+                    Toast.makeText(getContext(), "Vui lòng nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                int giaThue = Integer.parseInt(giaThueStr);
+                LoaiSachDAO loaiSachDAO = new LoaiSachDAO(getContext());
+                int maloai = loaiSachDAO.getDSLoaiSach().get(viTriLoaiSach).getMaloai();
+
+                Sach sach = new Sach();
+                sach.setTensach(tenSach);
+                sach.setTacgia(tacGia);
+                sach.setGiathue(giaThue);
+                sach.setMaloai(maloai);
+
+                SachDAO sachDAO = new SachDAO(getContext());
+                sachDAO.themSach(sach);
+
+                // Cập nhật lại danh sách sách
+                loadData(null);
+                alertDialog.dismiss();
             }
         });
 
