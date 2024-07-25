@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau.R;
+import com.example.duanmau.dao.SachDAO;
 import com.example.duanmau.model.LoaiSach;
 import com.example.duanmau.model.Sach;
 
@@ -28,10 +30,6 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         this.list = list;
     }
 
-    public void hideItem(int position) {
-        list.get(position).setHidden(true);
-        notifyItemChanged(position);
-    }
 
     @NonNull
     @Override
@@ -56,29 +54,29 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
 
 
-
-        if (sach.isHidden()) {
+        if (list.get(position).getTrangthai() == 0) {
             holder.itemView.setVisibility(View.GONE);
-            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
         } else {
             holder.itemView.setVisibility(View.VISIBLE);
-            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-            ));
-            holder.bind(sach);
         }
 
-        holder.txtMaSach.setText(sach.getMasach() + "");
-        holder.txtMaLoai.setText(sach.getMaloai() + "");
-        holder.txtTenLoai.setText(sach.getTenloai());
-        holder.txtTenSach.setText(sach.getTensach());
-        holder.txtGiaThue.setText(sach.getGiathue() + "");
+
+
 
         holder.ivXoaSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideItem(position);
+                SachDAO  sachDAO = new SachDAO(context);
+                boolean kiemtra = sachDAO.thayDoiTrangThaiSach(list.get(holder.getAdapterPosition()).getMasach());
+                if(kiemtra){
+                    list.clear();
+                    list = sachDAO.getAllSach();
+                    notifyDataSetChanged();
+                }else{
+                    Toast.makeText(context, "Xóa sách thất bại", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -111,11 +109,6 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             txtGiaThue.setText(String.valueOf(sach.getGiathue()));
         }
 
-        public void hideItem(int position) {
-            list.get(position).setHidden(true);
-            notifyItemChanged(position);
-
-        }
 
     }
 }

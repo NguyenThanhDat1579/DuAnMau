@@ -71,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment = null;
 
+                for(int i = 0; i< navigationView.getMenu().size(); i++){
+                    navigationView.getMenu().getItem(i).setChecked(false);
+                }
+
                 if (menuItem.getItemId() == R.id.item_Home) {
                     fragment = new HomeFragment();
                 }else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
@@ -101,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
                 }
 
+                menuItem.setChecked(true);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             }

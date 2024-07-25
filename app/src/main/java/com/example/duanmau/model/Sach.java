@@ -8,18 +8,19 @@ public class Sach {
     private int maloai;
     private String tenloai;
     private int soluongdamuon;
-    private boolean isHidden;
+    private int trangthai = 1;
 
 
     public Sach() {
     }
 
-    public Sach(int masach, String tensach, String tacgia, int giathue, int maloai, String tenloai) {
+    public Sach(int masach, String tensach, String tacgia, int giathue, int maloai,int trangthai, String tenloai) {
         this.masach = masach;
         this.tensach = tensach;
         this.tacgia = tacgia;
         this.giathue = giathue;
         this.maloai = maloai;
+        this.trangthai = trangthai;
         this.tenloai = tenloai;
     }
 
@@ -86,11 +87,11 @@ public class Sach {
         this.tenloai = tenloai;
     }
 
-    public boolean isHidden() {
-        return isHidden;
+    public int getTrangthai() {
+        return trangthai;
     }
 
-    public void setHidden(boolean hidden) {
-        isHidden = hidden;
+    public void setTrangthai(int trangthai) {
+        this.trangthai = trangthai;
     }
 }
