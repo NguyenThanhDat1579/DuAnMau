@@ -84,5 +84,18 @@ public class SachDAO {
         return result != -1;
     }
 
+    public boolean capNhatThongTinSach(int masach,String tensach,String tacgia,int giathue,int maloai){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("tensach",tensach);
+        values.put("tacgia",tacgia);
+        values.put("giathue",giathue);
+        values.put("maloai",maloai);
+        long check = sqLiteDatabase.update("SACH",values,"masach=?",new String[]{String.valueOf(masach)});
+        if(check == -1)
+            return false;
+        return true;
+    };
+
 
 }

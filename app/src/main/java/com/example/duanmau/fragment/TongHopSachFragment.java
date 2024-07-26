@@ -111,7 +111,7 @@ public class TongHopSachFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerTongHopSach.setLayoutManager(linearLayoutManager);
-        SachAdapter adapter = new SachAdapter(getContext(), sachList);
+        SachAdapter adapter = new SachAdapter(getContext(), sachList,getDSLoaiSach(),sachDAO);
         recyclerTongHopSach.setAdapter(adapter);
     }
 
@@ -201,6 +201,20 @@ public class TongHopSachFragment extends Fragment {
             }
         });
 
+    }
+
+    private ArrayList<HashMap<String, Object>> getDSLoaiSach(){
+        LoaiSachDAO loaiSachDAO= new LoaiSachDAO(getContext());
+        ArrayList<LoaiSach> list = loaiSachDAO.getDSLoaiSach();
+        ArrayList<HashMap<String,Object>> listHM=new ArrayList<>();
+
+        for(LoaiSach loai : list){
+            HashMap<String,Object> hs = new HashMap<>();
+            hs.put("maloai",loai.getMaloai());
+            hs.put("tenloai",loai.getTenloai());
+            listHM.add(hs);
+        }
+        return listHM;
     }
 
 }

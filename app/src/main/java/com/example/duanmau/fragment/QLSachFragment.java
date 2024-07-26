@@ -22,6 +22,7 @@ import com.example.duanmau.model.LoaiSach;
 import com.example.duanmau.model.Sach;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class QLSachFragment extends Fragment {
 
@@ -31,6 +32,7 @@ public class QLSachFragment extends Fragment {
     private int maloai;
     private TextView txtTenLoaiSach;
     private String tenloai;
+
 
 
     public QLSachFragment() {
@@ -57,7 +59,7 @@ public class QLSachFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSach.setLayoutManager(linearLayoutManager);
-        SachAdapter adapter = new SachAdapter(getContext(), sachList);
+        SachAdapter adapter = new SachAdapter(getContext(), sachList,getDSLoaiSach(),sachDAO);
         recyclerSach.setAdapter(adapter);
 
         return view;
@@ -65,6 +67,20 @@ public class QLSachFragment extends Fragment {
 
     private void loadData(int maloai) {
         sachList = sachDAO.getSachByLoai(maloai);
+    }
+
+    private ArrayList<HashMap<String, Object>> getDSLoaiSach(){
+        LoaiSachDAO loaiSachDAO= new LoaiSachDAO(getContext());
+        ArrayList<LoaiSach> list = loaiSachDAO.getDSLoaiSach();
+        ArrayList<HashMap<String,Object>> listHM=new ArrayList<>();
+
+        for(LoaiSach loai : list){
+            HashMap<String,Object> hs = new HashMap<>();
+            hs.put("maloai",loai.getMaloai());
+            hs.put("tenloai",loai.getTenloai());
+            listHM.add(hs);
+        }
+        return listHM;
     }
 }
 
