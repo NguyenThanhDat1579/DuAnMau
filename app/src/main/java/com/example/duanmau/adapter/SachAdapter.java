@@ -1,12 +1,23 @@
 package com.example.duanmau.adapter;
 
+import static java.security.AccessController.getContext;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,20 +25,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau.R;
+import com.example.duanmau.dao.LoaiSachDAO;
 import com.example.duanmau.dao.SachDAO;
+import com.example.duanmau.fragment.TongHopSachFragment;
 import com.example.duanmau.model.LoaiSach;
 import com.example.duanmau.model.Sach;
+import com.example.duanmau.model.ThanhVien;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
     private Context context;
     private ArrayList<Sach> list;
-
-    public SachAdapter(Context context, ArrayList<Sach> list) {
+   private ArrayList<HashMap<String,Object>> listHM;
+    private  SachDAO sachDAO;
+    public SachAdapter(Context context, ArrayList<Sach> list,ArrayList<HashMap<String,Object>> listHM,SachDAO sachDAO) {
         this.context = context;
         this.list = list;
+        this.listHM=listHM;
+        this.sachDAO=sachDAO;
     }
 
 
@@ -51,6 +70,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         holder.txtTenLoai.setText(list.get(position).getTenloai());
         holder.txtTenSach.setText(list.get(position).getTensach());
         holder.txtGiaThue.setText(list.get(position).getGiathue()+"");
+
 
 
 
@@ -79,6 +99,22 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
             }
         });
+
+
+
+
+
+        holder.btnSua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               showDailog(list.get(holder.getAdapterPosition()));
+                loadData();
+            }
+        });
+
+
+
+
     }
 
     @Override
@@ -90,6 +126,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
         TextView txtMaSach, txtMaLoai, txtTenLoai, txtTenSach, txtTacGia, txtGiaThue;
         ImageView ivXoaSach;
+        Button btnSua;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +138,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             txtTacGia = itemView.findViewById(R.id.txtTacGia);
             txtGiaThue = itemView.findViewById(R.id.txtGiaThue);
             ivXoaSach = itemView.findViewById(R.id.ivXoaSach);
+            btnSua = itemView.findViewById(R.id.btnSUA);
         }
 
         public void bind(Sach sach) {
@@ -110,5 +148,88 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         }
 
 
+
+
     }
+
+    private void showDailog(Sach sach){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_sua_sach,null);
+        builder.setView(view);
+
+        TextInputEditText tensach = view.findViewById(R.id.edtTenSach);
+        TextInputEditText tacgia = view.findViewById(R.id.edtTacGiaInput);
+        TextInputEditText giathue = view.findViewById(R.id.edtGiaThueInput);
+        TextView txtmasach = view.findViewById(R.id.txtMaSach);
+
+
+        Spinner spnloaisach =  view.findViewById(R.id.spnLoaiSach);
+
+        txtmasach.setText("Mã Sách:"+sach.getMaloai());
+        tensach.setText(sach.getTensach());
+        tacgia.setText(sach.getTacgia());
+        giathue.setText(String.valueOf(sach.getGiathue()));
+
+        SimpleAdapter simpleAdapter =  new SimpleAdapter(
+                context,
+                listHM,
+                android.R.layout.simple_expandable_list_item_1,
+                new String[]{"tenloai"},
+                new int[]{android.R.id.text1}
+        );
+        spnloaisach.setAdapter(simpleAdapter);
+
+
+        int index = 0;
+        int postion = -1;//vị trí tên loại nằm trongds
+        for(HashMap<String,Object> itemm : listHM){
+//            int maloaiFromItemm = Integer.parseInt((String) itemm.get("maloai"));
+            if( (int) itemm.get("maloai") == sach.getMaloai()){
+                    postion = index;
+            }
+            index++;
+        }
+        spnloaisach.setSelection(postion);
+
+        builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String tenSach = tensach.getText().toString();
+                String tacGia = tacgia.getText().toString();
+                int tien=Integer.parseInt(giathue.getText().toString());
+                HashMap<String,Object> hs = (HashMap<String, Object>) spnloaisach.getSelectedItem();
+                int maloai=(int) hs.get("maloai");
+                boolean check =sachDAO.capNhatThongTinSach(sach.getMasach(),tenSach,tacGia,tien,maloai);
+                if(check){
+                    Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                    loadData();
+                }else{
+                    Toast.makeText(context, "Cập nhât thất bại", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+
+
+
+    }
+    private void loadData(){
+        list.clear();
+        list = sachDAO.getAllSach();
+        notifyDataSetChanged();
+    }
+
+
+
 }

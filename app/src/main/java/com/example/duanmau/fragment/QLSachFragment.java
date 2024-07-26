@@ -1,5 +1,6 @@
 package com.example.duanmau.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,8 +22,10 @@ import com.example.duanmau.dao.LoaiSachDAO;
 import com.example.duanmau.dao.SachDAO;
 import com.example.duanmau.model.LoaiSach;
 import com.example.duanmau.model.Sach;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class QLSachFragment extends Fragment {
 
@@ -31,6 +35,7 @@ public class QLSachFragment extends Fragment {
     private int maloai;
     private TextView txtTenLoaiSach;
     private String tenloai;
+
 
 
     public QLSachFragment() {
@@ -57,7 +62,7 @@ public class QLSachFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSach.setLayoutManager(linearLayoutManager);
-        SachAdapter adapter = new SachAdapter(getContext(), sachList);
+        SachAdapter adapter = new SachAdapter(getContext(), sachList,getDSLoaiSach(),sachDAO);
         recyclerSach.setAdapter(adapter);
 
         return view;
@@ -66,6 +71,24 @@ public class QLSachFragment extends Fragment {
     private void loadData(int maloai) {
         sachList = sachDAO.getSachByLoai(maloai);
     }
+
+
+    private ArrayList<HashMap<String, Object>> getDSLoaiSach(){
+        LoaiSachDAO loaiSachDAO= new LoaiSachDAO(getContext());
+        ArrayList<LoaiSach> list = loaiSachDAO.getDSLoaiSach();
+        ArrayList<HashMap<String,Object>> listHM=new ArrayList<>();
+
+        for(LoaiSach loai : list){
+            HashMap<String,Object> hs = new HashMap<>();
+            hs.put("maloai",loai.getMaloai());
+            hs.put("tenloai",loai.getTenloai());
+            listHM.add(hs);
+        }
+        return listHM;
+    }
+
+
+
 }
 
 
