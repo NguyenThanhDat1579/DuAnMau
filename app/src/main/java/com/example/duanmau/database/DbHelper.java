@@ -54,7 +54,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO THUTHU VALUES('admin01','Nguyễn Nhật Thuý','thuy123','thuy123@gmail.com','admin'),('admin02','Nguyễn Thành Đạt','dat123','dat123@gmail.com','admin'),('thuthu01','Phạm Thanh Toàn','toan123','toan123@gmail.com','thuthu'),('thuthu02','Nguyễn Quang Vinh','vinh123','vinh123@gmail.com','thuthu'),('thuthu03','Lê Hữu Nhân','nhan123','nhan123@gmail.com','thuthu')");
 
-        db.execSQL("INSERT INTO THANHVIEN VALUES(1,'Nguyễn Thành Đạt','dat@gmail.com','dat123','123'),(2,'Phạm Thanh Toàn','toanptps37329@gmail.com','toanpt','123')");
+        db.execSQL("INSERT INTO THANHVIEN VALUES(1,'Nguyễn Thành Đạt','dat@gmail.com','dat123','123'),(2,'Phạm Thanh Toàn','toanptps37329@gmail.com','toan123','123'), (3,'Lê Hữu Nhân','nhan@gmail.com','nhan123','123'), (4,'Nguyễn Nhật Thuý','thuy@gmail.com','thuy123','123'), (5,'Nguyễn Quang Vinh','vinh@gmail.com','vinh123','123')");
 
         db.execSQL("INSERT INTO PHIEUMUON VALUES " +
                 "('1','1','thuthu01','1','11/11/2011','22/11/2012','1', '12000')," +

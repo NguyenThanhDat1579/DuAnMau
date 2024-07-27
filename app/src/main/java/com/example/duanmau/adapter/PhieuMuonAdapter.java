@@ -104,7 +104,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Thông báo");
 
-        //Bạn có muốn xóa sản phẩm "Bánh" không?
+        //Xác nhận "Nguyễn Thành Đạt" đã trả sách
         builder.setMessage("Xác nhận \"" + tentv + "\" đã trả sách?");
         builder.setIcon(R.drawable.icon_warning);
 
