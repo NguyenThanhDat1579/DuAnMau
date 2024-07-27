@@ -31,6 +31,9 @@ public class Sach {
         this.soluongdamuon = soluongdamuon;
     }
 
+    public Sach(int masach, String tensachnew, String tacgiasach, int giabansach) {
+    }
+
     public int getSoluongdamuon() {
         return soluongdamuon;
     }

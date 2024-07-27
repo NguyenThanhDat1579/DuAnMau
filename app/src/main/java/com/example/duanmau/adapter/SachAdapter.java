@@ -1,5 +1,7 @@
 package com.example.duanmau.adapter;
 
+import static java.security.AccessController.getContext;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,7 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau.R;
+import com.example.duanmau.dao.LoaiSachDAO;
 import com.example.duanmau.dao.SachDAO;
+import com.example.duanmau.fragment.TongHopSachFragment;
 import com.example.duanmau.model.LoaiSach;
 import com.example.duanmau.model.Sach;
 import com.google.android.material.textfield.TextInputEditText;
@@ -92,7 +96,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             }
         });
 
-        holder.btn_sua.setOnClickListener(new View.OnClickListener() {
+        holder.btn_chinhsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDailog(list.get(holder.getAdapterPosition()));
@@ -110,8 +114,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
         TextView txtMaSach, txtMaLoai, txtTenLoai, txtTenSach, txtTacGia, txtGiaThue;
         ImageView ivXoaSach;
-        Button btn_sua;
-
+        Button btn_chinhsua;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -122,7 +125,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             txtTacGia = itemView.findViewById(R.id.txtTacGia);
             txtGiaThue = itemView.findViewById(R.id.txtGiaThue);
             ivXoaSach = itemView.findViewById(R.id.ivXoaSach);
-            btn_sua=itemView.findViewById(R.id.chinhsua);
+            btn_chinhsua=itemView.findViewById(R.id.chinhsua);
         }
 
         public void bind(Sach sach) {
@@ -154,7 +157,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         TextInputEditText tensach = view.findViewById(R.id.edtTenSach);
         TextInputEditText tacgia = view.findViewById(R.id.edtTacGiaInput);
         TextInputEditText giathue = view.findViewById(R.id.edtGiaThueInput);
-        Button btbsua = view.findViewById(R.id.btnsua);
+        Button btnsua = view.findViewById(R.id.btnsua);
         Button btnhuy = view.findViewById(R.id.btnHuy);
 
         Spinner spnloaisach =  view.findViewById(R.id.spnLoaiSach);
@@ -172,7 +175,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         );
         spnloaisach.setAdapter(simpleAdapter);
 
-        btbsua.setOnClickListener(new View.OnClickListener() {
+        btnsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String tenSach = tensach.getText().toString();
