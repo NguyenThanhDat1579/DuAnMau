@@ -13,6 +13,7 @@ public class PhieuMuon {
     private String tentt;
     private  String tensach;
 
+
     //pm.mapm, pm.matv, tv.tentv, pm.matt, tt.hotentt, pm.masach, sc.tensach, pm.ngaymuon, pm.ngaytra, pm.trangthai, pm.tienthue
 
     public PhieuMuon(int mapm, int matv, String tentv, String matt, String tentt, int masach, String tensach, String ngaymuon, String ngaytra, int trangthai, int tienthue  ) {
@@ -38,6 +39,15 @@ public class PhieuMuon {
         this.trangthai = trangthai;
         this.tienthue = tienthue;
     }
+
+    public PhieuMuon( String tentt,String tentv, String tensach, String ngaymuon, String ngaytra) {
+        this.tentt = tentt;
+        this.tentv = tentv;
+        this.tensach = tensach;
+        this.ngaymuon = ngaymuon;
+        this.ngaytra = ngaytra;
+    }
+
 
 
 

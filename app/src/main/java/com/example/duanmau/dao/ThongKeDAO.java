@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.duanmau.database.DbHelper;
+import com.example.duanmau.model.PhieuMuon;
 import com.example.duanmau.model.Sach;
 
 import java.util.ArrayList;
@@ -40,4 +41,17 @@ public class ThongKeDAO {
         return 0;
     }
 
+    public ArrayList<PhieuMuon> getpmtv(String maThanhVienDangNhap){
+        ArrayList<PhieuMuon> list = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT th.hotentt, tv.tentv, s.tensach,  pm.ngaymuon,  pm.ngaytra  FROM PHIEUMUON pm  INNER JOIN THUTHU th ON pm.matt = th.matt INNER JOIN THANHVIEN tv ON pm.matv = tv.matv INNER JOIN SACH s ON pm.masach = s.masach WHERE tv.matv = ?", new String[]{maThanhVienDangNhap});
+           if( cursor.moveToFirst()){
+            do{
+                list.add(new PhieuMuon(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4)));
+            }while (cursor.moveToNext());
+        }
+           cursor.close();
+        return list;
+
+    }
 }
