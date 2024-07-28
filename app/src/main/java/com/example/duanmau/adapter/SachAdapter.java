@@ -175,6 +175,18 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         );
         spnloaisach.setAdapter(simpleAdapter);
 
+
+        int index = 0;
+        int postion = -1;//vị trí tên loại nằm trongds
+        for(HashMap<String,Object> itemm : listHM){
+//            int maloaiFromItemm = Integer.parseInt((String) itemm.get("maloai"));
+            if( (int) itemm.get("maloai") == sach.getMaloai()){
+                postion = index;
+            }
+            index++;
+        }
+        spnloaisach.setSelection(postion);
+
         btnsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,16 +214,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             }
         });
 
-//        int index = 0;
-//        int postion = -1;//vị trí tên loại nằm trongds
-//        for(HashMap<String,Object> itemm : listHM){
-////            int maloaiFromItemm = Integer.parseInt((String) itemm.get("maloai"));
-//            if( (int) itemm.get("maloai") == sach.getMaloai()){
-//                    postion = index;
-//            }
-//            index++;
-//        }
-//        spnloaisach.setSelection(postion);
+
 
 //        builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
 //            @Override
