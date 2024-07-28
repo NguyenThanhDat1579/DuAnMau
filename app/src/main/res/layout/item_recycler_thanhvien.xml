@@ -119,7 +119,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,6 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:gravity="center"
             android:layout_marginLeft="10dp">
 
             <ImageView
@@ -148,16 +150,10 @@
                 android:layout_height="32dp"
                 android:src="@drawable/ic_edit"
                 android:layout_margin="10dp"
+                android:layout_gravity="center"
                 android:scaleType="fitCenter">
             </ImageView>
-            <ImageView
-                android:id="@+id/ivXoaThanhVien"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_delete"
-                android:scaleType="fitCenter">
-            </ImageView>
+
         </LinearLayout>
 
     </LinearLayout>

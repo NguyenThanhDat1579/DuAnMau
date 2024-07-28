@@ -24,14 +24,14 @@ public class SachDAO {
     public ArrayList<Sach> getAllSach(){
         ArrayList<Sach> list = new ArrayList<>();
         db = dbHelper.getReadableDatabase();
-        String query = "SELECT SACH.masach, SACH.tensach, SACH.tacgia, SACH.giathue, SACH.maloai, SACH.trangthai,LOAISACH.tenloai " +
+        String query = "SELECT SACH.masach, SACH.tensach, SACH.tacgia, SACH.giathue, SACH.maloai, SACH.trangthai, LOAISACH.tenloai,  SACH.urlHinh " +
                 "FROM SACH " +
                 "INNER JOIN LOAISACH ON SACH.maloai = LOAISACH.maloai";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             do {
-                list.add(new Sach(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4),cursor.getInt(5),cursor.getString(6)));
+                list.add(new Sach(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4),cursor.getInt(5),cursor.getString(6), cursor.getString(7)));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -52,7 +52,7 @@ public class SachDAO {
 
     public ArrayList<Sach> getSachByLoai(int maloai) {
         ArrayList<Sach> list = new ArrayList<>();
-        String query = "SELECT SACH.masach, SACH.tensach, SACH.tacgia, SACH.giathue, SACH.maloai, SACH.trangthai ,LOAISACH.tenloai " +
+        String query = "SELECT SACH.masach, SACH.tensach, SACH.tacgia, SACH.giathue, SACH.maloai, SACH.trangthai ,LOAISACH.tenloai, SACH.urlHinh " +
                 "FROM SACH " +
                 "INNER JOIN LOAISACH ON SACH.maloai = LOAISACH.maloai " +
                 "WHERE SACH.maloai = ?";
@@ -66,7 +66,8 @@ public class SachDAO {
                 int maloaiSach = cursor.getInt(4);
                 int trangthai = cursor.getInt(5);
                 String tenloai = cursor.getString(6);
-                list.add(new Sach(masach, tensach, tacgia, giathue, maloaiSach, trangthai,tenloai));
+                String urlHinh = cursor.getString(7);
+                list.add(new Sach(masach, tensach, tacgia, giathue, maloaiSach, trangthai,tenloai, urlHinh));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -80,17 +81,21 @@ public class SachDAO {
         values.put("giathue", sach.getGiathue());
         values.put("trangthai", sach.getTrangthai());
         values.put("maloai", sach.getMaloai());
+        values.put("urlHinh", sach.getUrlHinh()); // Thêm trường urlHinh vào ContentValues
+
         long result = db.insert("SACH", null, values);
         return result != -1;
     }
 
-    public boolean capNhatThongTinSach(int masach,String tensach,String tacgia,int giathue,int maloai){
+    public boolean capNhatThongTinSach(int masach,String tensach,String tacgia,int giathue,int maloai, String urlHinh){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("tensach",tensach);
         values.put("tacgia",tacgia);
         values.put("giathue",giathue);
         values.put("maloai",maloai);
+        values.put("urlHinh", urlHinh); // Thêm trường urlHinh vào ContentValues
+
         long check = sqLiteDatabase.update("SACH",values,"masach=?",new String[]{String.valueOf(masach)});
         if(check == -1)
             return false;

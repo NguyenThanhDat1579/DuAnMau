@@ -69,7 +69,7 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtMaTV, txtTenTV, txtEmail, txtTendangnhap, txtMatkhau;
-        ImageView ivSuaThanhVien, ivXoaThanhVien;
+        ImageView ivSuaThanhVien;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtMaTV = itemView.findViewById(R.id.txtMaTV);
@@ -78,7 +78,7 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
             txtTendangnhap = itemView.findViewById(R.id.txtTenDangNhap);
             txtMatkhau = itemView.findViewById(R.id.txtMatkhau);
             ivSuaThanhVien = itemView.findViewById(R.id.ivSuaThanhVien);
-            ivXoaThanhVien = itemView.findViewById(R.id.ivXoaThanhVien);
+
 
 
         }

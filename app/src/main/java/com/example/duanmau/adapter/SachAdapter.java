@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +21,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.duanmau.R;
 import com.example.duanmau.dao.LoaiSachDAO;
 import com.example.duanmau.dao.PhieuMuonDAO;
 import com.example.duanmau.dao.SachDAO;
+import com.example.duanmau.fragment.QLLoaiSachFragment;
 import com.example.duanmau.fragment.TongHopSachFragment;
 import com.example.duanmau.model.LoaiSach;
 import com.example.duanmau.model.Sach;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -68,8 +74,24 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         holder.txtMaLoai.setText(list.get(position).getMaloai()+"");
         holder.txtTenLoai.setText(list.get(position).getTenloai());
         holder.txtTenSach.setText(list.get(position).getTensach());
-        holder.txtGiaThue.setText(list.get(position).getGiathue()+"");
 
+        NumberFormat format = new DecimalFormat("#,###");
+        double myNumber = list.get(position).getGiathue();
+        String formattedNumber = format.format(myNumber);
+        holder.txtGiaThue.setText(formattedNumber + " VND");
+
+
+        // Tải hình ảnh bằng Glide
+        if (sach.getUrlHinh() != null && !sach.getUrlHinh().isEmpty()) {
+            Log.d("SachAdapter", "URL Hinh: " + sach.getUrlHinh());
+            Glide.with(context)
+                    .load(sach.getUrlHinh())
+                    .error(R.drawable.ic_anhsach) // Đặt hình ảnh mặc định nếu có lỗi khi tải ảnh
+                    .into(holder.ivHinhSach);
+        } else {
+            Log.d("SachAdapter", "URL Hinh is null or empty");
+            holder.ivHinhSach.setImageResource(R.drawable.ic_anhsach); // Ảnh mặc định nếu không có URL
+        }
 
 
         if (list.get(position).getTrangthai() == 0) {
@@ -134,8 +156,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtMaSach, txtMaLoai, txtTenLoai, txtTenSach, txtTacGia, txtGiaThue;
-        ImageView ivXoaSach;
+        TextView txtMaSach, txtMaLoai, txtTenLoai, txtTenSach, txtTacGia, txtGiaThue, txtTrangThaiHinhSach;
+        ImageView ivXoaSach, ivHinhSach;
         Button btn_chinhsua;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -146,7 +168,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             txtTenSach = itemView.findViewById(R.id.txtTenSach);
             txtTacGia = itemView.findViewById(R.id.txtTacGia);
             txtGiaThue = itemView.findViewById(R.id.txtGiaThue);
+            txtTrangThaiHinhSach = itemView.findViewById(R.id.txtTrangThaiHinhSach);
             ivXoaSach = itemView.findViewById(R.id.ivXoaSach);
+            ivHinhSach = itemView.findViewById(R.id.ivHinhSach);
             btn_chinhsua=itemView.findViewById(R.id.chinhsua);
         }
 
@@ -179,6 +203,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         TextInputEditText tensach = view.findViewById(R.id.edtTenSach);
         TextInputEditText tacgia = view.findViewById(R.id.edtTacGiaInput);
         TextInputEditText giathue = view.findViewById(R.id.edtGiaThueInput);
+        ImageView ivHinhSach = view.findViewById(R.id.ivHinhSach);
         Button btnsua = view.findViewById(R.id.btnsua);
         Button btnhuy = view.findViewById(R.id.btnHuy);
 
@@ -188,14 +213,41 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         tacgia.setText(sach.getTacgia());
         giathue.setText(String.valueOf(sach.getGiathue()));
 
+
+
+
+
         SimpleAdapter simpleAdapter =  new SimpleAdapter(
                 context,
                 listHM,
-                android.R.layout.simple_expandable_list_item_1,
+                android.R.layout.simple_list_item_1,
                 new String[]{"tenloai"},
                 new int[]{android.R.id.text1}
         );
         spnloaisach.setAdapter(simpleAdapter);
+
+
+        // Hiển thị hình ảnh hiện tại
+        if (sach.getUrlHinh() != null && !sach.getUrlHinh().isEmpty()) {
+            Log.d("SachAdapter", "URL Hinh: " + sach.getUrlHinh());
+            Glide.with(context)
+                    .load(sach.getUrlHinh())
+                    .error(R.drawable.ic_anhsach) // Đặt hình ảnh mặc định nếu có lỗi khi tải ảnh
+                    .into(ivHinhSach);
+        } else {
+            Log.d("SachAdapter", "URL Hinh is null or empty");
+            ivHinhSach.setImageResource(R.drawable.ic_anhsach); // Ảnh mặc định nếu không có URL
+        }
+
+
+        // Chọn ảnh từ thư viện
+        ivHinhSach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((TongHopSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).accessTheGallery();
+            }
+
+        });
 
 
         int index = 0;
@@ -215,9 +267,10 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
                 String tenSach = tensach.getText().toString();
                 String tacGia = tacgia.getText().toString();
                 int tien=Integer.parseInt(giathue.getText().toString());
+                String urlHinh = ((TongHopSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).getLinkHinh();
                 HashMap<String,Object> hs = (HashMap<String, Object>) spnloaisach.getSelectedItem();
                 int maloai=(int) hs.get("maloai");
-                boolean check =sachDAO.capNhatThongTinSach(sach.getMasach(),tenSach,tacGia,tien,maloai);
+                boolean check =sachDAO.capNhatThongTinSach(sach.getMasach(),tenSach,tacGia,tien,maloai, sach.getUrlHinh());
                 if(check){
                     Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                     loadData();
@@ -235,35 +288,6 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
                 alertDialog.dismiss();
             }
         });
-
-
-
-//        builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                String tenSach = tensach.getText().toString();
-//                String tacGia = tacgia.getText().toString();
-//                int tien=Integer.parseInt(giathue.getText().toString());
-//                HashMap<String,Object> hs = (HashMap<String, Object>) spnloaisach.getSelectedItem();
-//                int maloai=(int) hs.get("maloai");
-//                boolean check =sachDAO.capNhatThongTinSach(sach.getMasach(),tenSach,tacGia,tien,maloai);
-//                if(check){
-//                    Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-//                    loadData();
-//                }else{
-//                    Toast.makeText(context, "Cập nhât thất bại", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//        });
-//        builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//            }
-//        });
-//        AlertDialog alertDialog = builder.create();
-//        alertDialog.show();
 
     }
 

@@ -9,12 +9,24 @@ public class Sach {
     private String tenloai;
     private int soluongdamuon;
     private int trangthai = 1;
+    private String urlHinh; // Thêm trường urlHinh
 
 
     public Sach() {
     }
 
-    public Sach(int masach, String tensach, String tacgia, int giathue, int maloai,int trangthai, String tenloai) {
+    public Sach(int masach, String tensach, String tacgia, int giathue, int maloai, String tenloai, int trangthai, String urlHinh) {
+        this.masach = masach;
+        this.tensach = tensach;
+        this.tacgia = tacgia;
+        this.giathue = giathue;
+        this.maloai = maloai;
+        this.tenloai = tenloai;
+        this.trangthai = trangthai;
+        this.urlHinh = urlHinh;
+    }
+
+    public Sach(int masach, String tensach, String tacgia, int giathue, int maloai, int trangthai, String tenloai, String urlHinh) {
         this.masach = masach;
         this.tensach = tensach;
         this.tacgia = tacgia;
@@ -22,6 +34,7 @@ public class Sach {
         this.maloai = maloai;
         this.trangthai = trangthai;
         this.tenloai = tenloai;
+        this.urlHinh = urlHinh;
     }
 
 
@@ -96,5 +109,13 @@ public class Sach {
 
     public void setTrangthai(int trangthai) {
         this.trangthai = trangthai;
+    }
+
+    public String getUrlHinh() {
+        return urlHinh;
+    }
+
+    public void setUrlHinh(String urlHinh) {
+        this.urlHinh = urlHinh;
     }
 }
