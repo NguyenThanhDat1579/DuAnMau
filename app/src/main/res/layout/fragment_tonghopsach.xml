@@ -20,7 +20,8 @@
         android:layout_margin="5dp"
         android:background="@drawable/custom_btn_nentrangvienhong"
         app:backgroundTint="@null"
-        app:queryHint="Search"></androidx.appcompat.widget.SearchView>
+        app:queryHint="Tìm kiếm tên sách">
+    </androidx.appcompat.widget.SearchView>
 
 
     <androidx.recyclerview.widget.RecyclerView

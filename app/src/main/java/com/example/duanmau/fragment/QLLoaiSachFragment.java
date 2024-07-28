@@ -65,9 +65,10 @@ public class QLLoaiSachFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_qltheloaisach, container, false);
 
-        //anh xa
+        // ánh xạ
         recyclerLoaiSach = view.findViewById(R.id.recyclerLoaiSach);
         floatAddLoaiSach = view.findViewById(R.id.floatAddLoaiSach);
+
 
         configCloudinary();
 
@@ -284,6 +285,10 @@ public class QLLoaiSachFragment extends Fragment {
             }
         }).dispatch();
     }
+    public String getLinkHinh() {
+        return urlHinh;
+    }
+
 }
 
 

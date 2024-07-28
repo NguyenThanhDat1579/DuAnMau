@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau.R;
 import com.example.duanmau.dao.LoaiSachDAO;
+import com.example.duanmau.dao.PhieuMuonDAO;
 import com.example.duanmau.dao.SachDAO;
 import com.example.duanmau.fragment.TongHopSachFragment;
 import com.example.duanmau.model.LoaiSach;
@@ -83,23 +85,43 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         holder.ivXoaSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SachDAO  sachDAO = new SachDAO(context);
-                boolean kiemtra = sachDAO.thayDoiTrangThaiSach(list.get(holder.getAdapterPosition()).getMasach());
-                if(kiemtra){
-                    list.clear();
-                    list = sachDAO.getAllSach();
-                    notifyDataSetChanged();
-                }else{
-                    Toast.makeText(context, "Xóa sách thất bại", Toast.LENGTH_SHORT).show();
-                }
 
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Thông báo");
+
+                //Xác nhận "Nguyễn Thành Đạt" đã trả sách
+                builder.setMessage("Xác nhận xóa sách \"" + holder.txtTenSach.getText() + "\"");
+                builder.setIcon(R.drawable.icon_warning);
+
+                builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SachDAO  sachDAO = new SachDAO(context);
+                        boolean kiemtra = sachDAO.thayDoiTrangThaiSach(list.get(holder.getAdapterPosition()).getMasach());
+                        if(kiemtra){
+                            list.clear();
+                            list = sachDAO.getAllSach();
+                            notifyDataSetChanged();
+                        }else{
+                            Toast.makeText(context, "Xóa sách thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                builder.setNegativeButton("Hủy", null);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.setCancelable(false);
+                alertDialog.show();
             }
+
         });
 
         holder.btn_chinhsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDailog(list.get(holder.getAdapterPosition()));
+                showDialogSuaSach(list.get(holder.getAdapterPosition()));
                 loadData();
             }
         });
@@ -138,7 +160,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
     }
 
 
-    private void showDailog(Sach sach){
+    private void showDialogSuaSach(Sach sach){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_edit_sach,null);
