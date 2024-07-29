@@ -81,6 +81,7 @@ public class TongHopSachFragment extends Fragment {
     private String urlHinh = "";
     private SachAdapter sachAdapter;
     private ArrayList<Sach> list;
+    private Bitmap imageLib;
 
 
     @Nullable
@@ -138,7 +139,13 @@ public class TongHopSachFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerTongHopSach.setLayoutManager(linearLayoutManager);
-        SachAdapter adapter = new SachAdapter(getContext(), sachList,getDSLoaiSach(),sachDAO);
+        SachAdapter adapter = new SachAdapter(getContext(), sachList, getDSLoaiSach(), sachDAO, new SachAdapter.sachAdapterInterface() {
+            @Override
+            public Bitmap setImageNe() {
+                accessTheGallery();
+                return imageLib;
+            }
+        });
         recyclerTongHopSach.setAdapter(adapter);
     }
 
@@ -298,8 +305,8 @@ public class TongHopSachFragment extends Fragment {
             if (result.getResultCode() == RESULT_OK) {
                 try {
                     //set picked image to the mProfile
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), result.getData().getData());
-                    ivHinhSach.setImageBitmap(bitmap);
+                    imageLib = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), result.getData().getData());
+                  //  ivHinhSach.setImageBitmap(bitmap);
 
                     uploadToCloudinary(filePath);
                 } catch (IOException e) {

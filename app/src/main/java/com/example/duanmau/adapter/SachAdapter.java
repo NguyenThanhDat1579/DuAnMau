@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -46,12 +47,14 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
     private ArrayList<Sach> list;
     private ArrayList<HashMap<String,Object>> listHM;
     private  SachDAO sachDAO;
+    private sachAdapterInterface sachAdapterInterface;
 
-    public SachAdapter(Context context, ArrayList<Sach> list,ArrayList<HashMap<String,Object>> listHM,SachDAO sachDAO) {
+    public SachAdapter(Context context, ArrayList<Sach> list,ArrayList<HashMap<String,Object>> listHM,SachDAO sachDAO, sachAdapterInterface sachAdapterInterface) {
         this.context = context;
         this.list = list;
         this.listHM=listHM;
         this.sachDAO=sachDAO;
+        this.sachAdapterInterface = sachAdapterInterface;
     }
 
 
@@ -244,7 +247,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         ivHinhSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TongHopSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).accessTheGallery();
+                ivHinhSach.setImageBitmap(sachAdapterInterface.setImageNe());
+              //  ((TongHopSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).accessTheGallery();
             }
 
         });
@@ -295,5 +299,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         list.clear();
         list = sachDAO.getAllSach();
         notifyDataSetChanged();
+    }
+
+    public interface sachAdapterInterface{
+        public Bitmap setImageNe();
     }
 }

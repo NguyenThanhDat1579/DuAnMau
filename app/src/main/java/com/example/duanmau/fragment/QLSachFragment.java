@@ -1,6 +1,7 @@
 package com.example.duanmau.fragment;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +63,12 @@ public class QLSachFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSach.setLayoutManager(linearLayoutManager);
-        SachAdapter adapter = new SachAdapter(getContext(), sachList,getDSLoaiSach(),sachDAO);
+        SachAdapter adapter = new SachAdapter(getContext(), sachList, getDSLoaiSach(), sachDAO, new SachAdapter.sachAdapterInterface() {
+            @Override
+            public Bitmap setImageNe() {
+                return null;
+            }
+        });
         recyclerSach.setAdapter(adapter);
 
         return view;
