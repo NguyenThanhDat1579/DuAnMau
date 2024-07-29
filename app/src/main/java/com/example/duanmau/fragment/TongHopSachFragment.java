@@ -254,7 +254,6 @@ public class TongHopSachFragment extends Fragment {
                     sach.setUrlHinh(urlHinh);
 
                     SachDAO sachDAO = new SachDAO(getContext());
-                    sachDAO.themSach(sach);
 
 
 
@@ -348,11 +347,13 @@ public class TongHopSachFragment extends Fragment {
             @Override
             public void onStart(String requestId) {
 //                txtTrangThaiHinhSach.setText("Bắt đầu upload");
+                Toast.makeText(getContext(), "Bắt đầu upload", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onProgress(String requestId, long bytes, long totalBytes) {
 //                txtTrangThaiHinhSach.setText("Đang upload... ");
+                Toast.makeText(getContext(), "Đang upload... ", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -366,11 +367,13 @@ public class TongHopSachFragment extends Fragment {
             @Override
             public void onError(String requestId, ErrorInfo error) {
 //                txtTrangThaiHinhSach.setText("Lỗi " + error.getDescription());
+                Toast.makeText(getContext(), "Lỗi " + error.getDescription(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onReschedule(String requestId, ErrorInfo error) {
 //                txtTrangThaiHinhSach.setText("Reshedule " + error.getDescription());
+                Toast.makeText(getContext(), "Reshedule " + error.getDescription(), Toast.LENGTH_SHORT).show();
             }
         }).dispatch();
     }

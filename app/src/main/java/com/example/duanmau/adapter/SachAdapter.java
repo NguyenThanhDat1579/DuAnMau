@@ -115,7 +115,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Thông báo");
 
-                //Xác nhận "Nguyễn Thành Đạt" đã trả sách
+                //Xác nhận xóa sách "Nguyễn Thành Đạt"
                 builder.setMessage("Xác nhận xóa sách \"" + holder.txtTenSach.getText() + "\"");
                 builder.setIcon(R.drawable.icon_warning);
 
@@ -220,6 +220,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
 
 
+
         SimpleAdapter simpleAdapter =  new SimpleAdapter(
                 context,
                 listHM,
@@ -270,11 +271,16 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
                 String tenSach = tensach.getText().toString();
                 String tacGia = tacgia.getText().toString();
                 int tien=Integer.parseInt(giathue.getText().toString());
+
                 String urlHinh = ((TongHopSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).getLinkHinh();
-                String hinh = sach.setUrlHinh(urlHinh);
+                if (urlHinh == null || urlHinh.isEmpty()) {
+                    urlHinh = sach.getUrlHinh(); // Lấy URL hình ảnh hiện tại của sách
+                }
+
+
                 HashMap<String,Object> hs = (HashMap<String, Object>) spnloaisach.getSelectedItem();
                 int maloai=(int) hs.get("maloai");
-                boolean check =sachDAO.capNhatThongTinSach(sach.getMasach(),tenSach,tacGia,tien,maloai,hinh);
+                boolean check =sachDAO.capNhatThongTinSach(sach.getMasach(),tenSach,tacGia,tien,maloai, urlHinh);
                 if(check){
                     Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                     loadData();

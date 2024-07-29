@@ -271,11 +271,13 @@ public class QLLoaiSachFragment extends Fragment {
             @Override
             public void onStart(String requestId) {
 //                txtTrangThaiHinhLS.setText("Bắt đầu upload");
+                Toast.makeText(getContext(), "Bắt đầu upload", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onProgress(String requestId, long bytes, long totalBytes) {
 //                txtTrangThaiHinhLS.setText("Đang upload... ");
+                Toast.makeText(getContext(), "Đang upload... ", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -283,18 +285,18 @@ public class QLLoaiSachFragment extends Fragment {
 //                txtTrangThaiHinhLS.setText("Thành công: " + resultData.get("url").toString());
                 urlHinh = resultData.get("url").toString();
                 Toast.makeText(getContext(), "Upload thành công", Toast.LENGTH_SHORT).show();
-
-
             }
 
             @Override
             public void onError(String requestId, ErrorInfo error) {
 //                txtTrangThaiHinhLS.setText("Lỗi " + error.getDescription());
+                Toast.makeText(getContext(), "Lỗi " + error.getDescription(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onReschedule(String requestId, ErrorInfo error) {
 //                txtTrangThaiHinhLS.setText("Reshedule " + error.getDescription());
+                Toast.makeText(getContext(), "Reshedule " + error.getDescription(), Toast.LENGTH_SHORT).show();
             }
         }).dispatch();
     }
