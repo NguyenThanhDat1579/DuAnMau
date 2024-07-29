@@ -247,8 +247,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         ivHinhSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ivHinhSach.setImageBitmap(sachAdapterInterface.setImageNe());
+               // ivHinhSach.setImageBitmap();
               //  ((TongHopSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).accessTheGallery();
+                sachAdapterInterface.setImageNe();
             }
 
         });
@@ -302,6 +303,6 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
     }
 
     public interface sachAdapterInterface{
-        public Bitmap setImageNe();
+        public void setImageNe();
     }
 }

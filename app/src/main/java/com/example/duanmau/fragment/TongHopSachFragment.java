@@ -141,9 +141,9 @@ public class TongHopSachFragment extends Fragment {
         recyclerTongHopSach.setLayoutManager(linearLayoutManager);
         SachAdapter adapter = new SachAdapter(getContext(), sachList, getDSLoaiSach(), sachDAO, new SachAdapter.sachAdapterInterface() {
             @Override
-            public Bitmap setImageNe() {
+            public void setImageNe() {
                 accessTheGallery();
-                return imageLib;
+
             }
         });
         recyclerTongHopSach.setAdapter(adapter);
@@ -293,28 +293,47 @@ public class TongHopSachFragment extends Fragment {
     public void accessTheGallery() {
         Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         i.setType("image/*");
-        myLauncher.launch(i);
-    }
+       // myLauncher.launch(i);
+         registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                //get the image's file location
+                filePath = getRealPathFromUri(result.getData().getData(), getActivity());
 
-    private ActivityResultLauncher<Intent> myLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            //get the image's file location
-            filePath = getRealPathFromUri(result.getData().getData(), getActivity());
+                if (result.getResultCode() == RESULT_OK) {
+                    try {
+                        //set picked image to the mProfile
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), result.getData().getData());
+                        ivHinhSach.setImageBitmap(bitmap);
 
-            if (result.getResultCode() == RESULT_OK) {
-                try {
-                    //set picked image to the mProfile
-                    imageLib = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), result.getData().getData());
-                  //  ivHinhSach.setImageBitmap(bitmap);
-
-                    uploadToCloudinary(filePath);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                        uploadToCloudinary(filePath);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-        }
-    });
+        }).launch(i);
+    }
+
+//    private ActivityResultLauncher<Intent> myLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+//        @Override
+//        public void onActivityResult(ActivityResult result) {
+//            //get the image's file location
+//            filePath = getRealPathFromUri(result.getData().getData(), getActivity());
+//
+//            if (result.getResultCode() == RESULT_OK) {
+//                try {
+//                    //set picked image to the mProfile
+//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), result.getData().getData());
+//                    ivHinhSach.setImageBitmap(bitmap);
+//
+//                    uploadToCloudinary(filePath);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    });
 
     private String getRealPathFromUri(Uri imageUri, Activity activity) {
         Cursor cursor = activity.getContentResolver().query(imageUri, null, null, null, null);
