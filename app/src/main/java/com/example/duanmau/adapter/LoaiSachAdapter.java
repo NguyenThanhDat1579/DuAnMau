@@ -34,26 +34,35 @@ import java.util.ArrayList;
 
 public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHolder> {
 
-    private Context context;
-    private ArrayList<LoaiSach> list;
-    LoaiSachDAO loaiSachDAO;
-    private OnItemClickListener listener;
-
     public interface OnItemClickListener {
         void onItemClick(LoaiSach loaiSach);
     }
 
-    public LoaiSachAdapter(Context context, ArrayList<LoaiSach> list, OnItemClickListener listener) {
+    private Context context;
+    private ArrayList<LoaiSach> list;
+    LoaiSachDAO loaiSachDAO;
+    private OnItemClickListener listener;
+    private LoaiSachAdapter.loaisachAdapterInterface loaisachAdapterInterface;
+
+
+    public interface loaisachAdapterInterface {
+        void setImage(ImageView ivHinh);
+    }
+
+    public LoaiSachAdapter(Context context, ArrayList<LoaiSach> list, OnItemClickListener listener, loaisachAdapterInterface loaisachAdapterInterface) {
         this.context = context;
         this.list = list;
         this.loaiSachDAO = new LoaiSachDAO(context);
         this.listener = listener;
+        this.loaisachAdapterInterface = loaisachAdapterInterface;
     }
+
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inf = ((Activity)context).getLayoutInflater();
+        LayoutInflater inf = ((Activity) context).getLayoutInflater();
         View view = inf.inflate(R.layout.item_recycler_loaisach, parent, false);
         return new LoaiSachAdapter.ViewHolder(view);
     }
@@ -62,10 +71,10 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
     public void onBindViewHolder(@NonNull LoaiSachAdapter.ViewHolder holder, int position) {
 
         LoaiSach loaiSach = list.get(position);
-        holder.bind(loaiSach, listener);
+        holder.bind(loaiSach, listener, loaisachAdapterInterface);
 
-        holder.txtMaLoai.setText("Mã loại: LS" +list.get(position).getMaloai());
-        holder.txtTenLoai.setText("Tên loại:  " +list.get(position).getTenloai());
+        holder.txtMaLoai.setText("Mã loại: LS" + list.get(position).getMaloai());
+        holder.txtTenLoai.setText("Tên loại:  " + list.get(position).getTenloai());
 
         // Tải hình ảnh bằng Glide
         if (loaiSach.getUrlHinh() != null && !loaiSach.getUrlHinh().isEmpty()) {
@@ -87,10 +96,11 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtMaLoai, txtTenLoai;
-        ImageView ivHinhLoaiSach ,ivSuaLoaiSach;
+        ImageView ivHinhLoaiSach, ivSuaLoaiSach;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtMaLoai = itemView.findViewById(R.id.txtMaLoai);
@@ -100,7 +110,7 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
 
         }
 
-        public void bind(final LoaiSach loaiSach, final OnItemClickListener listener) {
+        public void bind(final LoaiSach loaiSach, final OnItemClickListener listener, final loaisachAdapterInterface loaisachAdapterInterface) {
             txtTenLoai.setText(loaiSach.getTenloai());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -108,14 +118,20 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
                     listener.onItemClick(loaiSach);
                 }
             });
+
+            ivHinhLoaiSach.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loaisachAdapterInterface.setImage(ivHinhLoaiSach);
+                }
+            });
         }
     }
 
 
-
-    public void showDialogUpdate(LoaiSach loaiSach){
+    public void showDialogUpdate(LoaiSach loaiSach) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_sua_loaisach, null);
         builder.setView(view);
 
@@ -145,7 +161,7 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
         ivHinhLoaiSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((QLLoaiSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).accessTheGallery();
+                loaisachAdapterInterface.setImage(ivHinhLoaiSach);
             }
 
         });
@@ -163,13 +179,13 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
                 int maloai = loaiSach.getMaloai();
                 String tenloai = edTenLoai.getText().toString();
                 String urlHinh = ((QLLoaiSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).getLinkHinh();
-
-                if (tenloai.length() == 0){
+                String hinh = loaiSach.setUrlHinh(urlHinh);
+                if (tenloai.length() == 0) {
                     Toast.makeText(context, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 } else {
-                    LoaiSach loaisachChinhSua = new LoaiSach(maloai, tenloai, urlHinh);
+                    LoaiSach loaisachChinhSua = new LoaiSach(maloai, tenloai, hinh);
                     boolean check = loaiSachDAO.chinhSua(loaisachChinhSua);
-                    if (check){
+                    if (check) {
                         Toast.makeText(context, "Chỉnh sửa thành công", Toast.LENGTH_SHORT).show();
                         loadData();
                         alertDialog.dismiss();
@@ -181,11 +197,13 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
         });
     }
 
-    public void loadData(){
+    public void loadData() {
         list.clear();
         list.addAll(loaiSachDAO.getDSLoaiSach());
         notifyDataSetChanged();
     }
+
+
 
 
 }

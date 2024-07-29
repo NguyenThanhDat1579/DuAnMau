@@ -109,10 +109,21 @@ public class QLLoaiSachFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
+        }, new LoaiSachAdapter.loaisachAdapterInterface() {
+            @Override
+            public void setImage(ImageView ivHinh) {
+                ivHinhLoaiSach = ivHinh;
+                accessTheGallery();
+            }
         });
         recyclerLoaiSach.setAdapter(adapter);
-
     }
+
+
+
+
+
+
 
 
     private void showDialogAdd() {
@@ -210,8 +221,6 @@ public class QLLoaiSachFragment extends Fragment {
     private ActivityResultLauncher<Intent> myLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
-            //get the image's file location
-            filePath = getRealPathFromUri(result.getData().getData(), getActivity());
 
             if (result.getResultCode() == RESULT_OK) {
                 try {
@@ -219,6 +228,8 @@ public class QLLoaiSachFragment extends Fragment {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), result.getData().getData());
                     ivHinhLoaiSach.setImageBitmap(bitmap);
 
+                    //get the image's file location
+                    filePath = getRealPathFromUri(result.getData().getData(), getActivity());
                     uploadToCloudinary(filePath);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -259,29 +270,31 @@ public class QLLoaiSachFragment extends Fragment {
         MediaManager.get().upload(filePath).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {
-                txtTrangThaiHinhLS.setText("Bắt đầu upload");
+//                txtTrangThaiHinhLS.setText("Bắt đầu upload");
             }
 
             @Override
             public void onProgress(String requestId, long bytes, long totalBytes) {
-                txtTrangThaiHinhLS.setText("Đang upload... ");
+//                txtTrangThaiHinhLS.setText("Đang upload... ");
             }
 
             @Override
             public void onSuccess(String requestId, Map resultData) {
-                txtTrangThaiHinhLS.setText("Thành công: " + resultData.get("url").toString());
+//                txtTrangThaiHinhLS.setText("Thành công: " + resultData.get("url").toString());
                 urlHinh = resultData.get("url").toString();
+                Toast.makeText(getContext(), "Upload thành công", Toast.LENGTH_SHORT).show();
+
 
             }
 
             @Override
             public void onError(String requestId, ErrorInfo error) {
-                txtTrangThaiHinhLS.setText("Lỗi " + error.getDescription());
+//                txtTrangThaiHinhLS.setText("Lỗi " + error.getDescription());
             }
 
             @Override
             public void onReschedule(String requestId, ErrorInfo error) {
-                txtTrangThaiHinhLS.setText("Reshedule " + error.getDescription());
+//                txtTrangThaiHinhLS.setText("Reshedule " + error.getDescription());
             }
         }).dispatch();
     }

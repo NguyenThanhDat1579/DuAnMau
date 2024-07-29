@@ -247,8 +247,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         ivHinhSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ivHinhSach.setImageBitmap(sachAdapterInterface.setImageNe());
-              //  ((TongHopSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).accessTheGallery();
+                sachAdapterInterface.setImageNe(ivHinhSach);
             }
 
         });
@@ -272,9 +271,10 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
                 String tacGia = tacgia.getText().toString();
                 int tien=Integer.parseInt(giathue.getText().toString());
                 String urlHinh = ((TongHopSachFragment) ((FragmentActivity) context).getSupportFragmentManager().findFragmentById(R.id.frameLayout)).getLinkHinh();
+                String hinh = sach.setUrlHinh(urlHinh);
                 HashMap<String,Object> hs = (HashMap<String, Object>) spnloaisach.getSelectedItem();
                 int maloai=(int) hs.get("maloai");
-                boolean check =sachDAO.capNhatThongTinSach(sach.getMasach(),tenSach,tacGia,tien,maloai, sach.getUrlHinh());
+                boolean check =sachDAO.capNhatThongTinSach(sach.getMasach(),tenSach,tacGia,tien,maloai,hinh);
                 if(check){
                     Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                     loadData();
@@ -302,6 +302,6 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
     }
 
     public interface sachAdapterInterface{
-        public Bitmap setImageNe();
+        public void setImageNe(ImageView ivHinh);
     }
 }

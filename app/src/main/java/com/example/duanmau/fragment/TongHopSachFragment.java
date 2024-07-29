@@ -81,7 +81,6 @@ public class TongHopSachFragment extends Fragment {
     private String urlHinh = "";
     private SachAdapter sachAdapter;
     private ArrayList<Sach> list;
-    private Bitmap imageLib;
 
 
     @Nullable
@@ -141,9 +140,10 @@ public class TongHopSachFragment extends Fragment {
         recyclerTongHopSach.setLayoutManager(linearLayoutManager);
         SachAdapter adapter = new SachAdapter(getContext(), sachList, getDSLoaiSach(), sachDAO, new SachAdapter.sachAdapterInterface() {
             @Override
-            public Bitmap setImageNe() {
+            public void setImageNe(ImageView ivHinh) {
+                ivHinhSach = ivHinh;
                 accessTheGallery();
-                return imageLib;
+
             }
         });
         recyclerTongHopSach.setAdapter(adapter);
@@ -300,14 +300,13 @@ public class TongHopSachFragment extends Fragment {
         @Override
         public void onActivityResult(ActivityResult result) {
             //get the image's file location
-            filePath = getRealPathFromUri(result.getData().getData(), getActivity());
-
             if (result.getResultCode() == RESULT_OK) {
                 try {
                     //set picked image to the mProfile
-                    imageLib = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), result.getData().getData());
-                  //  ivHinhSach.setImageBitmap(bitmap);
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), result.getData().getData());
+                    ivHinhSach.setImageBitmap(bitmap);
 
+                    filePath = getRealPathFromUri(result.getData().getData(), getActivity());
                     uploadToCloudinary(filePath);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -348,29 +347,30 @@ public class TongHopSachFragment extends Fragment {
         MediaManager.get().upload(filePath).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {
-                txtTrangThaiHinhSach.setText("Bắt đầu upload");
+//                txtTrangThaiHinhSach.setText("Bắt đầu upload");
             }
 
             @Override
             public void onProgress(String requestId, long bytes, long totalBytes) {
-                txtTrangThaiHinhSach.setText("Đang upload... ");
+//                txtTrangThaiHinhSach.setText("Đang upload... ");
             }
 
             @Override
             public void onSuccess(String requestId, Map resultData) {
-                txtTrangThaiHinhSach.setText("Thành công: " + resultData.get("url").toString());
+//                txtTrangThaiHinhSach.setText("Thành công: " + resultData.get("url").toString());
                 urlHinh = resultData.get("url").toString();
+                Toast.makeText(getContext(), "Upload thành công", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onError(String requestId, ErrorInfo error) {
-                txtTrangThaiHinhSach.setText("Lỗi " + error.getDescription());
+//                txtTrangThaiHinhSach.setText("Lỗi " + error.getDescription());
             }
 
             @Override
             public void onReschedule(String requestId, ErrorInfo error) {
-                txtTrangThaiHinhSach.setText("Reshedule " + error.getDescription());
+//                txtTrangThaiHinhSach.setText("Reshedule " + error.getDescription());
             }
         }).dispatch();
     }

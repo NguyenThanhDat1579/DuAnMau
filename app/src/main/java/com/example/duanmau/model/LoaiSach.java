@@ -27,8 +27,9 @@ public class LoaiSach {
         return urlHinh;
     }
 
-    public void setUrlHinh(String urlHinh) {
+    public String setUrlHinh(String urlHinh) {
         this.urlHinh = urlHinh;
+        return urlHinh;
     }
 
     public int getMaloai() {

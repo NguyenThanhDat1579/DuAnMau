@@ -65,8 +65,8 @@ public class QLSachFragment extends Fragment {
         recyclerSach.setLayoutManager(linearLayoutManager);
         SachAdapter adapter = new SachAdapter(getContext(), sachList, getDSLoaiSach(), sachDAO, new SachAdapter.sachAdapterInterface() {
             @Override
-            public Bitmap setImageNe() {
-                return null;
+            public void setImageNe(ImageView ivHinh) {
+
             }
         });
         recyclerSach.setAdapter(adapter);

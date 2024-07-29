@@ -115,7 +115,8 @@ public class Sach {
         return urlHinh;
     }
 
-    public void setUrlHinh(String urlHinh) {
+    public String setUrlHinh(String urlHinh) {
         this.urlHinh = urlHinh;
+        return urlHinh;
     }
 }
