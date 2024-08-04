@@ -33,7 +33,7 @@
             android:name=".AdminDangNhap"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AdminActivity"
             android:exported="false" />
         <activity
             android:name=".ChonVaiTroActivity"

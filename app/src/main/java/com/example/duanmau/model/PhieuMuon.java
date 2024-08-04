@@ -40,7 +40,8 @@ public class PhieuMuon {
         this.tienthue = tienthue;
     }
 
-    public PhieuMuon( String tentt,String tentv, String tensach, String ngaymuon, String ngaytra) {
+    public PhieuMuon(int mapm, String tentt,String tentv, String tensach, String ngaymuon, String ngaytra) {
+        this.mapm = mapm;
         this.tentt = tentt;
         this.tentv = tentv;
         this.tensach = tensach;

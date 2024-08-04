@@ -119,12 +119,6 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
                 }
             });
 
-            ivHinhLoaiSach.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loaisachAdapterInterface.setImage(ivHinhLoaiSach);
-                }
-            });
         }
     }
 

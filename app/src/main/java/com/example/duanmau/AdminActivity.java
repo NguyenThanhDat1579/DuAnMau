@@ -30,7 +30,7 @@ import com.example.duanmau.fragment.ThongKeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
     Toolbar toolbar;
     FrameLayout framelayout;
     NavigationView navigationView;
@@ -71,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment = null;
 
-                for(int i = 0; i< navigationView.getMenu().size(); i++){
-                    navigationView.getMenu().getItem(i).setChecked(false);
-                }
 
                 if (menuItem.getItemId() == R.id.item_Home) {
                     fragment = new HomeFragment();
@@ -91,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new Top10SachMuonFragment();
                 } else if (menuItem.getItemId() == R.id.itemDangXuat) {
                     //xoa sharedpreferences
-                    SharedPreferences preferences = getSharedPreferences("Thong_tin_thanh_vien", MODE_PRIVATE);
+                    SharedPreferences preferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.clear();
                     editor.apply();
 
-                    Intent intent = new Intent(MainActivity.this, ChonVaiTroActivity.class);
+                    Intent intent = new Intent(AdminActivity.this, ChonVaiTroActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
@@ -105,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
                 }
 
-                menuItem.setChecked(true);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             }

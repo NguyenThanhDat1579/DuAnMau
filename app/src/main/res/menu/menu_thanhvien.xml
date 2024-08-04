@@ -38,10 +38,12 @@
                            android:title="Top 10 sách mượn phổ biến"
                            android:icon="@drawable/ic_trophy"
                            />
+
                        <item   android:id="@+id/itemDanhDau"
                            android:title="Sách đã đánh dấu"
                            android:icon="@drawable/ic_bookmark"
                            />
+
 
 
                </menu>

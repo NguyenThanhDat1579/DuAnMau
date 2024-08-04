@@ -81,7 +81,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txtMaPhieu, txtTenThuThu, txtTenKH, txtTenSach, txtNgayThue, txtNgayTra, txtTienThue, txtTrangThai;
         Button btnXacNhan;
-        ImageView ivSuaPhieuMuon, ivXoaPhieuMuon;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,8 +95,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
             txtTienThue = itemView.findViewById(R.id.txtTienThue);
             txtTrangThai = itemView.findViewById(R.id.txtTrangThai);
             btnXacNhan = itemView.findViewById(R.id.btnXacNhan);
-            ivSuaPhieuMuon = itemView.findViewById(R.id.ivSuaPhieuMuon);
-            ivXoaPhieuMuon = itemView.findViewById(R.id.ivXoaPhieuMuon);
+
         }
     }
 

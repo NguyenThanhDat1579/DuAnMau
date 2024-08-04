@@ -15,12 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.duanmau.R;
-import com.example.duanmau.adapter.Top10Adapter;
-import com.example.duanmau.adapter.pmtvAdapter;
+import com.example.duanmau.adapter.PhieuMuonTVAdapter;
 import com.example.duanmau.dao.ThanhVienDAO;
 import com.example.duanmau.dao.ThongKeDAO;
 import com.example.duanmau.model.PhieuMuon;
-import com.example.duanmau.model.Sach;
 import com.example.duanmau.model.ThanhVien;
 
 import java.util.ArrayList;
@@ -50,7 +48,7 @@ public class PhieuMuonTVFragment extends Fragment {
                 if (thanhVienDangNhap != null) {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                     recyclerViewpmtv.setLayoutManager(linearLayoutManager);
-                    pmtvAdapter adapter = new pmtvAdapter(getContext(), list);
+                    PhieuMuonTVAdapter adapter = new PhieuMuonTVAdapter(getContext(), list);
                     recyclerViewpmtv.setAdapter(adapter);
                     return view;
                 }

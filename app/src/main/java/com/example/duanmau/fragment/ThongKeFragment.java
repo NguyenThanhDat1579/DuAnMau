@@ -121,11 +121,17 @@ public class ThongKeFragment extends Fragment {
         btnDoanhThu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ThongKeDAO thongKeDAO = new ThongKeDAO(getContext());
-                double doanhthu = thongKeDAO.getDoanhThu(ngaybatdau,ngayketthuc);
-                NumberFormat format = new DecimalFormat("#,###");
-                String formattedNumber = format.format(doanhthu);
-                txtDoanhThu.setText(formattedNumber + " VND");
+
+                if (edTuNgay.length() > 0 && edDenNgay.length() > 0){
+                    ThongKeDAO thongKeDAO = new ThongKeDAO(getContext());
+                    double doanhthu = thongKeDAO.getDoanhThu(ngaybatdau,ngayketthuc);
+                    NumberFormat format = new DecimalFormat("#,###");
+                    String formattedNumber = format.format(doanhthu);
+                    txtDoanhThu.setText(formattedNumber + " VND");
+                } else {
+                    Toast.makeText(getContext(), "Vui lòng chọn đầy đủ ngày", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });

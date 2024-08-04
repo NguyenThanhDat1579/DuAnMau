@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.duanmau.R;
 
 public class HomeThanhVienFragment extends Fragment {
-    Button btnPhieuMuonTV, btnTongHopSach, btnDanhDau, btnThongKe;
+    Button btnPhieuMuonTV, btnTongHopSach, btnQlLoaiSach, btnThongKe, btnDanhDau;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -22,9 +22,10 @@ public class HomeThanhVienFragment extends Fragment {
 
         //anh xa
         btnPhieuMuonTV = view.findViewById(R.id.btnPhieuMuonTV);
-        btnTongHopSach = view.findViewById(R.id.btnTongHopSach);
-        btnDanhDau = view.findViewById(R.id.btnDanhDau);
+//        btnTongHopSach = view.findViewById(R.id.btnTongHopSach);
+        btnQlLoaiSach = view.findViewById(R.id.btnQlLoaiSach);
         btnThongKe = view.findViewById(R.id.btnThongKe);
+        btnDanhDau = view.findViewById(R.id.btnDanhDau);
 
 
 
@@ -38,21 +39,21 @@ public class HomeThanhVienFragment extends Fragment {
             }
         });
 
-        btnTongHopSach.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = null;
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frameLayout, new TongHopSachFragment()).commit();
-            }
-        });
-
         btnDanhDau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = null;
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.frameLayout, new DanhDauFragment()).commit();
+            }
+        });
+
+        btnQlLoaiSach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = null;
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.frameLayout, new QLLoaiSachTVFragment()).commit();
             }
         });
 

@@ -100,7 +100,25 @@ public class SachDAO {
         if(check == -1)
             return false;
         return true;
-    };
+    }
 
+    public boolean addToDanhDau(int masach, int matv) {
+        ContentValues values = new ContentValues();
+        values.put("masach", masach);
+        values.put("matv", matv);
+        long result = db.insert("DANHDAU", null, values);
+        return result != -1;
+    }
 
+    public boolean removeFromDanhDau(int masach, int matv) {
+        int result = db.delete("DANHDAU", "masach=? AND matv=?", new String[]{String.valueOf(masach), String.valueOf(matv)});
+        return result > 0;
+    }
+
+    public boolean isBookMarked(int masach, int matv) {
+        Cursor cursor = db.query("DANHDAU", new String[]{"masach"}, "masach=? AND matv=?", new String[]{String.valueOf(masach), String.valueOf(matv)}, null, null, null);
+        boolean exists = (cursor.getCount() > 0);
+        cursor.close();
+        return exists;
+    }
 }

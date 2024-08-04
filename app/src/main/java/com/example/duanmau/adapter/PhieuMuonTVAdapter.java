@@ -13,16 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau.R;
 import com.example.duanmau.model.PhieuMuon;
-import com.example.duanmau.model.Sach;
 
 import java.util.ArrayList;
 
-public class pmtvAdapter extends RecyclerView.Adapter<pmtvAdapter.ViewHolder>{
+public class PhieuMuonTVAdapter extends RecyclerView.Adapter<PhieuMuonTVAdapter.ViewHolder>{
 
     private Context context;
     private ArrayList<PhieuMuon> list;
 
-    public pmtvAdapter(Context context, ArrayList<PhieuMuon> list) {
+    public PhieuMuonTVAdapter(Context context, ArrayList<PhieuMuon> list) {
         this.context = context;
         this.list = list;
     }
@@ -39,6 +38,7 @@ public class pmtvAdapter extends RecyclerView.Adapter<pmtvAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        holder.txtMaPhieu.setText("PM"+list.get(position).getMapm());
         holder.txttentt.setText(list.get(position).getTentt());
         holder.txttentv.setText(list.get(position).getTentv());
         holder.txttens.setText(list.get(position).getTensach());
@@ -55,10 +55,11 @@ public class pmtvAdapter extends RecyclerView.Adapter<pmtvAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView  txttentt, txttentv, txttens, txtngaymuon, txtngaytra, txtspm;
+        TextView  txtMaPhieu,txttentt, txttentv, txttens, txtngaymuon, txtngaytra, txtspm;
         ImageView img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            txtMaPhieu = itemView.findViewById(R.id.txtMaPhieu);
             txttentt = itemView.findViewById(R.id.txtTenThuThu);
             txttentv = itemView.findViewById(R.id.txtTenKH);
             txttens = itemView.findViewById(R.id.txtTenSach);

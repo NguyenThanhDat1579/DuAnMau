@@ -174,25 +174,10 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:backgroundTint="@null"
-                android:layout_marginRight="10dp"
+
                 android:layout_weight="1"
                 />
 
-            <ImageView
-                android:id="@+id/ivSuaPhieuMuon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit"
-                android:layout_gravity="center|end"
-                android:layout_marginRight="10dp"/>
-
-            <ImageView
-                android:id="@+id/ivXoaPhieuMuon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_delete"
-                android:layout_gravity="end|center"
-                android:layout_marginRight="10dp"/>
 
 
         </LinearLayout>

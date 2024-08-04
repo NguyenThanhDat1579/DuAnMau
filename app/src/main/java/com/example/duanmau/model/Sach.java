@@ -10,6 +10,7 @@ public class Sach {
     private int soluongdamuon;
     private int trangthai = 1;
     private String urlHinh; // Thêm trường urlHinh
+    private boolean isChecked;
 
 
     public Sach() {
@@ -34,6 +35,16 @@ public class Sach {
         this.maloai = maloai;
         this.trangthai = trangthai;
         this.tenloai = tenloai;
+        this.urlHinh = urlHinh;
+    }
+
+    public Sach(int masach, String tensach, String tacgia, int giathue, int trangthai,  int maloai,String urlHinh) {
+        this.masach = masach;
+        this.tensach = tensach;
+        this.tacgia = tacgia;
+        this.giathue = giathue;
+        this.trangthai = trangthai;
+        this.maloai = maloai;
         this.urlHinh = urlHinh;
     }
 
@@ -118,5 +129,13 @@ public class Sach {
     public String setUrlHinh(String urlHinh) {
         this.urlHinh = urlHinh;
         return urlHinh;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }

@@ -2,23 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:layout_marginBottom="40dp"
-    android:gravity="center">
+    android:background="@drawable/maunen"
+    android:orientation="vertical">
+
 
     <TextView
-        android:text="TOP 10 SÁCH MƯỢN PHỔ BIẾN"
+        android:id="@+id/txtTenLoaiSach"
+        android:text="TÊN LOẠI SÁCH"
         android:textColor="#e35ce8"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="23dp"
+        android:gravity="center"
         android:textStyle="bold"
         android:layout_marginBottom="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclertop10"
+        android:id="@+id/recyclerSachTV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        />
+
+
 </LinearLayout>
+

@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
+    android:layout_gravity="center"
     android:background="@drawable/maunen">
 
         <LinearLayout
@@ -43,7 +44,7 @@
                         app:backgroundTint="#F5F2FC" />
 
                     <Button
-                        android:id="@+id/btnTongHopSach"
+                        android:id="@+id/btnQlLoaiSach"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -51,7 +52,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="10dp"
                         android:drawableTop="@drawable/ic_bookcase"
-                        android:text="Tất cả sách"
+                        android:text="Các thể loại sách"
                         app:backgroundTint="#FFF9F2"
                         android:background="@drawable/radius"
                         />
@@ -67,6 +68,7 @@
 
                 <Button
                     android:id="@+id/btnDanhDau"
+
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

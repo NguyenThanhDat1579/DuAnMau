@@ -23,7 +23,9 @@ import com.example.duanmau.fragment.DanhDauFragment;
 import com.example.duanmau.fragment.HomeThanhVienFragment;
 import com.example.duanmau.fragment.PhieuMuonTVFragment;
 import com.example.duanmau.fragment.QLLoaiSachFragment;
+import com.example.duanmau.fragment.QLLoaiSachTVFragment;
 import com.example.duanmau.fragment.TongHopSachFragment;
+import com.example.duanmau.fragment.TongHopSachTVFragment;
 import com.example.duanmau.fragment.Top10SachMuonFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -73,9 +75,9 @@ public class ThanhVienActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.item_PhieuMuonTV) {
                     fragment = new PhieuMuonTVFragment();
                 } else if (menuItem.getItemId() == R.id.item_QLTheLoaiSach) {
-                    fragment = new QLLoaiSachFragment();
+                    fragment = new QLLoaiSachTVFragment();
                 } else if (menuItem.getItemId() == R.id.item_TongHopSach) {
-                    fragment = new TongHopSachFragment();
+                    fragment = new TongHopSachTVFragment();
                 } else if (menuItem.getItemId() == R.id.itemSachMuon) {
                     fragment = new Top10SachMuonFragment();
                 } else if (menuItem.getItemId() == R.id.itemDanhDau) {

@@ -3,7 +3,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
              android:layout_width="match_parent"
              android:layout_height="?attr/actionBarSize"
-             android:id="@+id/toolbar">
+             android:id="@+id/toolbar"
+    android:layout_marginTop="15dp">
+
 
 
     <ImageView
@@ -12,12 +14,7 @@
         android:layout_height="80dp"
         android:src="@drawable/logopnlibxoanen"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_avatar"
-        android:layout_gravity="end"
-        android:layout_marginRight="10dp"/>
+
 
 
 </androidx.appcompat.widget.Toolbar>
