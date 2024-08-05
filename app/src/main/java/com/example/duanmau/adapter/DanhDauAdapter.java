@@ -1,7 +1,9 @@
 package com.example.duanmau.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -29,10 +31,13 @@ import java.util.List;
 public class DanhDauAdapter extends RecyclerView.Adapter<DanhDauAdapter.ViewHolder> {
     private Context context;
     private ArrayList<Sach> list;
+    private  SachDAO sachDAO;
+    private int matv;
 
     public DanhDauAdapter(Context context, ArrayList<Sach> list) {
         this.context = context;
         this.list = list;
+        this.sachDAO = new SachDAO(context);
     }
 
     @NonNull
@@ -80,6 +85,15 @@ public class DanhDauAdapter extends RecyclerView.Adapter<DanhDauAdapter.ViewHold
             holder.itemView.setVisibility(View.VISIBLE);
         }
 
+
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                showDialogRemoveDanhDau(sach);
+                return true;
+            }
+        });
 
 
 
@@ -141,6 +155,28 @@ public class DanhDauAdapter extends RecyclerView.Adapter<DanhDauAdapter.ViewHold
         // Xóa sách khỏi bảng DANHDAU
         SachDAO sachDAO = new SachDAO(context);
         sachDAO.removeFromDanhDau(sach.getMasach(), matv);
+    }
+
+    private void showDialogRemoveDanhDau(Sach sach) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Xóa sách khỏi danh sách đánh dấu");
+        builder.setIcon(R.drawable.icon_warning);
+        builder.setMessage("Bạn có muốn xóa \"" + sach.getTensach() + "\" khỏi danh sách đánh dấu không?");
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                removeFromDanhDau(sach);
+                list.remove(sach);
+                notifyDataSetChanged();
+            }
+        });
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
 }

@@ -133,7 +133,13 @@ public class SachTVAdapter extends RecyclerView.Adapter<SachTVAdapter.ViewHolder
                         }
                     });
 
-                    builder.setNegativeButton("Hủy", null);
+                    builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            holder.chkDanhDau.setChecked(false);
+                            dialog.dismiss();
+                        }
+                    });
 
                     AlertDialog alertDialog = builder.create();
                     alertDialog.setCancelable(false);
@@ -157,6 +163,7 @@ public class SachTVAdapter extends RecyclerView.Adapter<SachTVAdapter.ViewHolder
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             holder.chkDanhDau.setChecked(true);
+                            dialog.dismiss();
                         }
                     });
 
